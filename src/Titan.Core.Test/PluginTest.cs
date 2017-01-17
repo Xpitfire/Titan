@@ -17,7 +17,7 @@ namespace Titan.Core.Test
             var value = parser.Parse(new NetworkRoot());
             Assert.IsNotNull(value);
 
-            Console.WriteLine(value.MessageText);
+            Console.WriteLine(value.Data);
         }
     }
 }

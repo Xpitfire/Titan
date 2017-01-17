@@ -50,6 +50,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
+      <Project>{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}</Project>
+      <Name>Titan.Communication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
       <Project>{EFFD2DD7-2113-4481-8941-83222B7E5AD1}</Project>
       <Name>Titan.Core.AST</Name>

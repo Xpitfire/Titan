@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\RootObject.cs" />
+    <Compile Include="Communication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
+      <Project>{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}</Project>
+      <Name>Titan.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Parser\Titan.Parser.csproj">
+      <Project>{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}</Project>
+      <Name>Titan.Parser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
+      <Project>{06DF83B9-D757-4175-BF2D-D74F2C186E72}</Project>
+      <Name>Titan.Plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

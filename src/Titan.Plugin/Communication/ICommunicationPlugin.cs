@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Titan.Core.AST;
+using Titan.Communication;
 using Titan.Parser;
 
-namespace Titan.Plugin.Parser
+namespace Titan.Plugin.Communication
 {
-    public interface IParserPlugin : IParser<ParsedMessage>, IPlugin
+    public interface ICommunicationPlugin : ICommunication<ParsedMessage, string>, IPlugin
     {
     }
 }

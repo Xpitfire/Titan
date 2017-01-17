@@ -16,7 +16,7 @@ namespace Titan.Core
 {
     public static class PluginFactory
     {
-        static TModule LoadAddIn<TModule>(string assemblyName, AppDomain sandboxDomain) where TModule : class
+        private static TModule LoadAddIn<TModule>(string assemblyName, AppDomain sandboxDomain) where TModule : class
         {
             var assembly = Assembly.Load(assemblyName);
             foreach (var type in assembly.GetTypes())

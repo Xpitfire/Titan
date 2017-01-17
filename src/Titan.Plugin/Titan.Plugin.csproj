@@ -46,12 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Communication\ICommunicationPlugin.cs" />
     <Compile Include="Parser\IParserPlugin.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="PluginSecureCriticalExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
+      <Project>{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}</Project>
+      <Name>Titan.Communication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
       <Project>{effd2dd7-2113-4481-8941-83222b7e5ad1}</Project>
       <Name>Titan.Core.AST</Name>
