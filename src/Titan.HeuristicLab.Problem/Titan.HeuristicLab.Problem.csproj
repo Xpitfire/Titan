@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Titan.HeuristicLab.Problem</RootNamespace>
+    <AssemblyName>Titan.HeuristicLab.Problem</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\svn\HeuristicLab\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\svn\HeuristicLab\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Titan.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HeuristicLab.Collections-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Collections-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Common-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Common-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Core-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Core-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Data-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Data-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Encodings.SymbolicExpressionTreeEncoding-3.4, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Encodings.SymbolicExpressionTreeEncoding-3.4.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Operators-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Operators-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Optimization-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Optimization-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Parameters-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Parameters-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Persistence-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Persistence-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.PluginInfrastructure-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.PluginInfrastructure-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Problems.ExternalEvaluation-3.4, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Problems.ExternalEvaluation-3.4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Problem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Titan.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
+      <Project>{effd2dd7-2113-4481-8941-83222b7e5ad1}</Project>
+      <Name>Titan.Core.AST</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Core.Default\Titan.Core.Default.csproj">
+      <Project>{6e74744c-7a42-45a1-b07c-511993c62e6d}</Project>
+      <Name>Titan.Core.Default</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
+      <Project>{5a3a569f-393a-4a0b-b499-86f12c27206c}</Project>
+      <Name>Titan.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Dispatcher\Titan.Dispatcher.csproj">
+      <Project>{0e0931d1-ac9f-4480-9b7e-ffa29ef093f8}</Project>
+      <Name>Titan.Dispatcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Parser\Titan.Parser.csproj">
+      <Project>{3ea53ed0-f8cc-45d4-8bed-c3e8b79be292}</Project>
+      <Name>Titan.Parser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
+      <Project>{06df83b9-d757-4175-bf2d-d74f2c186e72}</Project>
+      <Name>Titan.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Scheduler\Titan.Scheduler.csproj">
+      <Project>{fe0ddc24-1249-42b5-b169-2c3c4cfa8e25}</Project>
+      <Name>Titan.Scheduler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

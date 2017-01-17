@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core", "Titan.Core\Titan.Core.csproj", "{5A3A569F-393A-4A0B-B499-86F12C27206C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Dispatcher", "Titan.Dispatcher\Titan.Dispatcher.csproj", "{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.HeuristicLab.Problem", "Titan.HeuristicLab.Problem\Titan.HeuristicLab.Problem.csproj", "{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Scheduler", "Titan.Scheduler\Titan.Scheduler.csproj", "{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin", "Titan.Plugin\Titan.Plugin.csproj", "{06DF83B9-D757-4175-BF2D-D74F2C186E72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.Caffe.Parser", "Titan.Plugin.Caffe.Parser\Titan.Plugin.Caffe.Parser.csproj", "{3D732585-6963-4D41-B519-2CAA0BD7973E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.Caffe.REST", "Titan.Plugin.Caffe.REST\Titan.Plugin.Caffe.REST.csproj", "{1A8FFF5D-7FCA-488C-8BE2-BB8B4EA3EA84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core.Test", "Titan.Core.Test\Titan.Core.Test.csproj", "{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core.AST", "Titan.Core.AST\Titan.Core.AST.csproj", "{EFFD2DD7-2113-4481-8941-83222B7E5AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Parser", "Titan.Parser\Titan.Parser.csproj", "{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D2DDFB42-C551-4907-9FEE-53128110C51E}"
+	ProjectSection(SolutionItems) = preProject
+		Titan.snk = Titan.snk
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core.Default", "Titan.Core.Default\Titan.Core.Default.csproj", "{6E74744C-7A42-45A1-B07C-511993C62E6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06DF83B9-D757-4175-BF2D-D74F2C186E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06DF83B9-D757-4175-BF2D-D74F2C186E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06DF83B9-D757-4175-BF2D-D74F2C186E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06DF83B9-D757-4175-BF2D-D74F2C186E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D732585-6963-4D41-B519-2CAA0BD7973E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D732585-6963-4D41-B519-2CAA0BD7973E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D732585-6963-4D41-B519-2CAA0BD7973E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D732585-6963-4D41-B519-2CAA0BD7973E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8FFF5D-7FCA-488C-8BE2-BB8B4EA3EA84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8FFF5D-7FCA-488C-8BE2-BB8B4EA3EA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8FFF5D-7FCA-488C-8BE2-BB8B4EA3EA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8FFF5D-7FCA-488C-8BE2-BB8B4EA3EA84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
