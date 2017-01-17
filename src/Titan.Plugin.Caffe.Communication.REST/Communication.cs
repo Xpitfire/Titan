@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Activities.Statements;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
@@ -16,22 +19,20 @@ namespace Titan.Plugin.Caffe.Communication.REST
 
         public void Send(ParsedMessage message)
         {
-            SendMessage(message);
+            var client = new RestClient("http://localhost:5000/login");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "text/html; charset=utf-8");
+            request.AddHeader("Set-Cookie", "username=xpitfire; Path=/");
+            var response = client.Execute(request);
+            if (response == null || response.ErrorException != null) return;
+            MessageReceivedEvent?.Invoke(response.Content);
+            Console.WriteLine(response.Content);
+            //SendJson();
         }
 
         public Task SendAsync(ParsedMessage message)
         {
-            return Task.Run(() => SendMessage(message));
-        }
-
-        private void SendMessage(ParsedMessage message)
-        {
-            var client = new RestClient("https://localhost:5000/login");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "text/html");
-            request.AddHeader("Set-Cookie", "username=xpitfire; Path=/");
-            var response = client.Execute(request);
-            MessageReceivedEvent?.Invoke(response.Content);
+            return Task.Run(() => Send(message));
         }
     }
 }
