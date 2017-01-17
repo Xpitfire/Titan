@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Titan.Plugin.Caffe.REST")]
+[assembly: AssemblyTitle("Titan.Communication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Titan.Plugin.Caffe.REST")]
+[assembly: AssemblyProduct("Titan.Communication")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1a8fff5d-7fca-488c-8be2-bb8b4ea3ea84")]
+[assembly: Guid("6702ee5a-c2fe-4c87-a119-f7e95e2c970a")]
 
 // Version information for an assembly consists of the following four values:
 //

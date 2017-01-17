@@ -11,14 +11,19 @@ namespace Titan.Plugin.Caffe.Parser
 {
     public class Parser : MarshalByRefObject, IParserPlugin
     {
-        public Parser() : base() { }
-
         public ParsedMessage Parse(INode root)
         {
-            Console.WriteLine("Parser loaded!");
+            var network = root as NetworkRoot;
+            if (network == null) return null;
+
+            var solver = new CaffeScriptSolverTemplate
+            {
+                Network = network
+            };
+            
             return new ParsedMessage
             {
-                MessageText = "test message",
+                MessageText = solver.TransformText(),
                 ParserName = "Caffe Parser",
                 ParseDate = DateTime.Now
             };

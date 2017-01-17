@@ -11,6 +11,8 @@ namespace Titan.HeuristicLab.Problem
 {
     public sealed class Problem : SingleObjectiveBasicProblem<SymbolicExpressionTreeEncoding>
     {
+        public const string SymbolicTreeName = "Titan";
+
         private Problem(Problem original, Cloner cloner) : base(original, cloner) { }
         public Problem() : base()
         {
@@ -19,7 +21,7 @@ namespace Titan.HeuristicLab.Problem
             g.AddSymbol("pool", 1, 1);
             g.AddSymbol("branch", 2, 2);
             g.AddTerminalSymbols(new[] { "1", "2", "3" });
-            Encoding = new SymbolicExpressionTreeEncoding("titan", g, 10, 5);
+            Encoding = new SymbolicExpressionTreeEncoding(SymbolicTreeName, g, 10, 5);
         }
 
         public override IDeepCloneable Clone(Cloner cloner)
@@ -29,7 +31,7 @@ namespace Titan.HeuristicLab.Problem
 
         public override double Evaluate(Individual individual, IRandom random)
         {
-            var t = individual.SymbolicExpressionTree("titan");
+            var t = individual.SymbolicExpressionTree(SymbolicTreeName);
             var quality = 0.0;
             return quality;
         }

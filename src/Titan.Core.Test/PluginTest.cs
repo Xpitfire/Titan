@@ -13,7 +13,11 @@ namespace Titan.Core.Test
         public void TestInstanceLoader()
         {
             var parser = PluginFactory.Get<IParserPlugin>();
-            Console.WriteLine(parser.Parse(new NetworkRoot()));
+            Assert.IsNotNull(parser);
+            var value = parser.Parse(new NetworkRoot());
+            Assert.IsNotNull(value);
+
+            Console.WriteLine(value.MessageText);
         }
     }
 }

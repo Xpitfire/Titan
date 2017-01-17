@@ -98,6 +98,10 @@
     <None Include="Titan.snk" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
+      <Project>{6702ee5a-c2fe-4c87-a119-f7e95e2c970a}</Project>
+      <Name>Titan.Communication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
       <Project>{effd2dd7-2113-4481-8941-83222b7e5ad1}</Project>
       <Name>Titan.Core.AST</Name>

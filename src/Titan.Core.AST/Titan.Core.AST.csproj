@@ -49,6 +49,7 @@
     <Compile Include="INode.cs" />
     <Compile Include="NetworkRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdaterType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Titan.snk" />

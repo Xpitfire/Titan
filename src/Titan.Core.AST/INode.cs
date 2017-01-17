@@ -8,5 +8,7 @@ namespace Titan.Core.AST
 {
     public interface INode
     {
+        string Name { get; set; }
+        INode Next { get; set; }
     }
 }

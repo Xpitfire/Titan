@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{06DF83B9-D757-4175-BF2D-D74F2C186E72}</ProjectGuid>
+    <ProjectGuid>{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Titan.Plugin</RootNamespace>
-    <AssemblyName>Titan.Plugin</AssemblyName>
+    <RootNamespace>Titan.Communication</RootNamespace>
+    <AssemblyName>Titan.Communication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,12 +29,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Titan.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,26 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parser\IParserPlugin.cs" />
-    <Compile Include="IPlugin.cs" />
-    <Compile Include="PluginSecureCriticalExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
-      <Project>{effd2dd7-2113-4481-8941-83222b7e5ad1}</Project>
-      <Name>Titan.Core.AST</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Parser\Titan.Parser.csproj">
-      <Project>{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}</Project>
-      <Name>Titan.Parser</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Titan.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Folder Include="Network\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
