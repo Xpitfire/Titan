@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Titan.Core.Parser;
+using Titan.Core.CodeGen;
 
-namespace Titan.Plugin.Parser
+namespace Titan.Plugin.CodeGen
 {
-    public interface IParserPlugin : IParser<ParserMessage>, IPlugin
+    public interface ICodeGenPlugin : ICodeGen<CodeGenMessage>, IPlugin
     {
     }
 }

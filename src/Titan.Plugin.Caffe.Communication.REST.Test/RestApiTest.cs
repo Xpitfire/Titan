@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Titan.Parser;
+using Titan.Core.Communication;
+using Titan.Core.Parser;
 
 namespace Titan.Plugin.Caffe.Communication.REST.Test
 {
@@ -11,7 +12,8 @@ namespace Titan.Plugin.Caffe.Communication.REST.Test
         public void TestSendMessage()
         {
             var communication = new Communication();
-            communication.Send(new ParsedMessage());
+            var rsp = communication.SendAsync("Test").Result;
+            Assert.AreEqual(rsp, Response.Failed);
         }
     }
 }

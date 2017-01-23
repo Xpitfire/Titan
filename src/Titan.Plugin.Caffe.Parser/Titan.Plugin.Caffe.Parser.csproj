@@ -40,38 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaffeScriptSolver.cs" />
-    <Compile Include="CaffeScriptSolverTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CaffeScriptSolverTemplate.tt</DependentUpon>
-    </Compile>
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
-      <Project>{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}</Project>
-      <Name>Titan.Communication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
-      <Project>{EFFD2DD7-2113-4481-8941-83222B7E5AD1}</Project>
-      <Name>Titan.Core.AST</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Parser\Titan.Parser.csproj">
-      <Project>{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}</Project>
-      <Name>Titan.Parser</Name>
+    <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
+      <Project>{5A3A569F-393A-4A0B-B499-86F12C27206C}</Project>
+      <Name>Titan.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
       <Project>{06DF83B9-D757-4175-BF2D-D74F2C186E72}</Project>
       <Name>Titan.Plugin</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CaffeScriptSolverTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>CaffeScriptSolverTemplate.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

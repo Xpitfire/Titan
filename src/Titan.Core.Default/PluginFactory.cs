@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security;
 using System.Security.Permissions;
 using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using Titan.Core.AST;
 using Titan.Plugin;
-using Titan.Plugin.Parser;
 
-namespace Titan.Core
+namespace Titan.Core.Default
 {
     public static class PluginFactory
     {
@@ -33,7 +28,7 @@ namespace Titan.Core
         {
             var permSet = new PermissionSet(PermissionState.None);
             permSet.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
-            AppDomainSetup ptInfo = new AppDomainSetup
+            var ptInfo = new AppDomainSetup
             {
                 ApplicationBase = "."
             };

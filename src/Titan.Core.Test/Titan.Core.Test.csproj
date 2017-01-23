@@ -52,16 +52,9 @@
   <ItemGroup>
     <Compile Include="PluginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyntaxTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
-      <Project>{6702ee5a-c2fe-4c87-a119-f7e95e2c970a}</Project>
-      <Name>Titan.Communication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
-      <Project>{EFFD2DD7-2113-4481-8941-83222B7E5AD1}</Project>
-      <Name>Titan.Core.AST</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Titan.Core.Default\Titan.Core.Default.csproj">
       <Project>{6E74744C-7A42-45A1-B07C-511993C62E6D}</Project>
       <Name>Titan.Core.Default</Name>
@@ -69,14 +62,6 @@
     <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
       <Project>{5A3A569F-393A-4A0B-B499-86F12C27206C}</Project>
       <Name>Titan.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Dispatcher\Titan.Dispatcher.csproj">
-      <Project>{0e0931d1-ac9f-4480-9b7e-ffa29ef093f8}</Project>
-      <Name>Titan.Dispatcher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Parser\Titan.Parser.csproj">
-      <Project>{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}</Project>
-      <Name>Titan.Parser</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin.Caffe.Communication.REST\Titan.Plugin.Caffe.Communication.REST.csproj">
       <Project>{9c780128-d14f-4680-9b6e-32257f19e0d1}</Project>
@@ -89,10 +74,6 @@
     <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
       <Project>{06DF83B9-D757-4175-BF2D-D74F2C186E72}</Project>
       <Name>Titan.Plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Scheduler\Titan.Scheduler.csproj">
-      <Project>{fe0ddc24-1249-42b5-b169-2c3c4cfa8e25}</Project>
-      <Name>Titan.Scheduler</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

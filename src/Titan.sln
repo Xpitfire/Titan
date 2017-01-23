@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core", "Titan.Core\Titan.Core.csproj", "{5A3A569F-393A-4A0B-B499-86F12C27206C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Dispatcher", "Titan.Dispatcher\Titan.Dispatcher.csproj", "{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.HeuristicLab.Problem", "Titan.HeuristicLab.Problem\Titan.HeuristicLab.Problem.csproj", "{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Scheduler", "Titan.Scheduler\Titan.Scheduler.csproj", "{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9C780128-D14F-4680-9B6E-32257F19E0D1} = {9C780128-D14F-4680-9B6E-32257F19E0D1}
+		{4F20C136-D6AC-4C04-B205-A118DB2370C3} = {4F20C136-D6AC-4C04-B205-A118DB2370C3}
+		{3D732585-6963-4D41-B519-2CAA0BD7973E} = {3D732585-6963-4D41-B519-2CAA0BD7973E}
+		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50} = {82E088CC-5E38-4B35-9C4C-73C7CCA66D50}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin", "Titan.Plugin\Titan.Plugin.csproj", "{06DF83B9-D757-4175-BF2D-D74F2C186E72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.Caffe.Parser", "Titan.Plugin.Caffe.Parser\Titan.Plugin.Caffe.Parser.csproj", "{3D732585-6963-4D41-B519-2CAA0BD7973E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core.Test", "Titan.Core.Test\Titan.Core.Test.csproj", "{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core.AST", "Titan.Core.AST\Titan.Core.AST.csproj", "{EFFD2DD7-2113-4481-8941-83222B7E5AD1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Parser", "Titan.Parser\Titan.Parser.csproj", "{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}"
+	ProjectSection(ProjectDependencies) = postProject
+		{66D98829-D7C8-47FA-B700-D3744475F0AA} = {66D98829-D7C8-47FA-B700-D3744475F0AA}
+		{BD84532F-4D9A-4C11-88D9-3AE86305E695} = {BD84532F-4D9A-4C11-88D9-3AE86305E695}
+		{4F20C136-D6AC-4C04-B205-A118DB2370C3} = {4F20C136-D6AC-4C04-B205-A118DB2370C3}
+		{FE6B5489-5F45-445B-972A-96116566A357} = {FE6B5489-5F45-445B-972A-96116566A357}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D2DDFB42-C551-4907-9FEE-53128110C51E}"
 	ProjectSection(SolutionItems) = preProject
@@ -28,11 +30,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core.Default", "Titan.Core.Default\Titan.Core.Default.csproj", "{6E74744C-7A42-45A1-B07C-511993C62E6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Communication", "Titan.Communication\Titan.Communication.csproj", "{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.Caffe.Communication.REST", "Titan.Plugin.Caffe.Communication.REST\Titan.Plugin.Caffe.Communication.REST.csproj", "{9C780128-D14F-4680-9B6E-32257F19E0D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.Caffe.Communication.REST.Test", "Titan.Plugin.Caffe.Communication.REST.Test\Titan.Plugin.Caffe.Communication.REST.Test.csproj", "{4F20C136-D6AC-4C04-B205-A118DB2370C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.GraphViz.Parser", "Titan.Plugin.GraphViz.Parser\Titan.Plugin.GraphViz.Parser.csproj", "{66D98829-D7C8-47FA-B700-D3744475F0AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.Caffe.CodeGen", "Titan.Plugin.Caffe.CodeGen\Titan.Plugin.Caffe.CodeGen.csproj", "{FE6B5489-5F45-445B-972A-96116566A357}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.GraphViz.CodeGen", "Titan.Plugin.GraphViz.CodeGen\Titan.Plugin.GraphViz.CodeGen.csproj", "{BD84532F-4D9A-4C11-88D9-3AE86305E695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core", "Titan.Core\Titan.Core.csproj", "{5A3A569F-393A-4A0B-B499-86F12C27206C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,22 +48,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E0931D1-AC9F-4480-9B7E-FFA29EF093F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE0DDC24-1249-42B5-B169-2C3C4CFA8E25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06DF83B9-D757-4175-BF2D-D74F2C186E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06DF83B9-D757-4175-BF2D-D74F2C186E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06DF83B9-D757-4175-BF2D-D74F2C186E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,22 +64,10 @@ Global
 		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82E088CC-5E38-4B35-9C4C-73C7CCA66D50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFFD2DD7-2113-4481-8941-83222B7E5AD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E74744C-7A42-45A1-B07C-511993C62E6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C780128-D14F-4680-9B6E-32257F19E0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C780128-D14F-4680-9B6E-32257F19E0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C780128-D14F-4680-9B6E-32257F19E0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,6 +76,22 @@ Global
 		{4F20C136-D6AC-4C04-B205-A118DB2370C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F20C136-D6AC-4C04-B205-A118DB2370C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F20C136-D6AC-4C04-B205-A118DB2370C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D98829-D7C8-47FA-B700-D3744475F0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D98829-D7C8-47FA-B700-D3744475F0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D98829-D7C8-47FA-B700-D3744475F0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D98829-D7C8-47FA-B700-D3744475F0AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE6B5489-5F45-445B-972A-96116566A357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE6B5489-5F45-445B-972A-96116566A357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE6B5489-5F45-445B-972A-96116566A357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE6B5489-5F45-445B-972A-96116566A357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD84532F-4D9A-4C11-88D9-3AE86305E695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD84532F-4D9A-4C11-88D9-3AE86305E695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD84532F-4D9A-4C11-88D9-3AE86305E695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD84532F-4D9A-4C11-88D9-3AE86305E695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

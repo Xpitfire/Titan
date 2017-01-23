@@ -54,13 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
-      <Project>{6702ee5a-c2fe-4c87-a119-f7e95e2c970a}</Project>
-      <Name>Titan.Communication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Parser\Titan.Parser.csproj">
-      <Project>{3EA53ED0-F8CC-45D4-8BED-C3E8B79BE292}</Project>
-      <Name>Titan.Parser</Name>
+    <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
+      <Project>{5A3A569F-393A-4A0B-B499-86F12C27206C}</Project>
+      <Name>Titan.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin.Caffe.Communication.REST\Titan.Plugin.Caffe.Communication.REST.csproj">
       <Project>{9C780128-D14F-4680-9B6E-32257F19E0D1}</Project>

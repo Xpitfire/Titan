@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5A3A569F-393A-4A0B-B499-86F12C27206C}</ProjectGuid>
+    <ProjectGuid>{FE6B5489-5F45-445B-972A-96116566A357}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Titan.Core</RootNamespace>
-    <AssemblyName>Titan.Core</AssemblyName>
+    <RootNamespace>Titan.Plugin.Caffe.CodeGen</RootNamespace>
+    <AssemblyName>Titan.Plugin.Caffe.CodeGen</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,18 +29,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Titan.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,32 +40,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGen\CodeGenMessage.cs" />
-    <Compile Include="CodeGen\ICodeGen.cs" />
-    <Compile Include="Communication\ICommunication.cs" />
-    <Compile Include="Communication\Message.cs" />
-    <Compile Include="Communication\Response.cs" />
-    <Compile Include="Parser\IParser.cs" />
-    <Compile Include="Parser\ParserMessage.cs" />
+    <Compile Include="CaffeScriptSolver.cs" />
+    <Compile Include="CaffeScriptSolverTemplate.cs">
+      <DependentUpon>CaffeScriptSolverTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeGen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Syntax\Spix.cs" />
-    <Compile Include="Syntax\SyntaxFactory.cs" />
-    <Compile Include="Syntax\SyntaxNode.cs" />
-    <Compile Include="Syntax\ConvolutionalLayerSyntax.cs" />
-    <Compile Include="Syntax\InputLayerSyntax.cs" />
-    <Compile Include="Syntax\LayerSyntax.cs" />
-    <Compile Include="Syntax\NetworkSyntax.cs" />
-    <Compile Include="Syntax\OutputLayerSyntax.cs" />
-    <Compile Include="Syntax\PoolingLayerSyntax.cs" />
-    <Compile Include="Syntax\ResidualLayerSyntax.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Titan.snk" />
+    <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
+      <Project>{5a3a569f-393a-4a0b-b499-86f12c27206c}</Project>
+      <Name>Titan.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
+      <Project>{06df83b9-d757-4175-bf2d-d74f2c186e72}</Project>
+      <Name>Titan.Plugin</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dispatcher\" />
-    <Folder Include="Scheduler\" />
+    <Content Include="CaffeScriptSolverTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CaffeScriptSolverTemplate.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

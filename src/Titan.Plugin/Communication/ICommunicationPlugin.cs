@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Titan.Communication;
-using Titan.Parser;
+using Titan.Core.Parser;
 
 namespace Titan.Plugin.Communication
 {
-    public interface ICommunicationPlugin : ICommunication<ParsedMessage, string>, IPlugin
+    public interface ICommunicationPlugin : ICommunication<string, string>, IPlugin
     {
     }
 }

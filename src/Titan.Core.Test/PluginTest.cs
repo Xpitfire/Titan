@@ -1,7 +1,8 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Titan.Core.AST;
-using Titan.Parser;
+using Titan.Core.Default;
+using Titan.Core.Syntax;
+using Titan.Core.Syntax.Type;
 using Titan.Plugin.Parser;
 
 namespace Titan.Core.Test
@@ -14,9 +15,8 @@ namespace Titan.Core.Test
         {
             var parser = PluginFactory.Get<IParserPlugin>();
             Assert.IsNotNull(parser);
-            var value = parser.Parse(new NetworkRoot());
+            var value = parser.ParseAsync("network { conv (name:test in:data out:45) }").Result;
             Assert.IsNotNull(value);
-
             Console.WriteLine(value.Data);
         }
     }

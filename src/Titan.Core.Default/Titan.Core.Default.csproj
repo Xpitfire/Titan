@@ -55,33 +55,13 @@
     <None Include="Titan.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Titan.Communication\Titan.Communication.csproj">
-      <Project>{6702EE5A-C2FE-4C87-A119-F7E95E2C970A}</Project>
-      <Name>Titan.Communication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Core.AST\Titan.Core.AST.csproj">
-      <Project>{effd2dd7-2113-4481-8941-83222b7e5ad1}</Project>
-      <Name>Titan.Core.AST</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
-      <Project>{5a3a569f-393a-4a0b-b499-86f12c27206c}</Project>
+      <Project>{5A3A569F-393A-4A0B-B499-86F12C27206C}</Project>
       <Name>Titan.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Dispatcher\Titan.Dispatcher.csproj">
-      <Project>{0e0931d1-ac9f-4480-9b7e-ffa29ef093f8}</Project>
-      <Name>Titan.Dispatcher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Parser\Titan.Parser.csproj">
-      <Project>{3ea53ed0-f8cc-45d4-8bed-c3e8b79be292}</Project>
-      <Name>Titan.Parser</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
       <Project>{06DF83B9-D757-4175-BF2D-D74F2C186E72}</Project>
       <Name>Titan.Plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Scheduler\Titan.Scheduler.csproj">
-      <Project>{fe0ddc24-1249-42b5-b169-2c3c4cfa8e25}</Project>
-      <Name>Titan.Scheduler</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
