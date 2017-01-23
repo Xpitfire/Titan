@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Titan.Core.Syntax.Type
+namespace Titan.Core.Syntax
 {
     [Serializable]
     public sealed class NetworkSyntax : SyntaxNode

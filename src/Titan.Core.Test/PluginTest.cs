@@ -2,7 +2,6 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Titan.Core.Default;
 using Titan.Core.Syntax;
-using Titan.Core.Syntax.Type;
 using Titan.Plugin.Parser;
 
 namespace Titan.Core.Test

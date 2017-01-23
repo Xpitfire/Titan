@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Titan.Core.Communication;
+﻿using System.Threading.Tasks;
 
-namespace Titan.Communication
+namespace Titan.Core.Communication
 {
     public interface ICommunication<in TSendMessage, out TReceiveMessage>
     {

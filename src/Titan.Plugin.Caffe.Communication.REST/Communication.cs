@@ -7,7 +7,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
-using Titan.Communication;
 using Titan.Core.Communication;
 using Titan.Core.Parser;
 using Titan.Plugin.Communication;

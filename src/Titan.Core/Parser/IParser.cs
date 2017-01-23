@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Titan.Communication;
-using Titan.Core.Syntax.Type;
+using Titan.Core.Communication;
 
 namespace Titan.Core.Parser
 {

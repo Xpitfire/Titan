@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Titan.Core.Syntax.Type
+namespace Titan.Core.Syntax
 {
     [Serializable]
     public abstract class LayerSyntax : SyntaxNode

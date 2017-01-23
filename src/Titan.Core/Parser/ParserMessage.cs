@@ -1,6 +1,6 @@
 ﻿using System;
-using Titan.Communication;
-using Titan.Core.Syntax.Type;
+using Titan.Core.Communication;
+using Titan.Core.Syntax;
 
 namespace Titan.Core.Parser
 {

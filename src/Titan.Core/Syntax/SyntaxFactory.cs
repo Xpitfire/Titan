@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Titan.Core.Syntax.Type;
 
 namespace Titan.Core.Syntax
 {
