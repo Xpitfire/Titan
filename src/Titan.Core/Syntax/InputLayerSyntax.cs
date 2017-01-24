@@ -4,20 +4,19 @@ namespace Titan.Core.Syntax
 {
     [Serializable]
     public sealed class InputLayerSyntax : LayerSyntax
-    {
-        public new static event VisitorDelegate<InputLayerSyntax> VisitedEvent;
-
+    { 
         public InputMatrix Data { get; internal set; }
+        public InputLayerType Type { get; internal set; }
 
-        private InputLayerSyntax() : this(InputMatrix.DefaultInputMatrix) { }
-        internal InputLayerSyntax(string name) : this(InputMatrix.DefaultInputMatrix, name) { }
-        internal InputLayerSyntax(InputMatrix data, string name = null) : base(SyntaxKind.Input)
+        private InputLayerSyntax() : base(SyntaxKind.Input) { }
+        internal InputLayerSyntax(InputLayerType type, string name) : this(type, InputMatrix.DefaultInputMatrix, name) { }
+        internal InputLayerSyntax(InputLayerType type, InputMatrix data, string name = null) : base(SyntaxKind.Input)
         {
+            Type = type;
             Data = data;
             Name = name;
         }
 
-        internal override void Traverse() => VisitedEvent?.Invoke(this);
         public override LayerSyntax AddNextLayer(LayerSyntax layer)
         {
             var clone = this.Clone<InputLayerSyntax>();
@@ -41,5 +40,13 @@ namespace Titan.Core.Syntax
             Width = width;
             Channels = channels;
         }
+    }
+
+    [Serializable]
+    public enum InputLayerType
+    {
+        Train,
+        Validation,
+        Test
     }
 }

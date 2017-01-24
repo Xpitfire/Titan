@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Linq.Expressions;
 
 namespace Titan.Core.Syntax
 {
     [Serializable]
     public class NetworkSyntax : SyntaxNode
     {
-        public static event VisitorDelegate<NetworkSyntax> VisitedEvent;
-
         public NetworkParameterSyntax Parameter { get; internal set; }
         public InputLayerSyntax TrainLayer { get; internal set; }
         public InputLayerSyntax ValidationLayer { get; internal set; }
@@ -44,8 +41,6 @@ namespace Titan.Core.Syntax
             return network;
         }
 
-        internal override void Traverse() => VisitedEvent?.Invoke(this);
-
         public NetworkSyntax AddNextLayer(LayerSyntax layer)
         {
             var network = this.Clone<NetworkSyntax>();
@@ -57,8 +52,6 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class NetworkParameterSyntax : SyntaxNode
     {
-        public static event VisitorDelegate<NetworkParameterSyntax> VisitedEvent;
-
         public const int DefaultEpochSize = 100;
         public const UpdaterType DefaultUpdaterType = UpdaterType.StochasticGradientDescent;
         public const float DefaultLearningRate = 0.003f;
@@ -96,7 +89,6 @@ namespace Titan.Core.Syntax
             Updater = updater;
             LearningRate = learningRate;
         }
-
-        internal override void Traverse() => VisitedEvent?.Invoke(this);
+        
     }
 }

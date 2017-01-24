@@ -6,8 +6,6 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class ResidualLayerSyntax : LayerSyntax
     {
-        public static event VisitorDelegate<ResidualLayerSyntax> VisitedEvent;
-
         public ImmutableArray<LayerSyntax> Layers { get; }
 
         private ResidualLayerSyntax() : base(SyntaxKind.Residual) { }
@@ -15,8 +13,6 @@ namespace Titan.Core.Syntax
         {
             Layers = layers;
         }
-
-        internal override void Traverse() => VisitedEvent?.Invoke(this);
         public override LayerSyntax AddNextLayer(LayerSyntax layer)
         {
             var clone = this.Clone<ResidualLayerSyntax>();

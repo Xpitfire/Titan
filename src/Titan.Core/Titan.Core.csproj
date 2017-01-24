@@ -60,6 +60,7 @@
     <Compile Include="Communication\Response.cs" />
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\ParserMessage.cs" />
+    <Compile Include="Prefab\LayerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Syntax\Spix.cs" />
     <Compile Include="Syntax\SyntaxFactory.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="Syntax\OutputLayerSyntax.cs" />
     <Compile Include="Syntax\PoolingLayerSyntax.cs" />
     <Compile Include="Syntax\ResidualLayerSyntax.cs" />
-    <Compile Include="Syntax\SyntaxTreeWalker.cs" />
+    <Compile Include="Prefab\SyntaxTreeWalker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

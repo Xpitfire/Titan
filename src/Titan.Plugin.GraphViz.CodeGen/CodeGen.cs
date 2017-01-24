@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Titan.Core.CodeGen;
 using Titan.Core.Communication;
+using Titan.Core.Prefab;
 using Titan.Core.Syntax;
 using Titan.Plugin.CodeGen;
 
@@ -16,13 +17,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
         public event MessageDelegate<CodeGenMessage> CodeGeneratedEvent;
         public CodeGenMessage Generate(NetworkSyntax network)
         {
-            string code;
-            using (var listener = new CodeGenListener())
-            {
-                SyntaxTreeWalker.Walk(network);
-                code = listener.Build();
-            }
-
+            string code = new CodeGenWriter().Build(network);
             var message = new CodeGenMessage
             {
                 Text = code,

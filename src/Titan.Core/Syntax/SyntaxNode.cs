@@ -31,8 +31,6 @@ namespace Titan.Core.Syntax
                 Name = name;
             }
         }
-
-        internal abstract void Traverse();
     }
 
     public static class SyntaxNodeExtension

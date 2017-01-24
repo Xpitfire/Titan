@@ -20,9 +20,8 @@ namespace Titan.Core.Syntax
         public static NetworkSyntax Network(string name = null) => Network(NetworkParameter(), null, name: name);
         public static NetworkSyntax Network(NetworkParameterSyntax parameter) => Network(parameter, null);
 
-        public static InputLayerSyntax InputLayer(string name = null) => InputLayer(Syntax.InputMatrix.DefaultInputMatrix, name);
-        public static InputLayerSyntax InputLayer(InputMatrix inputMatrix, string name = null) => new InputLayerSyntax(inputMatrix, name);
-
+        public static InputLayerSyntax InputLayer(InputLayerType type, string name = null) => InputLayer(type, Syntax.InputMatrix.DefaultInputMatrix, name);
+        public static InputLayerSyntax InputLayer(InputLayerType type, InputMatrix inputMatrix, string name = null) => new InputLayerSyntax(type, inputMatrix, name);
 
         public static InputMatrix InputMatrix() => Syntax.InputMatrix.DefaultInputMatrix;
         public static InputMatrix InputMatrix(int format, int channels) => new InputMatrix(format, format, channels);

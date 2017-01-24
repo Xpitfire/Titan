@@ -25,7 +25,7 @@ namespace Titan.Core.Test
         {
             var network = SyntaxFactory
                 .Network(SyntaxFactory.NetworkParameter())
-                .AddInputLayers(SyntaxFactory.InputLayer(SyntaxFactory.InputMatrix()));
+                .AddInputLayers(SyntaxFactory.InputLayer(InputLayerType.Train, SyntaxFactory.InputMatrix()));
             Assert.IsNotNull(network);
         }
 
@@ -35,9 +35,9 @@ namespace Titan.Core.Test
             var codeGenInstance = InstanceFactory.CodeGenInstance;
             var network = SyntaxFactory.Network("Demo");
             network = network.AddInputLayers(
-                SyntaxFactory.InputLayer("train"),
-                SyntaxFactory.InputLayer("val"),
-                SyntaxFactory.InputLayer("test"));
+                SyntaxFactory.InputLayer(InputLayerType.Train, "train"),
+                SyntaxFactory.InputLayer(InputLayerType.Validation, "val"),
+                SyntaxFactory.InputLayer(InputLayerType.Test, "test"));
             var gen = codeGenInstance.Generate(network);
             Assert.IsNotNull(gen?.Text);
             Console.WriteLine(gen.Text);
@@ -47,7 +47,7 @@ namespace Titan.Core.Test
         public void TestImmutableClone()
         {
             var networkParam = SyntaxFactory.NetworkParameter();
-            var trainLayer = SyntaxFactory.InputLayer();
+            var trainLayer = SyntaxFactory.InputLayer(InputLayerType.Train);
 
             LayerSyntax layer = SyntaxFactory.ConvolutionalLayer();
             layer = layer.AddNextLayer(SyntaxFactory.ConvolutionalLayer());
