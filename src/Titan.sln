@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Plugin.GraphViz.CodeG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Core", "Titan.Core\Titan.Core.csproj", "{5A3A569F-393A-4A0B-B499-86F12C27206C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Service", "Titan.Service\Titan.Service.csproj", "{C47F8D46-7320-4675-BEA4-44B0C7999E0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Service.Impl.HeuristicLab", "Titan.Service.Impl.HeuristicLab\Titan.Service.Impl.HeuristicLab.csproj", "{C58885F4-3D3E-416C-AB5A-C53DF3454B59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,14 @@ Global
 		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A3A569F-393A-4A0B-B499-86F12C27206C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C47F8D46-7320-4675-BEA4-44B0C7999E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47F8D46-7320-4675-BEA4-44B0C7999E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47F8D46-7320-4675-BEA4-44B0C7999E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47F8D46-7320-4675-BEA4-44B0C7999E0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C58885F4-3D3E-416C-AB5A-C53DF3454B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C58885F4-3D3E-416C-AB5A-C53DF3454B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C58885F4-3D3E-416C-AB5A-C53DF3454B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C58885F4-3D3E-416C-AB5A-C53DF3454B59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
