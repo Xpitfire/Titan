@@ -7,6 +7,6 @@ namespace Titan.Core.Parser
     {
         event MessageDelegate<TMessage> MessageParsedEvent;
         
-        Task<TMessage> ParseAsync(string source);
+        TMessage ParseAsync(string source);
     }
 }

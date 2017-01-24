@@ -15,21 +15,18 @@ namespace Titan.Plugin.Caffe.Parser
         public const string ParserName = "Caffe";
 
         public event MessageDelegate<ParserMessage> MessageParsedEvent;
-        public Task<ParserMessage> ParseAsync(string source)
+        public ParserMessage ParseAsync(string source)
         {
-            return Task.Run(() =>
+            var message = new ParserMessage
             {
-                var message = new ParserMessage
-                {
-                    // TODO: Perform real syntax tree definition
-                    SyntaxTree = SyntaxFactory.Network(),
-                    Data = source,
-                    ParseDate = DateTime.Now,
-                    ParserName = ParserName
-                };
-                MessageParsedEvent?.Invoke(message);
-                return message;
-            });
+                // TODO: Perform real syntax tree definition
+                SyntaxTree = SyntaxFactory.Network(),
+                Data = source,
+                ParseDate = DateTime.Now,
+                ParserName = ParserName
+            };
+            MessageParsedEvent?.Invoke(message);
+            return message;
         }
     }
 }

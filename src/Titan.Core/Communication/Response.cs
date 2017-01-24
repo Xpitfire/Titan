@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Titan.Core.Communication
 {
+    [Serializable]
     public enum Response
     {
         Successful,

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    public sealed class NetworkSyntax : SyntaxNode
+    public class NetworkSyntax : SyntaxNode
     {
         public NetworkParameterSyntax Parameter { get; internal set; }
         public InputLayerSyntax TrainLayer { get; internal set; }
@@ -35,12 +36,16 @@ namespace Titan.Core.Syntax
             InputLayerSyntax testLayer = null)
         {
             var network = this.Clone<NetworkSyntax>();
-            network.TestLayer = trainLayer;
+            network.TrainLayer = trainLayer;
             network.ValidationLayer = validationLayer;
             network.TestLayer = testLayer;
             return network;
         }
 
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 
     [Serializable]
@@ -52,6 +57,7 @@ namespace Titan.Core.Syntax
         public const int DefaultBatchSize = 50;
         public const int DefaultSeedValue = 0; // random seed
         
+        [Serializable]
         public enum UpdaterType
         {
             StochasticGradientDescent,
@@ -83,5 +89,9 @@ namespace Titan.Core.Syntax
             LearningRate = learningRate;
         }
 
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Titan.Core.Communication
 {
@@ -9,5 +10,6 @@ namespace Titan.Core.Communication
         Task<Response> SendAsync(TSendMessage message);
     }
 
+    [Serializable]
     public delegate void MessageDelegate<in TMessage>(TMessage message);
 }

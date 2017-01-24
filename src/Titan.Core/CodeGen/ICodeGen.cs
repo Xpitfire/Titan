@@ -12,6 +12,6 @@ namespace Titan.Core.CodeGen
     {
         event MessageDelegate<TMessage> CodeGeneratedEvent;
 
-        Task<TMessage> GenerateAsync(NetworkSyntax network);
+        TMessage GenerateAsync(NetworkSyntax network);
     }
 }

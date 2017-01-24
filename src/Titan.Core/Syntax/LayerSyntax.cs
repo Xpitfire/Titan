@@ -5,6 +5,7 @@ namespace Titan.Core.Syntax
     [Serializable]
     public abstract class LayerSyntax : SyntaxNode
     {
+        [Serializable]
         public enum SyntaxKind
         {
             Convolutional,
@@ -25,6 +26,6 @@ namespace Titan.Core.Syntax
         {
             Kind = kind;
         }
-
+        
     }
 }

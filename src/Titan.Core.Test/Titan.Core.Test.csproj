@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Titan.Core.Test</RootNamespace>
     <AssemblyName>Titan.Core.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\Titan.Plugin.Caffe.Parser\Titan.Plugin.Caffe.Parser.csproj">
       <Project>{3d732585-6963-4d41-b519-2caa0bd7973e}</Project>
       <Name>Titan.Plugin.Caffe.Parser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Plugin.GraphViz.CodeGen\Titan.Plugin.GraphViz.CodeGen.csproj">
+      <Project>{bd84532f-4d9a-4c11-88d9-3ae86305e695}</Project>
+      <Name>Titan.Plugin.GraphViz.CodeGen</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
       <Project>{06DF83B9-D757-4175-BF2D-D74F2C186E72}</Project>

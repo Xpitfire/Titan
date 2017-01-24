@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,16 @@ namespace Titan.Core.Syntax
     [Serializable]
     public abstract class SyntaxNode
     {
-        public Spix Name { get; internal set; }
+        public Spix Spix { get; internal set; }
 
         internal SyntaxNode() : this(new Spix()) { }
         internal SyntaxNode(string name) : this(new Spix(name)) { }
-        internal SyntaxNode(Spix name)
+        internal SyntaxNode(Spix spix)
         {
-            Name = name;
+            Spix = spix;
         }
+
+        public abstract void Accept(IVisitor visitor);
     }
 
     public static class SyntaxNodeExtension

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Titan.Core.Syntax;
-using Titan.Core.Syntax.Type;
+﻿using Titan.Core.Syntax;
 
-namespace Titan.Plugin.Caffe.Parser
+namespace Titan.Plugin.Caffe.CodeGen
 {
     public partial class CaffeScriptSolverTemplate
     {

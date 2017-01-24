@@ -8,6 +8,10 @@ namespace Titan.Core.Syntax
         internal ConvolutionalLayerSyntax() : base(SyntaxKind.Convolutional)
         {
         }
-        
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

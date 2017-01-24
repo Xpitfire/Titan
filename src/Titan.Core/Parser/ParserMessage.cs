@@ -9,6 +9,6 @@ namespace Titan.Core.Parser
     {
         public NetworkSyntax SyntaxTree { get; set; }
         public string ParserName { get; set; }
-        public DateTime ParseDate { get; set; }
+        public DateTime ParseDate { get; set; } = DateTime.Now;
     }
 }
