@@ -12,5 +12,11 @@ namespace Titan.Core.Syntax
         }
 
         internal override void Traverse() => VisitedEvent?.Invoke(this);
+        public override LayerSyntax AddNextLayer(LayerSyntax layer)
+        {
+            var clone = this.Clone<OutputLayerSyntax>();
+            clone.NextLayer = layer;
+            return clone;
+        }
     }
 }

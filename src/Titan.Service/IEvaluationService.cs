@@ -11,5 +11,6 @@ namespace Titan.Service
     {
         double Evaluate(NetworkSyntax node);
         string GraphDescription(NetworkSyntax node);
+        NetworkSyntax GenerateNetwork();
     }
 }

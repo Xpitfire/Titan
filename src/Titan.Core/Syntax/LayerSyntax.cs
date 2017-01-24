@@ -5,6 +5,8 @@ namespace Titan.Core.Syntax
     [Serializable]
     public abstract class LayerSyntax : SyntaxNode
     {
+        public static event VisitorDelegate<LayerSyntax> VisitedEvent;
+
         [Serializable]
         public enum SyntaxKind
         {
@@ -21,11 +23,16 @@ namespace Titan.Core.Syntax
         }
 
         public SyntaxKind Kind { get; internal set; }
-
-        protected LayerSyntax(SyntaxKind kind)
+        public LayerSyntax NextLayer { get; internal set; }
+        
+        protected LayerSyntax(SyntaxKind kind, string name = null)
         {
             Kind = kind;
+            Name = name;
         }
-        
+
+        public abstract LayerSyntax AddNextLayer(LayerSyntax layer);
+
+        internal override void Traverse() => VisitedEvent?.Invoke(this);
     }
 }

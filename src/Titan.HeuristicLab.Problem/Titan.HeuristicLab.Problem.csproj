@@ -120,6 +120,10 @@
       <Project>{3d732585-6963-4d41-b519-2caa0bd7973e}</Project>
       <Name>Titan.Plugin.Caffe.Parser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Titan.Plugin.GraphViz.CodeGen\Titan.Plugin.GraphViz.CodeGen.csproj">
+      <Project>{bd84532f-4d9a-4c11-88d9-3ae86305e695}</Project>
+      <Name>Titan.Plugin.GraphViz.CodeGen</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
       <Project>{06df83b9-d757-4175-bf2d-d74f2c186e72}</Project>
       <Name>Titan.Plugin</Name>

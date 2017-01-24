@@ -22,10 +22,14 @@ namespace Titan.Core.Syntax
         }
 
         protected SyntaxNode() : this(new Spix()) { }
-        protected SyntaxNode(string name) : this(new Spix(name)) { }
-        protected SyntaxNode(Spix spix)
+        protected SyntaxNode(string name = null) : this(new Spix(name)) { }
+        protected SyntaxNode(Spix spix, string name = null)
         {
             Spix = spix;
+            if (name != null)
+            {
+                Name = name;
+            }
         }
 
         internal abstract void Traverse();

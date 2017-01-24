@@ -11,34 +11,23 @@ namespace Titan.Core.Syntax
         public static void Walk(SyntaxNode node)
         {
             if (node == null) return;
+            node.Traverse();
 
             var network = node as NetworkSyntax;
             if (network != null)
             {
-                network.Traverse();
                 Walk(network.Parameter);
                 Walk(network.TrainLayer);
                 Walk(network.ValidationLayer);
                 Walk(network.TestLayer);
-                return;
+                Walk(network.NextLayer);
             }
 
-            node.Traverse();
-
-            //var networkParam = node as NetworkParameterSyntax;
-            //networkParam?.Traverse();
-
-            //var inputLayer = node as InputLayerSyntax;
-            //inputLayer?.Traverse();
-
-            //var outputLayer = node as OutputLayerSyntax;
-            //outputLayer?.Traverse();
-
-            //var convLayer = node as ConvolutionalLayerSyntax;
-            //convLayer?.Traverse();
-
-            //var poolLayer = node as PoolingLayerSyntax;
-            //poolLayer?.Traverse();
+            var layer = node as LayerSyntax;
+            if (layer != null)
+            {
+                Walk(layer.NextLayer);
+            }
         }
     }
 }

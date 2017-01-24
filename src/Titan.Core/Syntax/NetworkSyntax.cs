@@ -12,19 +12,19 @@ namespace Titan.Core.Syntax
         public InputLayerSyntax TrainLayer { get; internal set; }
         public InputLayerSyntax ValidationLayer { get; internal set; }
         public InputLayerSyntax TestLayer { get; internal set; }
+        public LayerSyntax NextLayer { get; internal set; }
 
         private NetworkSyntax() : this(null) { } // required due to serialization
-        internal NetworkSyntax(string name = null) : this (null, name) { }
+        internal NetworkSyntax(string name = null) : this(null, name) { }
         internal NetworkSyntax(NetworkParameterSyntax parameter, string name = null) : this(parameter, null, name: name) { }
         internal NetworkSyntax(
             NetworkParameterSyntax parameter,
             InputLayerSyntax trainLayer,
             InputLayerSyntax validationLayer = null,
             InputLayerSyntax testLayer = null,
-            string name = null)
+            string name = null) : base(name)
         {
             Parameter = parameter;
-            Name = name;
             TrainLayer = trainLayer;
             ValidationLayer = validationLayer;
             TestLayer = testLayer;
@@ -32,7 +32,7 @@ namespace Titan.Core.Syntax
 
         public SyntaxNode Root() => this;
 
-        public NetworkSyntax AddLayers(
+        public NetworkSyntax AddInputLayers(
             InputLayerSyntax trainLayer, 
             InputLayerSyntax validationLayer = null, 
             InputLayerSyntax testLayer = null)
@@ -45,6 +45,13 @@ namespace Titan.Core.Syntax
         }
 
         internal override void Traverse() => VisitedEvent?.Invoke(this);
+
+        public NetworkSyntax AddNextLayer(LayerSyntax layer)
+        {
+            var network = this.Clone<NetworkSyntax>();
+            network.NextLayer = layer;
+            return network;
+        }
     }
 
     [Serializable]

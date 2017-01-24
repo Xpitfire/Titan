@@ -4,16 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C58885F4-3D3E-416C-AB5A-C53DF3454B59}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{75A5C72F-52D0-46D5-AC3E-41F9E1A8491B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Titan.Service.Impl.HeuristicLab</RootNamespace>
-    <AssemblyName>Titan.Service.Impl.HeuristicLab</AssemblyName>
+    <RootNamespace>Titan.Console</RootNamespace>
+    <AssemblyName>Titan.Console</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,18 +25,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Titan.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EvaluationService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Titan.snk" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Titan.Core.Default\Titan.Core.Default.csproj">
@@ -65,6 +62,10 @@
     <ProjectReference Include="..\Titan.Plugin.Caffe.CodeGen\Titan.Plugin.Caffe.CodeGen.csproj">
       <Project>{fe6b5489-5f45-445b-972a-96116566a357}</Project>
       <Name>Titan.Plugin.Caffe.CodeGen</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Plugin.Caffe.Communication.REST.Test\Titan.Plugin.Caffe.Communication.REST.Test.csproj">
+      <Project>{4f20c136-d6ac-4c04-b205-a118db2370c3}</Project>
+      <Name>Titan.Plugin.Caffe.Communication.REST.Test</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin.Caffe.Communication.REST\Titan.Plugin.Caffe.Communication.REST.csproj">
       <Project>{9c780128-d14f-4680-9b6e-32257f19e0d1}</Project>
@@ -81,6 +82,10 @@
     <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
       <Project>{06df83b9-d757-4175-bf2d-d74f2c186e72}</Project>
       <Name>Titan.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Service.Impl.HeuristicLab\Titan.Service.Impl.HeuristicLab.csproj">
+      <Project>{c58885f4-3d3e-416c-ab5a-c53df3454b59}</Project>
+      <Name>Titan.Service.Impl.HeuristicLab</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Service\Titan.Service.csproj">
       <Project>{c47f8d46-7320-4675-bea4-44b0c7999e0e}</Project>

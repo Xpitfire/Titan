@@ -5,8 +5,7 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class InputLayerSyntax : LayerSyntax
     {
-        public static event VisitorDelegate<InputLayerSyntax> VisitedEvent;
-
+        public new static event VisitorDelegate<InputLayerSyntax> VisitedEvent;
 
         public InputMatrix Data { get; internal set; }
 
@@ -19,6 +18,12 @@ namespace Titan.Core.Syntax
         }
 
         internal override void Traverse() => VisitedEvent?.Invoke(this);
+        public override LayerSyntax AddNextLayer(LayerSyntax layer)
+        {
+            var clone = this.Clone<InputLayerSyntax>();
+            clone.NextLayer = layer;
+            return clone;
+        }
     }
 
     [Serializable]

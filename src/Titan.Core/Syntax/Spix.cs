@@ -10,14 +10,14 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class Spix
     {
-        public static readonly BlockingCollection<string> UniqueSpixLSet;
+        public static readonly ConcurrentBag<string> UniqueSpixLSet;
         public static readonly Spix Empty;
 
         public string Id { get; private set; }
 
         static Spix()
         {
-            UniqueSpixLSet = new BlockingCollection<string>();
+            UniqueSpixLSet = new ConcurrentBag<string>();
             Empty = new Spix();
         }
 

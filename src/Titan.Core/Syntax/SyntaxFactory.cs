@@ -33,5 +33,7 @@ namespace Titan.Core.Syntax
             float learningRate = NetworkParameterSyntax.DefaultLearningRate,
             int batchSize = NetworkParameterSyntax.DefaultBatchSize,
             int seed = NetworkParameterSyntax.DefaultSeedValue) => new NetworkParameterSyntax(epochs, updater, learningRate, batchSize, seed);
+
+        public static ConvolutionalLayerSyntax ConvolutionalLayer(string name = null) => new ConvolutionalLayerSyntax(name);
     }
 }

@@ -17,6 +17,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
             NetworkSyntax.VisitedEvent += VisitNetwork;
             NetworkParameterSyntax.VisitedEvent += VisitNetworkParam;
             InputLayerSyntax.VisitedEvent += VisitInputLayer;
+            LayerSyntax.VisitedEvent += VisitNextLayer;
         }
 
         public void Dispose()
@@ -28,17 +29,22 @@ namespace Titan.Plugin.GraphViz.CodeGen
 
         private void VisitNetwork(NetworkSyntax node)
         {
-            _builder.Append($"network {node.Name} {{\n");
+            _builder.Append($"Network: {node.Name}\n");
         }
 
         private void VisitNetworkParam(NetworkParameterSyntax node)
         {
-            _builder.Append($"{node.Name} -> {node.BatchSize}\n");
+            _builder.Append($"NetworkParam: {node.Name} -> {node.BatchSize}\n");
         }
 
         private void VisitInputLayer(InputLayerSyntax node)
         {
-            _builder.Append($"{node.Name} -> {node.Kind}\n");
+            _builder.Append($"InputLayer: {node.Name} -> {node.Kind}\n");
+        }
+
+        private void VisitNextLayer(LayerSyntax node)
+        {
+            _builder.Append($"NextLayer: {node.Name} -> {node.Kind}\n");
         }
 
 
