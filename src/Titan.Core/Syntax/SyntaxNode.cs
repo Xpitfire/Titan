@@ -20,7 +20,7 @@ namespace Titan.Core.Syntax
             Spix = spix;
         }
 
-        public abstract void Accept(IVisitor visitor);
+        internal void Accept(Action<SyntaxNode> visitor) => visitor(this);
     }
 
     public static class SyntaxNodeExtension

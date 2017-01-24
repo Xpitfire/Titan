@@ -41,11 +41,7 @@ namespace Titan.Core.Syntax
             network.TestLayer = testLayer;
             return network;
         }
-
-        public override void Accept(IVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
+        
     }
 
     [Serializable]
@@ -87,11 +83,6 @@ namespace Titan.Core.Syntax
             Seed = seed;
             Updater = updater;
             LearningRate = learningRate;
-        }
-
-        public override void Accept(IVisitor visitor)
-        {
-            visitor.Visit(this);
         }
     }
 }

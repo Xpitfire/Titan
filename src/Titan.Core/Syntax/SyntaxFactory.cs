@@ -25,9 +25,6 @@ namespace Titan.Core.Syntax
             NetworkParameterSyntax.UpdaterType updater = NetworkParameterSyntax.DefaultUpdaterType,
             float learningRate = NetworkParameterSyntax.DefaultLearningRate,
             int batchSize = NetworkParameterSyntax.DefaultBatchSize,
-            int seed = NetworkParameterSyntax.DefaultSeedValue)
-        {
-            return new NetworkParameterSyntax(epochs, updater, learningRate, batchSize, seed);
-        }
+            int seed = NetworkParameterSyntax.DefaultSeedValue) => new NetworkParameterSyntax(epochs, updater, learningRate, batchSize, seed);
     }
 }

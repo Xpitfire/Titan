@@ -14,11 +14,6 @@ namespace Titan.Core.Syntax
         {
             Data = data;
         }
-
-        public override void Accept(IVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
     }
 
     public struct InputMatrix

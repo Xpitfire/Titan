@@ -13,10 +13,5 @@ namespace Titan.Core.Syntax
         {
             Layers = layers;
         }
-
-        public override void Accept(IVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
     }
 }

@@ -43,20 +43,10 @@ namespace Titan.Core.Syntax
             return other != null && Name.Equals(other.Value.Name);
         }
 
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        public override int GetHashCode() => Name.GetHashCode();
 
-        public static bool operator ==(Spix value1, Spix value2)
-        {
-            return value1.Equals(value2);
-        }
-
-        public static bool operator !=(Spix value1, Spix value2)
-        {
-            return !value1.Equals(value2);
-        }
+        public static bool operator ==(Spix value1, Spix value2) => value1.Equals(value2);
+        public static bool operator !=(Spix value1, Spix value2) => !value1.Equals(value2);
 
     }
 }

@@ -16,8 +16,6 @@ namespace Titan.Plugin.GraphViz.CodeGen
         public event MessageDelegate<CodeGenMessage> CodeGeneratedEvent;
         public CodeGenMessage GenerateAsync(NetworkSyntax network)
         {
-            network.Accept(new TestVisitor());
-
             var message = new CodeGenMessage
             {
                 Text = "test",

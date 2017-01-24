@@ -11,7 +11,10 @@ namespace Titan.Core.Default
 {
     public static class PluginFactory
     {
-        private static TModule LoadAddIn<TModule>(string assemblyName, AppDomain sandboxDomain) where TModule : class
+        private const string BaseDirectory = ".";
+        private const string FileExtension = ".dll";
+
+            private static TModule LoadAddIn<TModule>(string assemblyName, AppDomain sandboxDomain) where TModule : class
         {
             var assembly = Assembly.Load(assemblyName);
             foreach (var type in assembly.GetTypes())
@@ -30,7 +33,7 @@ namespace Titan.Core.Default
             permSet.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
             var ptInfo = new AppDomainSetup
             {
-                ApplicationBase = "."
+                ApplicationBase = BaseDirectory
             };
             var strongName = typeof(TModule).Assembly.Evidence.GetHostEvidence<StrongName>();
             var sandboxDomain = AppDomain.CreateDomain(typeof(TModule).FullName,
@@ -38,9 +41,9 @@ namespace Titan.Core.Default
                 ptInfo,
                 permSet,
                 strongName);
-            foreach (var file in new DirectoryInfo(".").GetFiles("*.dll"))
+            foreach (var file in new DirectoryInfo(BaseDirectory).GetFiles($"*{FileExtension}"))
             {
-                var assemblyName = file.Name.Replace(".dll", "");
+                var assemblyName = file.Name.Replace(FileExtension, string.Empty);
                 Console.WriteLine($@"Loaded DLL: {assemblyName}");
                 var plugin = LoadAddIn<TModule>(assemblyName, sandboxDomain);
                 if (plugin == null) continue;

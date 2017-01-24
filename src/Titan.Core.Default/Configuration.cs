@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Titan.Core.Default
 {
-    public sealed class Startup
+    public sealed class Configuration
     {
         public static void Initialize()
         {
