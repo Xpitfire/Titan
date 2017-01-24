@@ -6,12 +6,16 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class ResidualLayerSyntax : LayerSyntax
     {
+        public static event VisitorDelegate<ResidualLayerSyntax> VisitedEvent;
+
         public ImmutableArray<LayerSyntax> Layers { get; }
 
-        internal ResidualLayerSyntax() : base(SyntaxKind.Residual) { }
+        private ResidualLayerSyntax() : base(SyntaxKind.Residual) { }
         internal ResidualLayerSyntax(ImmutableArray<LayerSyntax> layers) : base(SyntaxKind.Residual)
         {
             Layers = layers;
         }
+
+        internal override void Traverse() => VisitedEvent?.Invoke(this);
     }
 }

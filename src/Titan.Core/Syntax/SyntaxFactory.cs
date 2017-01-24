@@ -11,13 +11,20 @@ namespace Titan.Core.Syntax
     {
         public static Spix Spix(string name = null) => new Spix(name);
 
-        public static NetworkSyntax Network(NetworkParameterSyntax networkParameter) => new NetworkSyntax(networkParameter);
-        public static NetworkSyntax Network() => Network(NetworkParameter());
-        
-        public static InputLayerSyntax InputLayer() => new InputLayerSyntax(InputMatrix());
-        public static InputLayerSyntax InputLayer(InputMatrix inputMatrix) => new InputLayerSyntax(inputMatrix);
+        public static NetworkSyntax Network(
+            NetworkParameterSyntax parameter,
+            InputLayerSyntax trainLayer,
+            InputLayerSyntax validationLayer = null,
+            InputLayerSyntax testLayer = null, 
+            string name = null) => new NetworkSyntax(parameter, trainLayer, validationLayer, testLayer, name);
+        public static NetworkSyntax Network(string name = null) => Network(NetworkParameter(), null, name: name);
+        public static NetworkSyntax Network(NetworkParameterSyntax parameter) => Network(parameter, null);
 
-        public static InputMatrix InputMatrix() => InputLayerSyntax.DefaultInputMatrix;
+        public static InputLayerSyntax InputLayer(string name = null) => InputLayer(Syntax.InputMatrix.DefaultInputMatrix, name);
+        public static InputLayerSyntax InputLayer(InputMatrix inputMatrix, string name = null) => new InputLayerSyntax(inputMatrix, name);
+
+
+        public static InputMatrix InputMatrix() => Syntax.InputMatrix.DefaultInputMatrix;
         public static InputMatrix InputMatrix(int format, int channels) => new InputMatrix(format, format, channels);
 
         public static NetworkParameterSyntax NetworkParameter(

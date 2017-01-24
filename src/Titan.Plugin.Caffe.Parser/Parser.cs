@@ -15,7 +15,7 @@ namespace Titan.Plugin.Caffe.Parser
         public const string ParserName = "Caffe";
 
         public event MessageDelegate<ParserMessage> MessageParsedEvent;
-        public ParserMessage ParseAsync(string source)
+        public ParserMessage Parse(string source)
         {
             var message = new ParserMessage
             {

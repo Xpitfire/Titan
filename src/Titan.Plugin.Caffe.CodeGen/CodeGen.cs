@@ -12,7 +12,7 @@ namespace Titan.Plugin.Caffe.CodeGen
         public const string CodeGenName = "Caffe";
         public event MessageDelegate<CodeGenMessage> CodeGeneratedEvent;
         
-        public CodeGenMessage GenerateAsync(NetworkSyntax network)
+        public CodeGenMessage Generate(NetworkSyntax network)
         {
             if (network == null) return null;
 

@@ -9,18 +9,26 @@ using System.Threading.Tasks;
 namespace Titan.Core.Syntax
 {
     [Serializable]
+    public delegate void VisitorDelegate<in TNode>(TNode node) where TNode : SyntaxNode;
+
+    [Serializable]
     public abstract class SyntaxNode
     {
         public Spix Spix { get; internal set; }
+        private string _name;
+        public string Name {
+            get { return _name ?? Spix.Id; }
+            internal set { _name = value; }
+        }
 
-        internal SyntaxNode() : this(new Spix()) { }
-        internal SyntaxNode(string name) : this(new Spix(name)) { }
-        internal SyntaxNode(Spix spix)
+        protected SyntaxNode() : this(new Spix()) { }
+        protected SyntaxNode(string name) : this(new Spix(name)) { }
+        protected SyntaxNode(Spix spix)
         {
             Spix = spix;
         }
 
-        internal void Accept(Action<SyntaxNode> visitor) => visitor(this);
+        internal abstract void Traverse();
     }
 
     public static class SyntaxNodeExtension

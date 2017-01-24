@@ -16,8 +16,8 @@ namespace Titan.Core.Test
         public void TestSpix()
         {
             var spix = SyntaxFactory.Spix();
-            Console.WriteLine(spix.Name);
-            Assert.IsTrue(spix.Length > 0);
+            Console.WriteLine(spix.Id);
+            Assert.IsNotNull(spix.Id);
         }
 
         [TestMethod]
@@ -33,9 +33,14 @@ namespace Titan.Core.Test
         public void TestCodeGen()
         {
             var codeGenInstance = InstanceFactory.CodeGenInstance;
-            var network = SyntaxFactory.Network();
-            var gen = codeGenInstance.GenerateAsync(network);
+            var network = SyntaxFactory.Network("Demo");
+            network = network.AddLayers(
+                SyntaxFactory.InputLayer("train"),
+                SyntaxFactory.InputLayer("val"),
+                SyntaxFactory.InputLayer("test"));
+            var gen = codeGenInstance.Generate(network);
             Assert.IsNotNull(gen?.Text);
+            Console.WriteLine(gen.Text);
         }
     }
 }

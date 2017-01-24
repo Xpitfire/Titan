@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,46 +8,44 @@ using System.Threading.Tasks;
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    public struct Spix
+    public sealed class Spix
     {
-        public static readonly IList<string> UniqueSpixLSet;
+        public static readonly BlockingCollection<string> UniqueSpixLSet;
         public static readonly Spix Empty;
 
-        public string Name { get; internal set; }
-        public int Length { get; internal set; }
+        public string Id { get; private set; }
 
         static Spix()
         {
-            UniqueSpixLSet = new List<string>();
+            UniqueSpixLSet = new BlockingCollection<string>();
             Empty = new Spix();
         }
 
-        public Spix(string name = null)
+        public Spix(string id = null)
         {
-            if (UniqueSpixLSet.Contains(name))
+            if (UniqueSpixLSet.Contains(id))
             {
-                throw new ArgumentException($"Spix name collision: {name} already defined!");
+                throw new ArgumentException($"Spix id collision: {id} already defined!");
             }
-            if (name == null)
+            if (id == null)
             {
-                name = Guid.NewGuid().ToString();
+                id = Guid.NewGuid().ToString();
             }
-            Name = name;
-            Length = name.Length;
-            UniqueSpixLSet.Add(name);
+            Id = id;
+            UniqueSpixLSet.Add(id);
         }
         
 
         public override bool Equals(object obj)
         {
-            var other = obj as Spix?;
-            return other != null && Name.Equals(other.Value.Name);
+            var other = obj as Spix;
+            return other != null && Id.Equals(other.Id);
         }
 
-        public override int GetHashCode() => Name.GetHashCode();
+        public override int GetHashCode() => Id.GetHashCode();
 
-        public static bool operator ==(Spix value1, Spix value2) => value1.Equals(value2);
-        public static bool operator !=(Spix value1, Spix value2) => !value1.Equals(value2);
+        public static bool operator ==(Spix value1, Spix value2) => value1 != null && value1.Equals(value2);
 
+        public static bool operator !=(Spix value1, Spix value2) => value1 != null && !value1.Equals(value2);
     }
 }

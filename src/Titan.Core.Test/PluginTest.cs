@@ -14,9 +14,9 @@ namespace Titan.Core.Test
         {
             var parser = PluginFactory.Get<IParserPlugin>();
             Assert.IsNotNull(parser);
-            var value = parser.ParseAsync("network { conv (name:test in:data out:45) }");
+            var value = parser.Parse("network { conv (name:test in:data out:45) }");
             Assert.IsNotNull(value);
-            Console.WriteLine(value.SyntaxTree.Spix.Name);
+            Console.WriteLine(value.SyntaxTree.Spix.Id);
         }
     }
 }

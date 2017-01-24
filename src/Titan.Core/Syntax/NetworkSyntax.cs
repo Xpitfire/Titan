@@ -6,23 +6,25 @@ namespace Titan.Core.Syntax
     [Serializable]
     public class NetworkSyntax : SyntaxNode
     {
+        public static event VisitorDelegate<NetworkSyntax> VisitedEvent;
+
         public NetworkParameterSyntax Parameter { get; internal set; }
         public InputLayerSyntax TrainLayer { get; internal set; }
         public InputLayerSyntax ValidationLayer { get; internal set; }
         public InputLayerSyntax TestLayer { get; internal set; }
 
-        internal NetworkSyntax() { }
-        internal NetworkSyntax(NetworkParameterSyntax parameter)
-        {
-            Parameter = parameter;
-        }
+        private NetworkSyntax() : this(null) { } // required due to serialization
+        internal NetworkSyntax(string name = null) : this (null, name) { }
+        internal NetworkSyntax(NetworkParameterSyntax parameter, string name = null) : this(parameter, null, name: name) { }
         internal NetworkSyntax(
             NetworkParameterSyntax parameter,
             InputLayerSyntax trainLayer,
             InputLayerSyntax validationLayer = null,
-            InputLayerSyntax testLayer = null)
+            InputLayerSyntax testLayer = null,
+            string name = null)
         {
             Parameter = parameter;
+            Name = name;
             TrainLayer = trainLayer;
             ValidationLayer = validationLayer;
             TestLayer = testLayer;
@@ -41,12 +43,15 @@ namespace Titan.Core.Syntax
             network.TestLayer = testLayer;
             return network;
         }
-        
+
+        internal override void Traverse() => VisitedEvent?.Invoke(this);
     }
 
     [Serializable]
     public sealed class NetworkParameterSyntax : SyntaxNode
     {
+        public static event VisitorDelegate<NetworkParameterSyntax> VisitedEvent;
+
         public const int DefaultEpochSize = 100;
         public const UpdaterType DefaultUpdaterType = UpdaterType.StochasticGradientDescent;
         public const float DefaultLearningRate = 0.003f;
@@ -70,7 +75,7 @@ namespace Titan.Core.Syntax
         public UpdaterType Updater { get; internal set; }
         public float LearningRate { get; internal set; }
 
-        internal NetworkParameterSyntax() { }
+        private NetworkParameterSyntax() { }
         internal NetworkParameterSyntax(
             int epochs = DefaultEpochSize,
             UpdaterType updater = DefaultUpdaterType,
@@ -84,5 +89,7 @@ namespace Titan.Core.Syntax
             Updater = updater;
             LearningRate = learningRate;
         }
+
+        internal override void Traverse() => VisitedEvent?.Invoke(this);
     }
 }

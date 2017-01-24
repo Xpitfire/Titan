@@ -14,25 +14,22 @@ namespace Titan.Plugin.GraphViz.CodeGen
     {
         public const string CodeGenName = "GraphViz";
         public event MessageDelegate<CodeGenMessage> CodeGeneratedEvent;
-        public CodeGenMessage GenerateAsync(NetworkSyntax network)
+        public CodeGenMessage Generate(NetworkSyntax network)
         {
+            string code;
+            using (var listener = new CodeGenListener())
+            {
+                SyntaxTreeWalker.Walk(network);
+                code = listener.Build();
+            }
+
             var message = new CodeGenMessage
             {
-                Text = "test",
+                Text = code,
                 CodeGenName = CodeGenName
             };
             CodeGeneratedEvent?.Invoke(message);
             return message;
         }
-
-        [Serializable]
-        public class TestVisitor : IVisitor
-        {
-            public void Visit(SyntaxNode expression)
-            {
-                Console.WriteLine($"CodeGen: {expression.Spix}");
-            }
-        }
-        
     }
 }

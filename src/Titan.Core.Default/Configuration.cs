@@ -11,7 +11,7 @@ namespace Titan.Core.Default
         public static void Initialize()
         {
             InstanceFactory.ParserInstance.MessageParsedEvent +=
-                message => InstanceFactory.CodeGenInstance.GenerateAsync(message.SyntaxTree);
+                message => InstanceFactory.CodeGenInstance.Generate(message.SyntaxTree);
             InstanceFactory.CodeGenInstance.CodeGeneratedEvent +=
                 message => InstanceFactory.CommunicationInstance.SendAsync(message.Text);
         }

@@ -3,10 +3,10 @@ using Titan.Core.Communication;
 
 namespace Titan.Core.Parser
 {
-    public interface IParser<TMessage> where TMessage : ParserMessage
+    public interface IParser<out TMessage> where TMessage : ParserMessage
     {
         event MessageDelegate<TMessage> MessageParsedEvent;
         
-        TMessage ParseAsync(string source);
+        TMessage Parse(string source);
     }
 }

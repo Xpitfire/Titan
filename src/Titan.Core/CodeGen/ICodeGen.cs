@@ -8,10 +8,10 @@ using Titan.Core.Syntax;
 
 namespace Titan.Core.CodeGen
 {
-    public interface ICodeGen<TMessage> where TMessage : CodeGenMessage
+    public interface ICodeGen<out TMessage> where TMessage : CodeGenMessage
     {
         event MessageDelegate<TMessage> CodeGeneratedEvent;
 
-        TMessage GenerateAsync(NetworkSyntax network);
+        TMessage Generate(NetworkSyntax network);
     }
 }

@@ -43,6 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,7 +61,6 @@
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\ParserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Syntax\IVisitor.cs" />
     <Compile Include="Syntax\Spix.cs" />
     <Compile Include="Syntax\SyntaxFactory.cs" />
     <Compile Include="Syntax\SyntaxNode.cs" />
@@ -71,6 +71,7 @@
     <Compile Include="Syntax\OutputLayerSyntax.cs" />
     <Compile Include="Syntax\PoolingLayerSyntax.cs" />
     <Compile Include="Syntax\ResidualLayerSyntax.cs" />
+    <Compile Include="Syntax\SyntaxTreeWalker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -22,7 +22,7 @@ namespace Titan.Core.Syntax
 
         public SyntaxKind Kind { get; internal set; }
 
-        internal LayerSyntax(SyntaxKind kind)
+        protected LayerSyntax(SyntaxKind kind)
         {
             Kind = kind;
         }
