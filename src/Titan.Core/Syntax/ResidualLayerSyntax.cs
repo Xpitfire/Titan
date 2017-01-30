@@ -6,17 +6,30 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class ResidualLayerSyntax : LayerSyntax
     {
-        public ImmutableArray<LayerSyntax> Layers { get; }
+        public ImmutableArray<LayerSyntax> LeftBranch { get; internal set; }
+        public ImmutableArray<LayerSyntax> RightBranch { get; internal set; }
 
         private ResidualLayerSyntax() : base(SyntaxKind.Residual) { }
-        internal ResidualLayerSyntax(ImmutableArray<LayerSyntax> layers) : base(SyntaxKind.Residual)
+        internal ResidualLayerSyntax(
+            ImmutableArray<LayerSyntax> leftBranch, 
+            ImmutableArray<LayerSyntax> rightBranch) : base(SyntaxKind.Residual)
         {
-            Layers = layers;
+            LeftBranch = leftBranch;
+            RightBranch = rightBranch;
         }
-        public override LayerSyntax AddNextLayer(LayerSyntax layer)
+        public LayerSyntax AddLeftLayer(LayerSyntax layer)
         {
+            // TODO: not correct -> implement right behavior
             var clone = this.Clone<ResidualLayerSyntax>();
-            clone.NextLayer = layer;
+            clone.PreviousLayer = layer;
+            return clone;
+        }
+
+        public LayerSyntax AddRightLayer(LayerSyntax layer)
+        {
+            // TODO: not correct -> implement right behavior
+            var clone = this.Clone<ResidualLayerSyntax>();
+            clone.PreviousLayer = layer;
             return clone;
         }
     }

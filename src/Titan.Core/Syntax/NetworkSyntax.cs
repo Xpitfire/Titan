@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 
 namespace Titan.Core.Syntax
 {
@@ -9,7 +12,7 @@ namespace Titan.Core.Syntax
         public InputLayerSyntax TrainLayer { get; internal set; }
         public InputLayerSyntax ValidationLayer { get; internal set; }
         public InputLayerSyntax TestLayer { get; internal set; }
-        public LayerSyntax NextLayer { get; internal set; }
+        public ImmutableList<LayerSyntax> Layers { get; internal set; }
 
         private NetworkSyntax() : this(null) { } // required due to serialization
         internal NetworkSyntax(string name = null) : this(null, name) { }
@@ -41,10 +44,21 @@ namespace Titan.Core.Syntax
             return network;
         }
 
-        public NetworkSyntax AddNextLayer(LayerSyntax layer)
+        public NetworkSyntax AddLayer(LayerSyntax layer)
         {
             var network = this.Clone<NetworkSyntax>();
-            network.NextLayer = layer;
+
+            if (network.Layers != null)
+            {
+                if (network.Layers.Count > 0)
+                {
+                    layer.PreviousLayer = network.Layers.Last();
+                }
+                var builder = ImmutableList.CreateBuilder<LayerSyntax>();
+                builder.AddRange(network.Layers);
+                builder.Add(layer);
+                network.Layers = builder.ToImmutableList();
+            }
             return network;
         }
     }

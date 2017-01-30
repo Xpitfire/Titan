@@ -17,6 +17,7 @@ namespace Titan.Plugin.Caffe.Communication.REST
     {
         public event MessageDelegate<string> MessageReceivedEvent;
         
+        // TODO: 
         public Task<Response> SendAsync(string message)
         {
             return Task.Run(() =>

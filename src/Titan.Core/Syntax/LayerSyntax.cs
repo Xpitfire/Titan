@@ -21,14 +21,12 @@ namespace Titan.Core.Syntax
         }
 
         public SyntaxKind Kind { get; internal set; }
-        public LayerSyntax NextLayer { get; internal set; }
+        public LayerSyntax PreviousLayer { get; internal set; }
         
         protected LayerSyntax(SyntaxKind kind, string name = null)
         {
             Kind = kind;
             Name = name;
         }
-
-        public abstract LayerSyntax AddNextLayer(LayerSyntax layer);
     }
 }

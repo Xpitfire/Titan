@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -20,11 +21,10 @@ namespace Titan.Core.Syntax
         public static NetworkSyntax Network(string name = null) => Network(NetworkParameter(), null, name: name);
         public static NetworkSyntax Network(NetworkParameterSyntax parameter) => Network(parameter, null);
 
-        public static InputLayerSyntax InputLayer(InputLayerType type, string name = null) => InputLayer(type, Syntax.InputMatrix.DefaultInputMatrix, name);
-        public static InputLayerSyntax InputLayer(InputLayerType type, InputMatrix inputMatrix, string name = null) => new InputLayerSyntax(type, inputMatrix, name);
-
-        public static InputMatrix InputMatrix() => Syntax.InputMatrix.DefaultInputMatrix;
-        public static InputMatrix InputMatrix(int format, int channels) => new InputMatrix(format, format, channels);
+        public static InputLayerSyntax InputLayer(InputLayerType type, string name = null) => InputLayer(type, Syntax.Data.Empty, Label.Empty, name: name);
+        public static InputLayerSyntax InputLayer(InputLayerType type, Data data, Label label, InputLayerParameterSyntax parameter = null, string name = null) => new InputLayerSyntax(type, data, label, parameter, name);
+        
+        public static Data Data(ImmutableList<float[]> dataVector, int format, int channels) => new Data(dataVector, format, format, channels);
 
         public static NetworkParameterSyntax NetworkParameter(
             int epochs = NetworkParameterSyntax.DefaultEpochSize,
@@ -32,6 +32,8 @@ namespace Titan.Core.Syntax
             float learningRate = NetworkParameterSyntax.DefaultLearningRate,
             int batchSize = NetworkParameterSyntax.DefaultBatchSize,
             int seed = NetworkParameterSyntax.DefaultSeedValue) => new NetworkParameterSyntax(epochs, updater, learningRate, batchSize, seed);
+
+        public static LayerSyntax PoolingLayer() => new PoolingLayerSyntax();
 
         public static ConvolutionalLayerSyntax ConvolutionalLayer(string name = null) => new ConvolutionalLayerSyntax(name);
     }

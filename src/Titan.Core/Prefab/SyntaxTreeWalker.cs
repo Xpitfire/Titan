@@ -29,19 +29,14 @@ namespace Titan.Core.Prefab
                 Traverse(network.TestLayer);
                 InputLayerExit(network.TestLayer);
 
-                LayerSyntaxEnter(network.NextLayer);
-                Traverse(network.NextLayer);
-                LayerSyntaxEnter(network.NextLayer);
+                foreach (var layer in network.Layers)
+                {
+                    LayerSyntaxEnter(layer);
+                    Traverse(layer);
+                    LayerSyntaxEnter(layer);
+                }
 
                 NetworkSyntaxExit(network);
-            }
-
-            var layer = node as LayerSyntax;
-            if (layer != null)
-            {
-                LayerSyntaxEnter(layer.NextLayer);
-                Traverse(layer.NextLayer);
-                LayerSyntaxExit(layer.NextLayer);
             }
         }
 

@@ -25,7 +25,7 @@ namespace Titan.Core.Test
         {
             var network = SyntaxFactory
                 .Network(SyntaxFactory.NetworkParameter())
-                .AddInputLayers(SyntaxFactory.InputLayer(InputLayerType.Train, SyntaxFactory.InputMatrix()));
+                .AddInputLayers(SyntaxFactory.InputLayer(InputLayerType.Train, Data.Empty, Label.Empty));
             Assert.IsNotNull(network);
         }
 
@@ -48,14 +48,13 @@ namespace Titan.Core.Test
         {
             var networkParam = SyntaxFactory.NetworkParameter();
             var trainLayer = SyntaxFactory.InputLayer(InputLayerType.Train);
-
-            LayerSyntax layer = SyntaxFactory.ConvolutionalLayer();
-            layer = layer.AddNextLayer(SyntaxFactory.ConvolutionalLayer());
-
-            var network = SyntaxFactory.Network(networkParam, trainLayer);
-            network = network.AddNextLayer(layer);
             
-            Assert.IsNotNull(network.NextLayer);
+            var network = SyntaxFactory.Network(networkParam, trainLayer)
+                .AddLayer(SyntaxFactory.ConvolutionalLayer())
+                .AddLayer(SyntaxFactory.PoolingLayer())
+                .AddLayer(SyntaxFactory.ConvolutionalLayer());
+            
+            Assert.IsNotNull(network.Layers);
             Console.WriteLine(InstanceFactory.CodeGenInstance.Generate(network).Text);
         }
     }

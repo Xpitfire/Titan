@@ -19,14 +19,13 @@ namespace Titan.Plugin.GraphViz.CodeGen
             _builder.Append($"digraph {network.Name}Graph {{\n");
             _builder.Append($"\t{network.TrainLayer?.Name} -> {network.Name}\n");       if (network.ValidationLayer == null) return;
             _builder.Append($"\t{network.ValidationLayer?.Name} -> {network.Name}\n");  if (network.TestLayer == null) return;
-            _builder.Append($"\t{network.TestLayer?.Name} -> {network.Name}\n");        if (network.NextLayer == null) return;
-            _builder.Append($"\t{network.NextLayer?.Name} -> {network.Name}\n");              
+            _builder.Append($"\t{network.TestLayer?.Name} -> {network.Name}\n");
         }
         
         protected override void LayerSyntaxEnter(LayerSyntax layer)
         {
-            if (layer?.NextLayer == null) return;
-            _builder.Append($"\t{layer.NextLayer.Name} -> {layer.Name};\n");
+            if (layer == null || layer.PreviousLayer == null) return;
+            _builder.Append($"\t{layer.Name} -> {layer.PreviousLayer.Name};\n");
         }
 
         protected override void NetworkSyntaxExit(NetworkSyntax network) => _builder.Append($"}}\n");
