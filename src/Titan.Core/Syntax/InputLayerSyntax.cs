@@ -49,7 +49,6 @@ namespace Titan.Core.Syntax
             return clone;
         }
 
-        public override object Clone() => this.Clone<InputLayerSyntax>();
     }
 
     [Serializable]
@@ -111,8 +110,6 @@ namespace Titan.Core.Syntax
             BatchSize = batchSize;
             Mirror = mirror;
         }
-
-        public override object Clone() => this.Clone<InputLayerParameterSyntax>();
     }
 
     [Serializable]

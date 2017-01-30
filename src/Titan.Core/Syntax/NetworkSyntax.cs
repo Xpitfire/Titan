@@ -54,7 +54,7 @@ namespace Titan.Core.Syntax
             {
                 foreach (var l in network.Layers)
                 {
-                    list.Add((LayerSyntax)l.Clone());
+                    list.Add(l.Clone<LayerSyntax>());
                 }
                 layer.PreviousLayer = network.Layers.Last();
             }
@@ -63,7 +63,6 @@ namespace Titan.Core.Syntax
             return network;
         }
 
-        public override object Clone() => this.Clone<NetworkSyntax>();
     }
 
     [Serializable]
@@ -107,6 +106,5 @@ namespace Titan.Core.Syntax
             LearningRate = learningRate;
         }
 
-        public override object Clone() => this.Clone<NetworkParameterSyntax>();
     }
 }

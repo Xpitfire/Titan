@@ -29,7 +29,7 @@ namespace Titan.Core.Syntax
             }
         }
 
-        public abstract object Clone();
+        public object Clone() => this.Clone<SyntaxNode>();
         internal virtual void Visit() { }
     }
 
@@ -44,7 +44,7 @@ namespace Titan.Core.Syntax
 
             var targetType = typeof(TTarget);
             var targetProps = targetType.GetProperties();
-            var obj = Activator.CreateInstance(targetType, true);
+            var obj = Activator.CreateInstance(source.GetType(), true);
             var sourceProps = source.GetType().GetProperties();
             var sourcePropsNames = new string[sourceProps.Length];
             for (var i = 0; i < sourceProps.Length; i++)

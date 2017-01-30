@@ -12,8 +12,6 @@ namespace Titan.Core.Syntax
         {
             Type = type;
         }
-
-        public override object Clone() => this.Clone<PoolingLayerSyntax>();
     }
 
     public enum PoolingLayerType

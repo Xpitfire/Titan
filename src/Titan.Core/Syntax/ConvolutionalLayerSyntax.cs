@@ -9,7 +9,5 @@ namespace Titan.Core.Syntax
         internal ConvolutionalLayerSyntax(string name = null) : base(SyntaxKind.Convolutional, name)
         {
         }
-
-        public override object Clone() => this.Clone<ConvolutionalLayerSyntax>();
     }
 }

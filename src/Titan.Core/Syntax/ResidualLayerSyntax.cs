@@ -32,7 +32,5 @@ namespace Titan.Core.Syntax
             clone.PreviousLayer = layer;
             return clone;
         }
-
-        public override object Clone() => this.Clone<ResidualLayerSyntax>();
     }
 }
