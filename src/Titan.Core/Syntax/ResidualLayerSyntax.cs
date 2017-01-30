@@ -1,5 +1,5 @@
 ﻿using System;
-using Titan.Core.Helper;
+using Titan.Core.Collection;
 
 namespace Titan.Core.Syntax
 {
@@ -32,5 +32,7 @@ namespace Titan.Core.Syntax
             clone.PreviousLayer = layer;
             return clone;
         }
+
+        public override object Clone() => this.Clone<ResidualLayerSyntax>();
     }
 }

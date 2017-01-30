@@ -17,9 +17,9 @@ namespace Titan.Plugin.GraphViz.CodeGen
         {
             if (network == null) return;
             _builder.Append($"digraph {network.Name}Graph {{\n");
-            _builder.Append($"\t{network.TrainLayer?.Name} -> {network.Name}\n");       if (network.ValidationLayer == null) return;
-            _builder.Append($"\t{network.ValidationLayer?.Name} -> {network.Name}\n");  if (network.TestLayer == null) return;
-            _builder.Append($"\t{network.TestLayer?.Name} -> {network.Name}\n");
+            _builder.Append($"\t{network.TrainLayer?.Name} -> {network.Name};\n");       if (network.ValidationLayer == null) return;
+            _builder.Append($"\t{network.ValidationLayer?.Name} -> {network.Name};\n");  if (network.TestLayer == null) return;
+            _builder.Append($"\t{network.TestLayer?.Name} -> {network.Name};\n");
         }
         
         protected override void LayerSyntaxEnter(LayerSyntax layer)

@@ -54,7 +54,8 @@
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Communication\Message.cs" />
     <Compile Include="Communication\Response.cs" />
-    <Compile Include="Helper\ImmutableList.cs" />
+    <Compile Include="Collection\ImmutableList.cs" />
+    <Compile Include="Immutable\ImmutableException.cs" />
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\ParserMessage.cs" />
     <Compile Include="Prefab\LayerBuilder.cs" />

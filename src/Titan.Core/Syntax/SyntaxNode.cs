@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Titan.Core.Collection;
 
 namespace Titan.Core.Syntax
 {
@@ -12,7 +9,7 @@ namespace Titan.Core.Syntax
     public delegate void VisitorDelegate<in TNode>(TNode node) where TNode : SyntaxNode;
 
     [Serializable]
-    public abstract class SyntaxNode
+    public abstract class SyntaxNode : ICloneable
     {
         public Spix Spix { get; internal set; }
         private string _name;
@@ -31,9 +28,12 @@ namespace Titan.Core.Syntax
                 Name = name;
             }
         }
+
+        public abstract object Clone();
+        internal virtual void Visit() { }
     }
 
-    public static class SyntaxNodeExtension
+    public static class SyntaxNodeCloner
     {
         public static TTarget Clone<TTarget>(this SyntaxNode node) => ObjectClone<SyntaxNode, TTarget>(node);
 
@@ -60,7 +60,7 @@ namespace Titan.Core.Syntax
 
                 if (value is SyntaxNode)
                 {
-                    var methodType = typeof(SyntaxNodeExtension);
+                    var methodType = typeof(SyntaxNodeCloner);
                     var method = methodType
                         .GetMethod(nameof(ObjectClone),
                             BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
@@ -90,18 +90,21 @@ namespace Titan.Core.Syntax
             return targetArray;
         }
 
-        public static List<TTarget> ListClone<TSource, TTarget>(List<TSource> sourceList)
+        public static ImmutableList<TTarget> ListClone<TSource, TTarget>(ImmutableList<TSource> sourceList)
         {
             if (sourceList == null)
                 return null;
-            var targetList = new List<TTarget>();
-            sourceList.ForEach(elem => targetList.Add(ObjectClone<TSource, TTarget>(elem)));
+            var targetList = new ImmutableList<TTarget>();
+            foreach (var item in sourceList)
+            {
+                targetList.Add(ObjectClone<TSource, TTarget>(item));
+            }
             return targetList;
         }
 
-        public static List<TTarget> ListClone<TSource, TTarget>(TSource[] sourceList)
-            => sourceList == null ? null : ListClone<TSource, TTarget>(sourceList.ToList());
-        public static TTarget[] ArrayClone<TSource, TTarget>(List<TSource> sourceList) 
+        public static ImmutableList<TTarget> ListClone<TSource, TTarget>(TSource[] sourceList)
+            => sourceList == null ? null : ListClone<TSource, TTarget>(sourceList.ToImmutableList());
+        public static TTarget[] ArrayClone<TSource, TTarget>(ImmutableList<TSource> sourceList) 
             => sourceList == null ? null : ArrayClone<TSource, TTarget>(sourceList.ToArray());
     }
 }

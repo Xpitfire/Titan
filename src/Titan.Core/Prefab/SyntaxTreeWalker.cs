@@ -35,12 +35,14 @@ namespace Titan.Core.Prefab
                     {
                         LayerSyntaxEnter(layer);
                         Traverse(layer);
-                        LayerSyntaxEnter(layer);
+                        LayerSyntaxExit(layer);
                     }
                 }               
 
                 NetworkSyntaxExit(network);
             }
+
+            node.Visit();
         }
 
         protected virtual void NetworkSyntaxEnter(NetworkSyntax network) { }

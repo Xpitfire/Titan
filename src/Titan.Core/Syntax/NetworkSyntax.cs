@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Titan.Core.Helper;
+using Titan.Core.Collection;
 
 namespace Titan.Core.Syntax
 {
@@ -28,9 +29,7 @@ namespace Titan.Core.Syntax
             ValidationLayer = validationLayer;
             TestLayer = testLayer;
         }
-
-        public SyntaxNode Root() => this;
-
+        
         public NetworkSyntax AddInputLayers(
             InputLayerSyntax trainLayer, 
             InputLayerSyntax validationLayer = null, 
@@ -46,17 +45,25 @@ namespace Titan.Core.Syntax
         public NetworkSyntax AddLayer(LayerSyntax layer)
         {
             var network = this.Clone<NetworkSyntax>();
-
-            if (Layers != null)
+            var list = new List<LayerSyntax>();
+            if (network.Layers == null)
             {
-                if (Layers.Count > 0)
-                {
-                    layer.PreviousLayer = Layers.Last();
-                }
+                layer.PreviousLayer = network.TrainLayer;
             }
-            network.Layers = new ImmutableList<LayerSyntax>(Layers, layer);
+            else
+            {
+                foreach (var l in network.Layers)
+                {
+                    list.Add((LayerSyntax)l.Clone());
+                }
+                layer.PreviousLayer = network.Layers.Last();
+            }
+            list.Add(layer);
+            network.Layers = list.ToImmutableList();
             return network;
         }
+
+        public override object Clone() => this.Clone<NetworkSyntax>();
     }
 
     [Serializable]
@@ -99,6 +106,7 @@ namespace Titan.Core.Syntax
             Updater = updater;
             LearningRate = learningRate;
         }
-        
+
+        public override object Clone() => this.Clone<NetworkParameterSyntax>();
     }
 }

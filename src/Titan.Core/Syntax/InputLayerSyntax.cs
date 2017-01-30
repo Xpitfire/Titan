@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Titan.Core.Helper;
+using Titan.Core.Collection;
 
 namespace Titan.Core.Syntax
 {
@@ -48,7 +48,8 @@ namespace Titan.Core.Syntax
             clone.Parameter = parameter;
             return clone;
         }
-        
+
+        public override object Clone() => this.Clone<InputLayerSyntax>();
     }
 
     [Serializable]
@@ -110,6 +111,8 @@ namespace Titan.Core.Syntax
             BatchSize = batchSize;
             Mirror = mirror;
         }
+
+        public override object Clone() => this.Clone<InputLayerParameterSyntax>();
     }
 
     [Serializable]

@@ -8,5 +8,7 @@ namespace Titan.Core.Syntax
         internal OutputLayerSyntax() : base(SyntaxKind.Output)
         {
         }
+
+        public override object Clone() => this.Clone<OutputLayerSyntax>();
     }
 }

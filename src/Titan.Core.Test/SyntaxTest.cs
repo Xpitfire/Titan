@@ -39,6 +39,9 @@ namespace Titan.Core.Test
                 SyntaxFactory.InputLayer(InputLayerType.Train, "train"),
                 SyntaxFactory.InputLayer(InputLayerType.Validation, "val"),
                 SyntaxFactory.InputLayer(InputLayerType.Test, "test"));
+            network = network
+                .AddLayer(SyntaxFactory.ConvolutionalLayer("conv1"))
+                .AddLayer(SyntaxFactory.ConvolutionalLayer("conv2"));
             var gen = codeGenInstance.Generate(network);
             Assert.IsNotNull(gen?.Text);
             Debug.WriteLine(gen.Text);
