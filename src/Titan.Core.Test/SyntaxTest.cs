@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Titan.Core.Default;
 using Titan.Core.Syntax;
+using System.Diagnostics;
 
 namespace Titan.Core.Test
 {
@@ -40,7 +41,7 @@ namespace Titan.Core.Test
                 SyntaxFactory.InputLayer(InputLayerType.Test, "test"));
             var gen = codeGenInstance.Generate(network);
             Assert.IsNotNull(gen?.Text);
-            Console.WriteLine(gen.Text);
+            Debug.WriteLine(gen.Text);
         }
 
         [TestMethod]

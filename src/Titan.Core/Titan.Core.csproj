@@ -38,10 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -58,6 +54,7 @@
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Communication\Message.cs" />
     <Compile Include="Communication\Response.cs" />
+    <Compile Include="Helper\ImmutableList.cs" />
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\ParserMessage.cs" />
     <Compile Include="Prefab\LayerBuilder.cs" />

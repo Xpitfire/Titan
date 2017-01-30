@@ -29,12 +29,15 @@ namespace Titan.Core.Prefab
                 Traverse(network.TestLayer);
                 InputLayerExit(network.TestLayer);
 
-                foreach (var layer in network.Layers)
+                if (network.Layers != null)
                 {
-                    LayerSyntaxEnter(layer);
-                    Traverse(layer);
-                    LayerSyntaxEnter(layer);
-                }
+                    foreach (var layer in network.Layers)
+                    {
+                        LayerSyntaxEnter(layer);
+                        Traverse(layer);
+                        LayerSyntaxEnter(layer);
+                    }
+                }               
 
                 NetworkSyntaxExit(network);
             }

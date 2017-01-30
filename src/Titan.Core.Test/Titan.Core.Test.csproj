@@ -37,7 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -80,6 +79,14 @@
     <ProjectReference Include="..\Titan.Plugin\Titan.Plugin.csproj">
       <Project>{06DF83B9-D757-4175-BF2D-D74F2C186E72}</Project>
       <Name>Titan.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Service.Impl.HeuristicLab\Titan.Service.Impl.HeuristicLab.csproj">
+      <Project>{c58885f4-3d3e-416c-ab5a-c53df3454b59}</Project>
+      <Name>Titan.Service.Impl.HeuristicLab</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Service\Titan.Service.csproj">
+      <Project>{c47f8d46-7320-4675-bea4-44b0c7999e0e}</Project>
+      <Name>Titan.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
+using Titan.Core.Helper;
 
 namespace Titan.Core.Syntax
 {
@@ -48,17 +47,14 @@ namespace Titan.Core.Syntax
         {
             var network = this.Clone<NetworkSyntax>();
 
-            if (network.Layers != null)
+            if (Layers != null)
             {
-                if (network.Layers.Count > 0)
+                if (Layers.Count > 0)
                 {
-                    layer.PreviousLayer = network.Layers.Last();
+                    layer.PreviousLayer = Layers.Last();
                 }
-                var builder = ImmutableList.CreateBuilder<LayerSyntax>();
-                builder.AddRange(network.Layers);
-                builder.Add(layer);
-                network.Layers = builder.ToImmutableList();
             }
+            network.Layers = new ImmutableList<LayerSyntax>(Layers, layer);
             return network;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
+using Titan.Core.Helper;
 
 namespace Titan.Core.Syntax
 {

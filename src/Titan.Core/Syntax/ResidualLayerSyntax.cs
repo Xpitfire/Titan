@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Immutable;
+using Titan.Core.Helper;
 
 namespace Titan.Core.Syntax
 {
     [Serializable]
     public sealed class ResidualLayerSyntax : LayerSyntax
     {
-        public ImmutableArray<LayerSyntax> LeftBranch { get; internal set; }
-        public ImmutableArray<LayerSyntax> RightBranch { get; internal set; }
+        public ImmutableList<LayerSyntax> LeftBranch { get; internal set; }
+        public ImmutableList<LayerSyntax> RightBranch { get; internal set; }
 
         private ResidualLayerSyntax() : base(SyntaxKind.Residual) { }
         internal ResidualLayerSyntax(
-            ImmutableArray<LayerSyntax> leftBranch, 
-            ImmutableArray<LayerSyntax> rightBranch) : base(SyntaxKind.Residual)
+            ImmutableList<LayerSyntax> leftBranch,
+            ImmutableList<LayerSyntax> rightBranch) : base(SyntaxKind.Residual)
         {
             LeftBranch = leftBranch;
             RightBranch = rightBranch;

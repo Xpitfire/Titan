@@ -13,7 +13,7 @@ namespace Titan.Plugin.Caffe.Communication.REST.Test
         {
             var communication = new Communication();
             var rsp = communication.SendAsync("Test").Result;
-            Assert.AreEqual(rsp, Response.Failed);
+            Assert.AreEqual(rsp, Response.Successful);
         }
     }
 }
