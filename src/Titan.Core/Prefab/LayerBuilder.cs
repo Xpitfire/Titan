@@ -10,11 +10,10 @@ namespace Titan.Core.Prefab
     public static class LayerBuilder
     {
 
-        //public static LayerSyntax Convolution1x1()
-        //{
-        //    var convLayer = new ConvolutionalLayerSyntax();
-        //    convLayer.AddNextLayer()
-        //}
+        public static LayerSyntax Convolution1x1()
+        {
+            return new ConvolutionalLayerSyntax();
+        }
 
     }
 }

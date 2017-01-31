@@ -10,31 +10,48 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class IdentifierSyntax
     {
-        public static readonly ConcurrentBag<string> UniqueSpixLSet;
+        private const string Alphabet = "abcdefghijklmnopqrstuvwyxz";
+        private const int DefaultIdSize = 10;
+        private static readonly Random rand = new Random();
+        private static readonly ConcurrentBag<string> UniqueIdSet;
         public static readonly IdentifierSyntax Empty;
 
         public string Id { get; private set; }
 
         static IdentifierSyntax()
         {
-            UniqueSpixLSet = new ConcurrentBag<string>();
+            UniqueIdSet = new ConcurrentBag<string>();
             Empty = new IdentifierSyntax();
         }
 
         public IdentifierSyntax(string id = null)
         {
-            if (UniqueSpixLSet.Contains(id))
+            if (UniqueIdSet.Contains(id))
             {
-                throw new ArgumentException($"Spix id collision: {id} already defined!");
+                throw new ArgumentException(
+                    $"Id collision: {id} already defined!");
             }
             if (id == null)
             {
-                id = Guid.NewGuid().ToString();
+                id = GenerateId();
             }
             Id = id;
-            UniqueSpixLSet.Add(id);
+            UniqueIdSet.Add(id);
         }
-        
+
+        private string GenerateId()
+        {
+            var sb = new StringBuilder();
+            do
+            {
+                sb.Append(Alphabet[rand.Next(Alphabet.Length)]);
+                for (int i = 0; i < DefaultIdSize; i++)
+                {
+                    sb.Append(Alphabet[rand.Next(Alphabet.Length)]);
+                }
+            } while (UniqueIdSet.Contains(sb.ToString()));
+            return sb.ToString();
+        }
 
         public override bool Equals(object obj)
         {
@@ -45,7 +62,6 @@ namespace Titan.Core.Syntax
         public override int GetHashCode() => Id.GetHashCode();
 
         public static bool operator ==(IdentifierSyntax value1, IdentifierSyntax value2) => value1 != null && value1.Equals(value2);
-
         public static bool operator !=(IdentifierSyntax value1, IdentifierSyntax value2) => value1 != null && !value1.Equals(value2);
     }
 }
