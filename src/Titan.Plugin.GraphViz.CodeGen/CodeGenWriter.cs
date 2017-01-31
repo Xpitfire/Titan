@@ -21,8 +21,8 @@ namespace Titan.Plugin.GraphViz.CodeGen
         
         protected override void LayerSyntaxEnter(LayerSyntax layer)
         {
-            if (layer == null || layer.PreviousLayers == null) return;
-            foreach (var prevLayer in layer.PreviousLayers)
+            if (layer == null || layer.ParentLayers == null) return;
+            foreach (var prevLayer in layer.ParentLayers)
             {
                 _builder.Append($"\t{layer.Name} -> {prevLayer.Name};\n");
             }
@@ -35,7 +35,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
             {
                 if (input.InputKind == InputLayerKind.Train)
                 {
-                    foreach (var prevLayer in outputLayer.PreviousLayers)
+                    foreach (var prevLayer in outputLayer.ParentLayers)
                     {
                         _builder.Append($"\t{outputLayer.Name} -> {prevLayer.Name};\n");
                     }

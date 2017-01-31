@@ -61,7 +61,7 @@ namespace Titan.Core.Syntax
                 }.ToImmutableList();
                 foreach (var outputLayer in outputLayers)
                 {
-                    outputLayer.PreviousLayers = lastLayer;
+                    outputLayer.ParentLayers = lastLayer;
                 }
                 network.OutputLayers = outputLayers.ToImmutableList();
             }
@@ -74,7 +74,7 @@ namespace Titan.Core.Syntax
             var list = new List<LayerSyntax>();
             if (network.Layers == null)
             {
-                layer.PreviousLayers =
+                layer.ParentLayers =
                     new List<LayerSyntax>(network.InputLayers).ToImmutableList();
             }
             else
@@ -83,7 +83,7 @@ namespace Titan.Core.Syntax
                 {
                     list.Add(l.Clone<LayerSyntax>());
                 }
-                layer.PreviousLayers = new List<LayerSyntax>
+                layer.ParentLayers = new List<LayerSyntax>
                 {
                     network.Layers.Last()
                 }.ToImmutableList();
@@ -92,6 +92,39 @@ namespace Titan.Core.Syntax
             network.Layers = list.ToImmutableList();
             return network;
         }
+
+        public LayerSyntax FindLayerByIdentifier(IdentifierSyntax id)
+            => (id == null) ? null : FindLayerByName(id.Id);
+        public LayerSyntax FindLayerByName(string name)
+        {
+            if (name == null) return null;
+            LayerSyntax layer = null;
+            if (InputLayers != null)
+            {
+                foreach (var l in InputLayers)
+                {
+                    layer = l.FindChildLayerByName(name);
+                    if (layer != null) return layer;
+                }
+            }
+            if (OutputLayers != null)
+            {
+                foreach (var l in Layers)
+                {
+                    layer = l.FindChildLayerByName(name);
+                    if (layer != null) return layer;
+                }
+            }
+            if (Layers != null)
+            {
+                foreach (var l in Layers)
+                {
+                    layer = l.FindChildLayerByName(name);
+                    if (layer != null) return layer;
+                }
+            }
+            return null;
+        } 
     }
 
     [Serializable]

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Titan.Core.Immutable;
+using Titan.Core.Syntax;
 
 namespace Titan.Core.Collection
 {
@@ -81,6 +82,13 @@ namespace Titan.Core.Collection
         public void CopyTo(T[] array, int arrayIndex) => Data.CopyTo(array, arrayIndex);
         public IEnumerator<T> GetEnumerator() => Data.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => Data.GetEnumerator();
+        public void ForEach(Action<T> p)
+        {
+            foreach (var item in Data)
+            {
+                p?.Invoke(item);
+            }
+        }
         public List<T> ToList()
         {
             var list = new List<T>();

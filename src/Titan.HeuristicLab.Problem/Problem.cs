@@ -37,6 +37,7 @@ namespace Titan.HeuristicLab.Problem
             var quality = 0.0;
             return quality;
         }
+        
 
         public override bool Maximization => false;
     }

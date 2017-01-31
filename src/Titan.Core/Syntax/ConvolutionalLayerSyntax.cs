@@ -10,4 +10,13 @@ namespace Titan.Core.Syntax
         {
         }
     }
+
+    public sealed class ConvolutionalParameterSyntax : SyntaxNode
+    {
+        public int KernelSize { get; internal set; }
+        public int Stride { get; internal set; }
+        internal ConvolutionalParameterSyntax()  { }
+
+    }
+
 }
