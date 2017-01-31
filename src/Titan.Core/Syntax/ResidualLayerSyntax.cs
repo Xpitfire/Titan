@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Titan.Core.Collection;
 
 namespace Titan.Core.Syntax
@@ -21,7 +22,8 @@ namespace Titan.Core.Syntax
         {
             // TODO: not correct -> implement right behavior
             var clone = this.Clone<ResidualLayerSyntax>();
-            clone.PreviousLayer = layer;
+            clone.PreviousLayers = 
+                new List<LayerSyntax> { layer }.ToImmutableList();
             return clone;
         }
 
@@ -29,7 +31,8 @@ namespace Titan.Core.Syntax
         {
             // TODO: not correct -> implement right behavior
             var clone = this.Clone<ResidualLayerSyntax>();
-            clone.PreviousLayer = layer;
+            clone.PreviousLayers =
+                new List<LayerSyntax> { layer }.ToImmutableList();
             return clone;
         }
     }

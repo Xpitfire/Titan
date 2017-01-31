@@ -26,7 +26,7 @@ namespace Titan.Core.Test
         {
             var network = SyntaxFactory
                 .Network(SyntaxFactory.NetworkParameter())
-                .AddInputLayers(SyntaxFactory.InputLayer(InputLayerType.Train, Data.Empty, Label.Empty));
+                .AddInputLayers(SyntaxFactory.InputLayer(InputLayerKind.Train, Data.Empty, Label.Empty));
             Assert.IsNotNull(network);
         }
 
@@ -34,14 +34,15 @@ namespace Titan.Core.Test
         public void TestCodeGen()
         {
             var codeGenInstance = InstanceFactory.CodeGenInstance;
-            var network = SyntaxFactory.Network("Demo");
-            network = network.AddInputLayers(
-                SyntaxFactory.InputLayer(InputLayerType.Train, "train"),
-                SyntaxFactory.InputLayer(InputLayerType.Validation, "val"),
-                SyntaxFactory.InputLayer(InputLayerType.Test, "test"));
-            network = network
+            var network = SyntaxFactory.Network("Demo")
+                .AddInputLayers(
+                SyntaxFactory.InputLayer(InputLayerKind.Train, "train"), 
+                SyntaxFactory.InputLayer(InputLayerKind.Validation, "val"), 
+                SyntaxFactory.InputLayer(InputLayerKind.Test, "test"))
                 .AddLayer(SyntaxFactory.ConvolutionalLayer("conv1"))
-                .AddLayer(SyntaxFactory.ConvolutionalLayer("conv2"));
+                .AddLayer(SyntaxFactory.ConvolutionalLayer("conv2"))
+                .AddLayer(SyntaxFactory.ConvolutionalLayer("conv3"))
+                .AddOutputLayers(SyntaxFactory.OutputLayer("output"));
             var gen = codeGenInstance.Generate(network);
             Assert.IsNotNull(gen?.Text);
             Debug.WriteLine(gen.Text);
@@ -51,13 +52,13 @@ namespace Titan.Core.Test
         public void TestImmutableClone()
         {
             var networkParam = SyntaxFactory.NetworkParameter();
-            var trainLayer = SyntaxFactory.InputLayer(InputLayerType.Train);
-            
+            var trainLayer = SyntaxFactory.InputLayer(InputLayerKind.Train);
+
             var network = SyntaxFactory.Network(networkParam, trainLayer)
                 .AddLayer(SyntaxFactory.ConvolutionalLayer())
                 .AddLayer(SyntaxFactory.PoolingLayer())
                 .AddLayer(SyntaxFactory.ConvolutionalLayer());
-            
+
             Assert.IsNotNull(network.Layers);
             Console.WriteLine(InstanceFactory.CodeGenInstance.Generate(network).Text);
         }

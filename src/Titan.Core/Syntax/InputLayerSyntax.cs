@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Titan.Core.Collection;
 
 namespace Titan.Core.Syntax
@@ -9,19 +8,19 @@ namespace Titan.Core.Syntax
     {
         public Data Data { get; internal set; }
         public Label Label { get; internal set; }
-        public InputLayerType Type { get; internal set; }
+        public InputLayerKind InputKind { get; internal set; }
         public InputLayerParameterSyntax Parameter { get; internal set; }
 
         private InputLayerSyntax() : base(SyntaxKind.Input) { }
-        internal InputLayerSyntax(InputLayerType type, string name) : this(type, Data.Empty, Label.Empty, null, name) { }
+        internal InputLayerSyntax(InputLayerKind kind, string name = null) : this(kind, Data.Empty, Label.Empty, null, name) { }
         internal InputLayerSyntax(
-            InputLayerType type, 
+            InputLayerKind kind, 
             Data data, 
             Label label, 
             InputLayerParameterSyntax parameter = null,
             string name = null) : base(SyntaxKind.Input)
         {
-            Type = type;
+            InputKind = kind;
             Data = data;
             Label = label;
             Parameter = parameter;
@@ -48,7 +47,6 @@ namespace Titan.Core.Syntax
             clone.Parameter = parameter;
             return clone;
         }
-
     }
 
     [Serializable]
@@ -113,7 +111,7 @@ namespace Titan.Core.Syntax
     }
 
     [Serializable]
-    public enum InputLayerType
+    public enum InputLayerKind
     {
         Train,
         Validation,

@@ -9,10 +9,9 @@ namespace Titan.Core.Syntax
     public class NetworkSyntax : SyntaxNode
     {
         public NetworkParameterSyntax Parameter { get; internal set; }
-        public InputLayerSyntax TrainLayer { get; internal set; }
-        public InputLayerSyntax ValidationLayer { get; internal set; }
-        public InputLayerSyntax TestLayer { get; internal set; }
+        public ImmutableList<InputLayerSyntax> InputLayers { get; internal set; }
         public ImmutableList<LayerSyntax> Layers { get; internal set; }
+        public ImmutableList<OutputLayerSyntax> OutputLayers { get; internal set; }
 
         private NetworkSyntax() : this(null) { } // required due to serialization
         internal NetworkSyntax(string name = null) : this(null, name) { }
@@ -25,20 +24,47 @@ namespace Titan.Core.Syntax
             string name = null) : base(name)
         {
             Parameter = parameter;
-            TrainLayer = trainLayer;
-            ValidationLayer = validationLayer;
-            TestLayer = testLayer;
+            var list = new List<InputLayerSyntax>
+            {
+                trainLayer,
+                validationLayer,
+                testLayer
+            };
+            InputLayers = list.ToImmutableList();
         }
-        
+
         public NetworkSyntax AddInputLayers(
-            InputLayerSyntax trainLayer, 
-            InputLayerSyntax validationLayer = null, 
+            InputLayerSyntax trainLayer,
+            InputLayerSyntax validationLayer = null,
             InputLayerSyntax testLayer = null)
         {
             var network = this.Clone<NetworkSyntax>();
-            network.TrainLayer = trainLayer;
-            network.ValidationLayer = validationLayer;
-            network.TestLayer = testLayer;
+            var list = new List<InputLayerSyntax>
+            {
+                trainLayer,
+                validationLayer,
+                testLayer
+            };
+            network.InputLayers = list.ToImmutableList();
+            return network;
+        }
+
+        public NetworkSyntax AddOutputLayers(
+            params OutputLayerSyntax[] outputLayers)
+        {
+            var network = this.Clone<NetworkSyntax>();
+            if (outputLayers != null && network.Layers != null)
+            {
+                var lastLayer = new List<LayerSyntax>
+                {
+                    network.Layers.Last()
+                }.ToImmutableList();
+                foreach (var outputLayer in outputLayers)
+                {
+                    outputLayer.PreviousLayers = lastLayer;
+                }
+                network.OutputLayers = outputLayers.ToImmutableList();
+            }
             return network;
         }
 
@@ -48,7 +74,8 @@ namespace Titan.Core.Syntax
             var list = new List<LayerSyntax>();
             if (network.Layers == null)
             {
-                layer.PreviousLayer = network.TrainLayer;
+                layer.PreviousLayers =
+                    new List<LayerSyntax>(network.InputLayers).ToImmutableList();
             }
             else
             {
@@ -56,13 +83,15 @@ namespace Titan.Core.Syntax
                 {
                     list.Add(l.Clone<LayerSyntax>());
                 }
-                layer.PreviousLayer = network.Layers.Last();
+                layer.PreviousLayers = new List<LayerSyntax>
+                    {
+                        network.Layers.Last()
+                    }.ToImmutableList();
             }
             list.Add(layer);
             network.Layers = list.ToImmutableList();
             return network;
         }
-
     }
 
     [Serializable]
@@ -73,7 +102,7 @@ namespace Titan.Core.Syntax
         public const float DefaultLearningRate = 0.003f;
         public const int DefaultBatchSize = 50;
         public const int DefaultSeedValue = 0; // random seed
-        
+
         [Serializable]
         public enum UpdaterType
         {
@@ -96,7 +125,7 @@ namespace Titan.Core.Syntax
             int epochs = DefaultEpochSize,
             UpdaterType updater = DefaultUpdaterType,
             float learningRate = DefaultLearningRate,
-            int batchSize = DefaultBatchSize, 
+            int batchSize = DefaultBatchSize,
             int seed = DefaultSeedValue)
         {
             Epochs = epochs;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Titan.Core.Collection;
 
 namespace Titan.Core.Syntax
 {
@@ -21,7 +22,7 @@ namespace Titan.Core.Syntax
         }
 
         public SyntaxKind Kind { get; internal set; }
-        public LayerSyntax PreviousLayer { get; internal set; }
+        public ImmutableList<LayerSyntax> PreviousLayers { get; internal set; }
         
         protected LayerSyntax(SyntaxKind kind, string name = null)
         {

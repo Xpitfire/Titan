@@ -16,16 +16,35 @@ namespace Titan.Plugin.GraphViz.CodeGen
         protected override void NetworkSyntaxEnter(NetworkSyntax network)
         {
             if (network == null) return;
-            _builder.Append($"digraph {network.Name}Graph {{\n");
-            _builder.Append($"\t{network.TrainLayer?.Name} -> {network.Name};\n");       if (network.ValidationLayer == null) return;
-            _builder.Append($"\t{network.ValidationLayer?.Name} -> {network.Name};\n");  if (network.TestLayer == null) return;
-            _builder.Append($"\t{network.TestLayer?.Name} -> {network.Name};\n");
+            _builder.Append($"digraph {network.Name} {{\n");
         }
         
         protected override void LayerSyntaxEnter(LayerSyntax layer)
         {
-            if (layer == null || layer.PreviousLayer == null) return;
-            _builder.Append($"\t{layer.Name} -> {layer.PreviousLayer.Name};\n");
+            if (layer == null || layer.PreviousLayers == null) return;
+            foreach (var prevLayer in layer.PreviousLayers)
+            {
+                _builder.Append($"\t{layer.Name} -> {prevLayer.Name};\n");
+            }
+        }
+
+        protected override void OutputLayerEnter(NetworkSyntax network, OutputLayerSyntax outputLayer)
+        {
+            if (outputLayer == null) return;
+            foreach (var input in network.InputLayers)
+            {
+                if (input.InputKind == InputLayerKind.Train)
+                {
+                    foreach (var prevLayer in outputLayer.PreviousLayers)
+                    {
+                        _builder.Append($"\t{outputLayer.Name} -> {prevLayer.Name};\n");
+                    }
+                }
+                else
+                {
+                    _builder.Append($"\t{outputLayer.Name} -> {input.Name};\n");
+                }
+            }
         }
 
         protected override void NetworkSyntaxExit(NetworkSyntax network) => _builder.Append($"}}\n");

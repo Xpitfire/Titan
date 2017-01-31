@@ -19,7 +19,7 @@ namespace Titan.Core.Collection
             set => Data[index] = value;
         }
 
-        internal ImmutableList() : this(null) { }
+        internal ImmutableList() { }
         internal ImmutableList(ImmutableList<T> layers) : this(layers, null) { }
         internal ImmutableList(ImmutableList<T> layers, params T[] otherLayers)
         {
@@ -41,6 +41,16 @@ namespace Titan.Core.Collection
         internal ImmutableList(IList<T> list)
         {
             Data = list;
+        }
+        internal ImmutableList(T[] array)
+        {
+            if (array != null)
+            {
+                foreach (var layer in array)
+                {
+                    Data.Add(layer);
+                }
+            }
         }
 
         public void Add(T element) => throw new ImmutableException();
@@ -80,6 +90,11 @@ namespace Titan.Core.Collection
         public static ImmutableList<T> ToImmutableList<T>(this IList<T> list)
         {
             return new ImmutableList<T>(list);
+        }
+
+        public static ImmutableList<T> ToImmutableList<T>(this T[] array)
+        {
+            return new ImmutableList<T>(array);
         }
     }
 

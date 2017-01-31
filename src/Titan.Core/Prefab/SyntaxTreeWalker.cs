@@ -17,27 +17,41 @@ namespace Titan.Core.Prefab
                 Traverse(network.Parameter);
                 NetworkParameterSyntaxEnter(network.Parameter);
 
-                InputLayerEnter(network.TrainLayer);
-                Traverse(network.TrainLayer);
-                InputLayerExit(network.TrainLayer);
-
-                InputLayerEnter(network.ValidationLayer);
-                Traverse(network.ValidationLayer);
-                InputLayerExit(network.ValidationLayer);
-
-                InputLayerEnter(network.TestLayer);
-                Traverse(network.TestLayer);
-                InputLayerExit(network.TestLayer);
-
+                if (network.InputLayers != null)
+                {
+                    foreach (var inputLayer in network.InputLayers)
+                    {
+                        InputLayerEnter(inputLayer);
+                        InputLayerEnter(network, inputLayer);
+                        Traverse(inputLayer);
+                        InputLayerExit(inputLayer);
+                        InputLayerExit(network, inputLayer);
+                    }
+                }
+                
                 if (network.Layers != null)
                 {
                     foreach (var layer in network.Layers)
                     {
                         LayerSyntaxEnter(layer);
+                        LayerSyntaxEnter(network, layer);
                         Traverse(layer);
                         LayerSyntaxExit(layer);
+                        LayerSyntaxExit(network, layer);
                     }
-                }               
+                }           
+                
+                if (network.OutputLayers != null)
+                {
+                    foreach (var outputLayer in network.OutputLayers)
+                    {
+                        OutputLayerEnter(outputLayer);
+                        OutputLayerEnter(network, outputLayer);
+                        Traverse(outputLayer);
+                        OutputLayerExit(outputLayer);
+                        OutputLayerExit(network, outputLayer);
+                    }
+                }
 
                 NetworkSyntaxExit(network);
             }
@@ -51,8 +65,16 @@ namespace Titan.Core.Prefab
         protected virtual void NetworkParameterSyntaxExit(NetworkParameterSyntax networkParameter) { }
         protected virtual void LayerSyntaxEnter(LayerSyntax layer) { }
         protected virtual void LayerSyntaxExit(LayerSyntax layer) { }
+        protected virtual void LayerSyntaxEnter(NetworkSyntax network, LayerSyntax layer) { }
+        protected virtual void LayerSyntaxExit(NetworkSyntax network, LayerSyntax layer) { }
         protected virtual void InputLayerEnter(InputLayerSyntax inputLayer) { }
         protected virtual void InputLayerExit(InputLayerSyntax inputLayer) { }
+        protected virtual void InputLayerEnter(NetworkSyntax network, InputLayerSyntax inputLayer) { }
+        protected virtual void InputLayerExit(NetworkSyntax network, InputLayerSyntax inputLayer) { }
+        protected virtual void OutputLayerEnter(OutputLayerSyntax outputLayer) { }
+        protected virtual void OutputLayerExit(OutputLayerSyntax outputLayer) { }
+        protected virtual void OutputLayerEnter(NetworkSyntax network, OutputLayerSyntax outputLayer) { }
+        protected virtual void OutputLayerExit(NetworkSyntax network, OutputLayerSyntax outputLayer) { }
 
     }
 }
