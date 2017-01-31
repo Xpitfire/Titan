@@ -84,9 +84,9 @@ namespace Titan.Core.Syntax
                     list.Add(l.Clone<LayerSyntax>());
                 }
                 layer.PreviousLayers = new List<LayerSyntax>
-                    {
-                        network.Layers.Last()
-                    }.ToImmutableList();
+                {
+                    network.Layers.Last()
+                }.ToImmutableList();
             }
             list.Add(layer);
             network.Layers = list.ToImmutableList();

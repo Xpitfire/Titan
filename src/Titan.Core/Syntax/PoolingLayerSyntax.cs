@@ -5,16 +5,16 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class PoolingLayerSyntax : LayerSyntax
     {
-        public PoolingLayerType Type { get; internal set; }
+        public PoolingLayerKind PoolingKind { get; internal set; }
 
-        internal PoolingLayerSyntax() : this(PoolingLayerType.Max) { }
-        internal PoolingLayerSyntax(PoolingLayerType type) : base(SyntaxKind.Pooling)
+        internal PoolingLayerSyntax() : this(PoolingLayerKind.Max) { }
+        internal PoolingLayerSyntax(PoolingLayerKind kind) : base(SyntaxKind.Pooling)
         {
-            Type = type;
+            PoolingKind = kind;
         }
     }
 
-    public enum PoolingLayerType
+    public enum PoolingLayerKind
     {
         Max,
         Average

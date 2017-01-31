@@ -27,20 +27,27 @@ namespace Titan.Core.Collection
             {
                 foreach (var layer in layers)
                 {
-                    Data.Add(layer);
+                    if (layer != null)
+                        Data.Add(layer);
                 }
             }
             if (otherLayers != null)
             {
                 foreach (var layer in otherLayers)
                 {
-                    Data.Add(layer);
+                    if (layer != null)
+                        Data.Add(layer);
                 }
             }
         }
         internal ImmutableList(IList<T> list)
         {
-            Data = list;
+            if (list == null) return;
+            foreach (var item in list)
+            {
+                if (item != null)
+                    Data.Add(item);
+            }
         }
         internal ImmutableList(T[] array)
         {
