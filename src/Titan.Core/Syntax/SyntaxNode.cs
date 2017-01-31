@@ -11,16 +11,16 @@ namespace Titan.Core.Syntax
     [Serializable]
     public abstract class SyntaxNode : ICloneable
     {
-        public Spix Spix { get; internal set; }
+        public IdentifierSyntax Spix { get; internal set; }
         private string _name;
         public string Name {
             get { return _name ?? Spix.Id; }
             internal set { _name = value; }
         }
 
-        protected SyntaxNode() : this(new Spix()) { }
-        protected SyntaxNode(string name = null) : this(new Spix(name)) { }
-        protected SyntaxNode(Spix spix, string name = null)
+        protected SyntaxNode() : this(new IdentifierSyntax()) { }
+        protected SyntaxNode(string name = null) : this(new IdentifierSyntax(name)) { }
+        protected SyntaxNode(IdentifierSyntax spix, string name = null)
         {
             Spix = spix;
             if (name != null)

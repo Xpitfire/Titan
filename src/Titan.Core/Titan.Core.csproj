@@ -60,7 +60,7 @@
     <Compile Include="Parser\ParserMessage.cs" />
     <Compile Include="Prefab\LayerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Syntax\Spix.cs" />
+    <Compile Include="Syntax\IdentifierSyntax.cs" />
     <Compile Include="Syntax\SyntaxFactory.cs" />
     <Compile Include="Syntax\SyntaxNode.cs" />
     <Compile Include="Syntax\ConvolutionalLayerSyntax.cs" />

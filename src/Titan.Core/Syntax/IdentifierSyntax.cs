@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    public sealed class Spix
+    public sealed class IdentifierSyntax
     {
         public static readonly ConcurrentBag<string> UniqueSpixLSet;
-        public static readonly Spix Empty;
+        public static readonly IdentifierSyntax Empty;
 
         public string Id { get; private set; }
 
-        static Spix()
+        static IdentifierSyntax()
         {
             UniqueSpixLSet = new ConcurrentBag<string>();
-            Empty = new Spix();
+            Empty = new IdentifierSyntax();
         }
 
-        public Spix(string id = null)
+        public IdentifierSyntax(string id = null)
         {
             if (UniqueSpixLSet.Contains(id))
             {
@@ -38,14 +38,14 @@ namespace Titan.Core.Syntax
 
         public override bool Equals(object obj)
         {
-            var other = obj as Spix;
+            var other = obj as IdentifierSyntax;
             return other != null && Id.Equals(other.Id);
         }
 
         public override int GetHashCode() => Id.GetHashCode();
 
-        public static bool operator ==(Spix value1, Spix value2) => value1 != null && value1.Equals(value2);
+        public static bool operator ==(IdentifierSyntax value1, IdentifierSyntax value2) => value1 != null && value1.Equals(value2);
 
-        public static bool operator !=(Spix value1, Spix value2) => value1 != null && !value1.Equals(value2);
+        public static bool operator !=(IdentifierSyntax value1, IdentifierSyntax value2) => value1 != null && !value1.Equals(value2);
     }
 }

@@ -10,7 +10,7 @@ namespace Titan.Core.Syntax
 {
     public static class SyntaxFactory
     {
-        public static Spix Spix(string name = null) => new Spix(name);
+        public static IdentifierSyntax Spix(string name = null) => new IdentifierSyntax(name);
 
         public static NetworkSyntax Network(
             NetworkParameterSyntax parameter,
