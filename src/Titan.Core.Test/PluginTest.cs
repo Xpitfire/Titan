@@ -16,7 +16,7 @@ namespace Titan.Core.Test
             Assert.IsNotNull(parser);
             var value = parser.Parse("network { conv (name:test in:data out:45) }");
             Assert.IsNotNull(value);
-            Console.WriteLine(value.SyntaxTree.Spix.Id);
+            Console.WriteLine(value.SyntaxTree.Identifier.Id);
         }
     }
 }

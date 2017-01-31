@@ -4,49 +4,49 @@ using Titan.Core.Collection;
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    public sealed class InputLayerSyntax : LayerSyntax
+    public sealed class InputLayerSyntax : SyntaxNode
     {
         public Data Data { get; internal set; }
         public Label Label { get; internal set; }
         public InputLayerKind InputKind { get; internal set; }
         public InputLayerParameterSyntax Parameter { get; internal set; }
 
-        private InputLayerSyntax() : base(SyntaxKind.Input) { }
+        private InputLayerSyntax() : base() { }
         internal InputLayerSyntax(InputLayerKind kind, string name = null) : this(kind, Data.Empty, Label.Empty, null, name) { }
         internal InputLayerSyntax(
             InputLayerKind kind, 
             Data data, 
             Label label, 
             InputLayerParameterSyntax parameter = null,
-            string name = null) : base(SyntaxKind.Input)
+            string name = null) : base(name)
         {
             InputKind = kind;
             Data = data;
             Label = label;
             Parameter = parameter;
-            Name = name;
         }
         
-        public LayerSyntax AddData(Data data)
+        public InputLayerSyntax AddData(Data data)
         {
             var clone = this.Clone<InputLayerSyntax>();
             clone.Data = data;
             return clone;
         }
 
-        public LayerSyntax AddLabel(Label label)
+        public InputLayerSyntax AddLabel(Label label)
         {
             var clone = this.Clone<InputLayerSyntax>();
             clone.Label = label;
             return clone;
         }
 
-        public LayerSyntax AddParameter(InputLayerParameterSyntax parameter)
+        public InputLayerSyntax AddParameter(InputLayerParameterSyntax parameter)
         {
             var clone = this.Clone<InputLayerSyntax>();
             clone.Parameter = parameter;
             return clone;
         }
+        
     }
 
     [Serializable]

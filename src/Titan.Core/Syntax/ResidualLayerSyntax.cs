@@ -22,8 +22,7 @@ namespace Titan.Core.Syntax
         {
             // TODO: not correct -> implement right behavior
             var clone = this.Clone<ResidualLayerSyntax>();
-            clone.ParentLayers = 
-                new List<LayerSyntax> { layer }.ToImmutableList();
+            clone.ParentLayer = layer;
             return clone;
         }
 
@@ -31,8 +30,7 @@ namespace Titan.Core.Syntax
         {
             // TODO: not correct -> implement right behavior
             var clone = this.Clone<ResidualLayerSyntax>();
-            clone.ParentLayers =
-                new List<LayerSyntax> { layer }.ToImmutableList();
+            clone.ParentLayer = layer;
             return clone;
         }
     }

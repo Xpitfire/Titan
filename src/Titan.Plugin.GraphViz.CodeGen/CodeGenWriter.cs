@@ -12,46 +12,42 @@ namespace Titan.Plugin.GraphViz.CodeGen
     internal class CodeGenWriter : SyntaxTreeWalker
     {
         private readonly StringBuilder _builder = new StringBuilder();
+        private NetworkSyntax _network;
 
         protected override void NetworkSyntaxEnter(NetworkSyntax network)
         {
             if (network == null) return;
+            _network = network;
             _builder.Append($"digraph {network.Name} {{\n");
         }
         
         protected override void LayerSyntaxEnter(LayerSyntax layer)
         {
-            if (layer == null || layer.ParentLayers == null) return;
-            foreach (var prevLayer in layer.ParentLayers)
+            if (layer == null) return;
+            if (layer.ParentLayer == null)
             {
-                _builder.Append($"\t{layer.Name} -> {prevLayer.Name};\n");
+                _builder.Append($"\t{layer.Name} -> {_network.Name};\n");
+            }
+            else
+            {
+                _builder.Append($"\t{layer.Name} -> {layer.ParentLayer.Name};\n");
             }
         }
 
-        protected override void OutputLayerEnter(NetworkSyntax network, OutputLayerSyntax outputLayer)
+        protected override void OutputLayerEnter(OutputLayerSyntax outputLayer)
         {
             if (outputLayer == null) return;
-            foreach (var input in network.InputLayers)
+            foreach (var input in _network.InputLayers)
             {
-                if (input.InputKind == InputLayerKind.Train)
-                {
-                    foreach (var prevLayer in outputLayer.ParentLayers)
-                    {
-                        _builder.Append($"\t{outputLayer.Name} -> {prevLayer.Name};\n");
-                    }
-                }
-                else
-                {
-                    _builder.Append($"\t{outputLayer.Name} -> {input.Name};\n");
-                }
+                _builder.Append($"\t{outputLayer.Name} -> {input.Name};\n");
             }
         }
 
         protected override void NetworkSyntaxExit(NetworkSyntax network) => _builder.Append($"}}\n");
         
-        public string Build(SyntaxNode syntaxNode)
+        public string Build(NetworkSyntax network)
         {
-            Traverse(syntaxNode);
+            Traverse(network);
             return _builder.ToString();
         }
     }

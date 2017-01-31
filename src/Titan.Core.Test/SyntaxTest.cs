@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Diagnostics;
 using Titan.Core.Default;
 using Titan.Core.Syntax;
-using System.Diagnostics;
 using static Titan.Core.Syntax.SyntaxFactory;
 
 namespace Titan.Core.Test
@@ -28,11 +24,11 @@ namespace Titan.Core.Test
             .AddOutputLayers(OutputLayer("output"));
 
         [TestMethod]
-        public void TestSpix()
+        public void TestIdentifier()
         {
-            var spix = SyntaxFactory.Spix();
-            Console.WriteLine(spix.Id);
-            Assert.IsNotNull(spix.Id);
+            var identifier = Identifier();
+            Console.WriteLine(identifier.Id);
+            Assert.IsNotNull(identifier.Id);
         }
 
         [TestMethod]

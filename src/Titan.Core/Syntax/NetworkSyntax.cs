@@ -10,6 +10,7 @@ namespace Titan.Core.Syntax
     {
         public NetworkParameterSyntax Parameter { get; internal set; }
         public ImmutableList<InputLayerSyntax> InputLayers { get; internal set; }
+        public LayerSyntax RootLayer { get; internal set; }
         public ImmutableList<LayerSyntax> Layers { get; internal set; }
         public ImmutableList<OutputLayerSyntax> OutputLayers { get; internal set; }
 
@@ -39,13 +40,12 @@ namespace Titan.Core.Syntax
             InputLayerSyntax testLayer = null)
         {
             var network = this.Clone<NetworkSyntax>();
-            var list = new List<InputLayerSyntax>
+            network.InputLayers = new List<InputLayerSyntax>
             {
                 trainLayer,
                 validationLayer,
                 testLayer
-            };
-            network.InputLayers = list.ToImmutableList();
+            }.ToImmutableList();
             return network;
         }
 
@@ -53,16 +53,8 @@ namespace Titan.Core.Syntax
             params OutputLayerSyntax[] outputLayers)
         {
             var network = this.Clone<NetworkSyntax>();
-            if (outputLayers != null && network.Layers != null)
+            if (outputLayers != null)
             {
-                var lastLayer = new List<LayerSyntax>
-                {
-                    network.Layers.Last()
-                }.ToImmutableList();
-                foreach (var outputLayer in outputLayers)
-                {
-                    outputLayer.ParentLayers = lastLayer;
-                }
                 network.OutputLayers = outputLayers.ToImmutableList();
             }
             return network;
@@ -72,21 +64,27 @@ namespace Titan.Core.Syntax
         {
             var network = this.Clone<NetworkSyntax>();
             var list = new List<LayerSyntax>();
-            if (network.Layers == null)
+            if (network.RootLayer == null)
             {
-                layer.ParentLayers =
-                    new List<LayerSyntax>(network.InputLayers).ToImmutableList();
+                network.RootLayer = layer;
             }
             else
             {
+                network.RootLayer = network.RootLayer.Clone<LayerSyntax>();
+                LayerSyntax prevLayer = null;
+                LayerSyntax curLayer = network.RootLayer;
+                // TODO: link layers together via recursion (parent and children)
                 foreach (var l in network.Layers)
                 {
-                    list.Add(l.Clone<LayerSyntax>());
+                    if (prevLayer != null)
+                    {
+                        curLayer.ParentLayer = prevLayer;
+                    }
+                    curLayer = l.Clone<LayerSyntax>();
+                    list.Add(prevLayer);
+                    prevLayer = curLayer;
                 }
-                layer.ParentLayers = new List<LayerSyntax>
-                {
-                    network.Layers.Last()
-                }.ToImmutableList();
+                layer.ParentLayer = network.Layers.Last();
             }
             list.Add(layer);
             network.Layers = list.ToImmutableList();
@@ -99,22 +97,6 @@ namespace Titan.Core.Syntax
         {
             if (name == null) return null;
             LayerSyntax layer = null;
-            if (InputLayers != null)
-            {
-                foreach (var l in InputLayers)
-                {
-                    layer = l.FindChildLayerByName(name);
-                    if (layer != null) return layer;
-                }
-            }
-            if (OutputLayers != null)
-            {
-                foreach (var l in Layers)
-                {
-                    layer = l.FindChildLayerByName(name);
-                    if (layer != null) return layer;
-                }
-            }
             if (Layers != null)
             {
                 foreach (var l in Layers)

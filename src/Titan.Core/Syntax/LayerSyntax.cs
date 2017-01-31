@@ -17,19 +17,16 @@ namespace Titan.Core.Syntax
             FullyConnected,
             Residual,
             Inception,
-            Softmax,
-            Input,
-            Output
+            Softmax
         }
 
         public SyntaxKind Kind { get; internal set; }
-        public ImmutableList<LayerSyntax> ParentLayers { get; internal set; }
+        public LayerSyntax ParentLayer { get; internal set; }
         public ImmutableList<LayerSyntax> ChildLayers { get; internal set; }
         
-        protected LayerSyntax(SyntaxKind kind, string name = null)
+        protected LayerSyntax(SyntaxKind kind, string name = null) : base(name)
         {
             Kind = kind;
-            Name = name;
         }
 
         public LayerSyntax FindParentLayerByIdentifier(IdentifierSyntax id)
@@ -43,13 +40,8 @@ namespace Titan.Core.Syntax
         {
             if (node == null) return null;
             if (node.Name == name) return node;
-            if (node.ParentLayers == null) return null;
-            foreach (var n in node.ParentLayers)
-            {
-                var res = RecursiveFindParentLayerByName(n, name);
-                if (res != null) return res;
-            }
-            return null;
+            if (node.ParentLayer == null) return null;
+            return RecursiveFindParentLayerByName(node.ParentLayer, name);
         }
 
         public LayerSyntax FindChildLayerrByIdentifier(IdentifierSyntax id)
