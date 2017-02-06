@@ -22,7 +22,6 @@ namespace Titan.Core.Syntax
         {
             // TODO: not correct -> implement right behavior
             var clone = this.Clone<ResidualLayerSyntax>();
-            clone.ParentLayer = layer;
             return clone;
         }
 
@@ -30,8 +29,30 @@ namespace Titan.Core.Syntax
         {
             // TODO: not correct -> implement right behavior
             var clone = this.Clone<ResidualLayerSyntax>();
-            clone.ParentLayer = layer;
             return clone;
+        }
+        
+        internal override LayerSyntax FindLayerByName(string name)
+        {
+            if (string.IsNullOrEmpty(name)) return null;
+            if (Name == name) return this;
+            if (LeftBranch != null)
+            {
+                foreach (var n in LeftBranch)
+                {
+                    var res = n.FindLayerByName(name);
+                    if (res != null) return res;
+                }
+            }
+            if (RightBranch != null)
+            {
+                foreach (var n in RightBranch)
+                {
+                    var res = n.FindLayerByName(name);
+                    if (res != null) return res;
+                }
+            }
+            return null;
         }
     }
 }

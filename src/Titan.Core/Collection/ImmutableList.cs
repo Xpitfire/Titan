@@ -89,6 +89,10 @@ namespace Titan.Core.Collection
                 p?.Invoke(item);
             }
         }
+        /// <summary>
+        /// Creates always a new list object containing the elements.
+        /// </summary>
+        /// <returns></returns>
         public List<T> ToList()
         {
             var list = new List<T>();

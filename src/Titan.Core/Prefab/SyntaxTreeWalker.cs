@@ -23,9 +23,14 @@ namespace Titan.Core.Prefab
                 }
             }
 
-            if (network.RootLayer != null)
+            if (network.Layers != null)
             {
-                Traverse(network.RootLayer);
+                foreach (var layer in network.Layers)
+                {
+                    LayerSyntaxEnter(layer);
+                    Traverse(layer);
+                    LayerSyntaxExit(layer);
+                }
             }
 
             if (network.OutputLayers != null)
@@ -44,15 +49,6 @@ namespace Titan.Core.Prefab
         protected void Traverse(LayerSyntax layer)
         {
             if (layer == null) return;
-            if (layer.ChildLayers != null)
-            {
-                foreach (var child in layer.ChildLayers)
-                {
-                    LayerSyntaxEnter(layer);
-                    Traverse(child);
-                    LayerSyntaxExit(layer);
-                }
-            }
             layer.Visit();
         }
 

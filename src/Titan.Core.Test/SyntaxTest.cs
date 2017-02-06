@@ -58,7 +58,7 @@ namespace Titan.Core.Test
                 .AddLayer(PoolingLayer())
                 .AddLayer(ConvolutionalLayer());
 
-            Assert.IsNotNull(network.Layers);
+            Assert.IsNotNull(network.Root);
             Console.WriteLine(InstanceFactory.CodeGenInstance.Generate(network).Text);
         }
 

@@ -71,6 +71,7 @@
     <Compile Include="Syntax\PoolingLayerSyntax.cs" />
     <Compile Include="Syntax\ResidualLayerSyntax.cs" />
     <Compile Include="Prefab\SyntaxTreeWalker.cs" />
+    <Compile Include="Syntax\SyntaxNodeCloner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

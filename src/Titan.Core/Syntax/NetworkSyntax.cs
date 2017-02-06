@@ -10,7 +10,7 @@ namespace Titan.Core.Syntax
     {
         public NetworkParameterSyntax Parameter { get; internal set; }
         public ImmutableList<InputLayerSyntax> InputLayers { get; internal set; }
-        public LayerSyntax RootLayer { get; internal set; }
+        public LayerSyntax Root => Layers?.FirstOrDefault();
         public ImmutableList<LayerSyntax> Layers { get; internal set; }
         public ImmutableList<OutputLayerSyntax> OutputLayers { get; internal set; }
 
@@ -59,35 +59,13 @@ namespace Titan.Core.Syntax
             }
             return network;
         }
-
+        
         public NetworkSyntax AddLayer(LayerSyntax layer)
         {
             var network = this.Clone<NetworkSyntax>();
-            var list = new List<LayerSyntax>();
-            if (network.RootLayer == null)
-            {
-                network.RootLayer = layer;
-            }
-            else
-            {
-                network.RootLayer = network.RootLayer.Clone<LayerSyntax>();
-                LayerSyntax prevLayer = null;
-                LayerSyntax curLayer = network.RootLayer;
-                // TODO: link layers together via recursion (parent and children)
-                foreach (var l in network.Layers)
-                {
-                    if (prevLayer != null)
-                    {
-                        curLayer.ParentLayer = prevLayer;
-                    }
-                    curLayer = l.Clone<LayerSyntax>();
-                    list.Add(prevLayer);
-                    prevLayer = curLayer;
-                }
-                layer.ParentLayer = network.Layers.Last();
-            }
-            list.Add(layer);
-            network.Layers = list.ToImmutableList();
+            var layers = network.Layers != null ? network.Layers.ToList() : new List<LayerSyntax>();
+            layers.Add(layer);
+            network.Layers = layers.ToImmutableList();
             return network;
         }
 
@@ -96,17 +74,15 @@ namespace Titan.Core.Syntax
         public LayerSyntax FindLayerByName(string name)
         {
             if (name == null) return null;
-            LayerSyntax layer = null;
-            if (Layers != null)
+            LayerSyntax layer;
+            foreach (var l in Layers)
             {
-                foreach (var l in Layers)
-                {
-                    layer = l.FindChildLayerByName(name);
-                    if (layer != null) return layer;
-                }
+                layer = l.FindLayerByName(name);
+                if (layer != null) return layer;
             }
             return null;
-        } 
+        }
+        
     }
 
     [Serializable]

@@ -24,14 +24,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
         protected override void LayerSyntaxEnter(LayerSyntax layer)
         {
             if (layer == null) return;
-            if (layer.ParentLayer == null)
-            {
-                _builder.Append($"\t{layer.Name} -> {_network.Name};\n");
-            }
-            else
-            {
-                _builder.Append($"\t{layer.Name} -> {layer.ParentLayer.Name};\n");
-            }
+            _builder.Append($"\t{layer.Name} -> {_network.Name};\n");
         }
 
         protected override void OutputLayerEnter(OutputLayerSyntax outputLayer)

@@ -16,7 +16,6 @@ namespace Titan.Core.Syntax
         public int KernelSize { get; internal set; }
         public int Stride { get; internal set; }
         internal ConvolutionalParameterSyntax()  { }
-
     }
 
 }
