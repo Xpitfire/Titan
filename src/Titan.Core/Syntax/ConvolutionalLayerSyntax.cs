@@ -6,7 +6,7 @@ namespace Titan.Core.Syntax
     public sealed class ConvolutionalLayerSyntax : LayerSyntax
     {
         private ConvolutionalLayerSyntax() : this(null) { }
-        internal ConvolutionalLayerSyntax(string name = null) : base(SyntaxKind.Convolutional, name)
+        internal ConvolutionalLayerSyntax(string input, string name = null) : base(SyntaxKind.Convolutional, input, name)
         {
         }
     }

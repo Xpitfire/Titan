@@ -39,7 +39,7 @@ namespace Titan.Core.Syntax
             InputLayerSyntax validationLayer = null,
             InputLayerSyntax testLayer = null)
         {
-            var network = this.Clone<NetworkSyntax>();
+            var network = this.DeepClone();
             network.InputLayers = new List<InputLayerSyntax>
             {
                 trainLayer,
@@ -52,7 +52,7 @@ namespace Titan.Core.Syntax
         public NetworkSyntax AddOutputLayers(
             params OutputLayerSyntax[] outputLayers)
         {
-            var network = this.Clone<NetworkSyntax>();
+            var network = this.DeepClone();
             if (outputLayers != null)
             {
                 network.OutputLayers = outputLayers.ToImmutableList();
@@ -62,14 +62,14 @@ namespace Titan.Core.Syntax
         
         public NetworkSyntax AddLayer(LayerSyntax layer)
         {
-            var network = this.Clone<NetworkSyntax>();
+            var network = this.DeepClone();
             var layers = network.Layers != null ? network.Layers.ToList() : new List<LayerSyntax>();
             layers.Add(layer);
             network.Layers = layers.ToImmutableList();
             return network;
         }
 
-        public LayerSyntax FindLayerByIdentifier(IdentifierSyntax id)
+        public LayerSyntax FindLayerByIdentifier(Identifier id)
             => (id == null) ? null : FindLayerByName(id.Id);
         public LayerSyntax FindLayerByName(string name)
         {
@@ -82,7 +82,26 @@ namespace Titan.Core.Syntax
             }
             return null;
         }
-        
+
+        public override void Traverse()
+        {
+            OnNodeEnterEvent();
+            OnNodeVisitEvent(this);
+            Parameter?.Traverse();
+            foreach (var layer in InputLayers)
+            {
+                layer.Traverse();
+            }
+            foreach (var layer in Layers)
+            {
+                layer.Traverse();
+            }
+            foreach (var layer in OutputLayers)
+            {
+                layer.Traverse();
+            }
+            OnNodeLeaveEvent();
+        }
     }
 
     [Serializable]
@@ -125,6 +144,5 @@ namespace Titan.Core.Syntax
             Updater = updater;
             LearningRate = learningRate;
         }
-
     }
 }

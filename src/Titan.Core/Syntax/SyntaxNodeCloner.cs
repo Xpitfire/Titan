@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using Titan.Core.Collection;
@@ -10,9 +12,18 @@ namespace Titan.Core.Syntax
 {
     public static class SyntaxNodeCloner
     {
-        public static TTarget Clone<TTarget>(this SyntaxNode node) => ObjectClone<SyntaxNode, TTarget>(node);
-        
-        public static TTarget ObjectClone<TSource, TTarget>(TSource source)
+        public static TTarget DeepClone<TTarget>(this TTarget source)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, source);
+                stream.Position = 0;
+                return (TTarget)formatter.Deserialize(stream);
+            }
+        }
+                
+        public static TTarget ShallowClone<TTarget>(this TTarget source)
         {
             if (source == null)
                 return default(TTarget);
@@ -34,34 +45,16 @@ namespace Titan.Core.Syntax
                     .GetType()
                     .GetProperty(prop.Name)?
                     .GetValue(source);
-
-                if (source is NetworkSyntax && prop.Name == nameof(NetworkSyntax.Layers))
-                {
-                    var layers = (value as ImmutableList<LayerSyntax>);
-                    if (layers != null)
-                    {
-                        var newLayers = new List<LayerSyntax>();
-                        layers.ForEach(l => newLayers.Add(l.Clone<LayerSyntax>()));
-                        value = newLayers.ToImmutableList();
-                    }
-                }
-                else if (value is SyntaxNode)
-                {
-                    var methodType = typeof(SyntaxNodeCloner);
-                    var method = methodType
-                        .GetMethod(nameof(ObjectClone),
-                            BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-                        .MakeGenericMethod(value.GetType(), prop.PropertyType);
-                    value = method.Invoke(null, new[] { value });
-                }
-
+                if (value == null) continue;
+                if (value is SyntaxNode) continue;
+                
                 prop.SetValue(obj, value, BindingFlags.NonPublic | BindingFlags.Instance, null, null, null);
             }
 
             return (TTarget)obj;
         }
 
-        public static TTarget[] ArrayClone<TSource, TTarget>(TSource[] sourceArray)
+        public static TTarget[] ArrayClone<TTarget>(TTarget[] sourceArray)
         {
             if (sourceArray == null)
                 return null;
@@ -71,27 +64,27 @@ namespace Titan.Core.Syntax
             var targetArray = new TTarget[sourceArray.Length];
             for (var i = 0; i < sourceArray.Length; i++)
             {
-                targetArray[i] = ObjectClone<TSource, TTarget>(sourceArray[i]);
+                targetArray[i] = DeepClone(sourceArray[i]);
             }
 
             return targetArray;
         }
 
-        public static ImmutableList<TTarget> ListClone<TSource, TTarget>(ImmutableList<TSource> sourceList)
+        public static ImmutableList<TTarget> ListClone<TTarget>(ImmutableList<TTarget> sourceList)
         {
             if (sourceList == null)
                 return null;
             var targetList = new ImmutableList<TTarget>();
             foreach (var item in sourceList)
             {
-                targetList.Add(ObjectClone<TSource, TTarget>(item));
+                targetList.Add(DeepClone(item));
             }
             return targetList;
         }
 
-        public static ImmutableList<TTarget> ListClone<TSource, TTarget>(TSource[] sourceList)
-            => sourceList == null ? null : ListClone<TSource, TTarget>(sourceList.ToImmutableList());
-        public static TTarget[] ArrayClone<TSource, TTarget>(ImmutableList<TSource> sourceList)
-            => sourceList == null ? null : ArrayClone<TSource, TTarget>(sourceList.ToArray());
+        public static ImmutableList<TTarget> ListClone<TTarget>(TTarget[] sourceList)
+            => sourceList == null ? null : ListClone(sourceList.ToImmutableList());
+        public static TTarget[] ArrayClone<TTarget>(ImmutableList<TTarget> sourceList)
+            => sourceList == null ? null : ArrayClone(sourceList.ToArray());
     }
 }

@@ -14,7 +14,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
         private readonly StringBuilder _builder = new StringBuilder();
         private NetworkSyntax _network;
 
-        protected override void NetworkSyntaxEnter(NetworkSyntax network)
+        protected override void NetworkSyntaxPreAction(NetworkSyntax network)
         {
             if (network == null) return;
             _network = network;
@@ -36,7 +36,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
             }
         }
 
-        protected override void NetworkSyntaxExit(NetworkSyntax network) => _builder.Append($"}}\n");
+        protected override void NetworkSyntaxPostAction(NetworkSyntax network) => _builder.Append($"}}\n");
         
         public string Build(NetworkSyntax network)
         {

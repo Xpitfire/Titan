@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    public sealed class IdentifierSyntax
+    public sealed class Identifier
     {
         private const string Alphabet = "abcdefghijklmnopqrstuvwyxz";
         private const int DefaultIdSize = 10;
         private static readonly Random rand = new Random();
         private static readonly ConcurrentBag<string> UniqueIdSet;
-        public static readonly IdentifierSyntax Empty;
+        public static readonly Identifier Empty;
 
         public string Id { get; private set; }
 
-        static IdentifierSyntax()
+        static Identifier()
         {
             UniqueIdSet = new ConcurrentBag<string>();
-            Empty = new IdentifierSyntax();
+            Empty = new Identifier();
         }
 
-        public IdentifierSyntax(string id = null)
+        public Identifier(string id = null)
         {
             if (UniqueIdSet.Contains(id))
             {
@@ -55,13 +55,13 @@ namespace Titan.Core.Syntax
 
         public override bool Equals(object obj)
         {
-            var other = obj as IdentifierSyntax;
+            var other = obj as Identifier;
             return other != null && Id.Equals(other.Id);
         }
 
         public override int GetHashCode() => Id.GetHashCode();
 
-        public static bool operator ==(IdentifierSyntax value1, IdentifierSyntax value2) => value1 != null && value1.Equals(value2);
-        public static bool operator !=(IdentifierSyntax value1, IdentifierSyntax value2) => value1 != null && !value1.Equals(value2);
+        public static bool operator ==(Identifier value1, Identifier value2) => value1 != null && value1.Equals(value2);
+        public static bool operator !=(Identifier value1, Identifier value2) => value1 != null && !value1.Equals(value2);
     }
 }

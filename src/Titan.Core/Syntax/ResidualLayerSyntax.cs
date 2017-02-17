@@ -10,10 +10,10 @@ namespace Titan.Core.Syntax
         public ImmutableList<LayerSyntax> LeftBranch { get; internal set; }
         public ImmutableList<LayerSyntax> RightBranch { get; internal set; }
 
-        private ResidualLayerSyntax() : base(SyntaxKind.Residual) { }
-        internal ResidualLayerSyntax(
+        private ResidualLayerSyntax(string name, string input) : base(SyntaxKind.Residual, input) { }
+        internal ResidualLayerSyntax(string name, string input,
             ImmutableList<LayerSyntax> leftBranch,
-            ImmutableList<LayerSyntax> rightBranch) : base(SyntaxKind.Residual)
+            ImmutableList<LayerSyntax> rightBranch) : base(SyntaxKind.Residual, input)
         {
             LeftBranch = leftBranch;
             RightBranch = rightBranch;
@@ -21,14 +21,14 @@ namespace Titan.Core.Syntax
         public LayerSyntax AddLeftLayer(LayerSyntax layer)
         {
             // TODO: not correct -> implement right behavior
-            var clone = this.Clone<ResidualLayerSyntax>();
+            var clone = this.DeepClone();
             return clone;
         }
 
         public LayerSyntax AddRightLayer(LayerSyntax layer)
         {
             // TODO: not correct -> implement right behavior
-            var clone = this.Clone<ResidualLayerSyntax>();
+            var clone = this.DeepClone();
             return clone;
         }
         
@@ -53,6 +53,21 @@ namespace Titan.Core.Syntax
                 }
             }
             return null;
+        }
+
+        public override void Traverse()
+        {
+            OnNodeEnterEvent();
+            OnNodeVisitEvent(this);
+            foreach (var layer in LeftBranch)
+            {
+                layer.Traverse();
+            }
+            foreach (var layer in RightBranch)
+            {
+                layer.Traverse();
+            }
+            OnNodeLeaveEvent();
         }
     }
 }

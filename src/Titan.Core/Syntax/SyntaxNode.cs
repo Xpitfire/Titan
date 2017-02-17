@@ -2,21 +2,22 @@
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    public delegate void VisitorDelegate<in TNode>(TNode node) where TNode : SyntaxNode;
-
-    [Serializable]
     public abstract class SyntaxNode : ICloneable
     {
-        public IdentifierSyntax Identifier { get; internal set; }
+        public event Action NodeEnterEvent;
+        public event Action<SyntaxNode> NodeVisitEvent;
+        public event Action NodeLeaveEvent;
+
+        public Identifier Identifier { get; internal set; }
         private string _name;
         public string Name {
             get { return _name ?? Identifier.Id; }
             internal set { _name = value; }
         }
 
-        protected SyntaxNode() : this(new IdentifierSyntax()) { }
-        protected SyntaxNode(string name = null) : this(new IdentifierSyntax(name)) { }
-        protected SyntaxNode(IdentifierSyntax identifier, string name = null)
+        protected SyntaxNode() : this(new Identifier()) { }
+        protected SyntaxNode(string name = null) : this(new Identifier(name)) { }
+        protected SyntaxNode(Identifier identifier, string name = null)
         {
             Identifier = identifier;
             if (name != null)
@@ -25,7 +26,30 @@ namespace Titan.Core.Syntax
             }
         }
 
-        public object Clone() => this.Clone<SyntaxNode>();
-        internal virtual void Visit() { }
+        public object Clone() => this.DeepClone();
+
+        internal virtual void OnNodeEnterEvent()
+        {
+            NodeEnterEvent?.Invoke();
+        }
+        internal virtual void OnNodeVisitEvent(SyntaxNode value)
+        {
+            NodeVisitEvent?.Invoke(value);
+        }
+        internal virtual void OnNodeLeaveEvent()
+        {
+            NodeLeaveEvent?.Invoke();
+        }
+        internal virtual void InvokeEvents()
+        {
+            OnNodeEnterEvent();
+            OnNodeVisitEvent(this);
+            OnNodeLeaveEvent();
+        }
+
+        public virtual void Traverse()
+        {
+            InvokeEvents();
+        }
     }
 }

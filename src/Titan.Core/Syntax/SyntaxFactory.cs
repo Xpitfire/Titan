@@ -10,21 +10,19 @@ namespace Titan.Core.Syntax
 {
     public static class SyntaxFactory
     {
-        public static IdentifierSyntax Identifier(string name = null) => new IdentifierSyntax(name);
-
         public static NetworkSyntax Network(
+            string name,
             NetworkParameterSyntax parameter,
             InputLayerSyntax trainLayer,
             InputLayerSyntax validationLayer = null,
-            InputLayerSyntax testLayer = null, 
-            string name = null) => new NetworkSyntax(parameter, trainLayer, validationLayer, testLayer, name);
-        public static NetworkSyntax Network(string name = null) => Network(NetworkParameter(), null, name: name);
-        public static NetworkSyntax Network(NetworkParameterSyntax parameter) => Network(parameter, null);
+            InputLayerSyntax testLayer = null) => new NetworkSyntax(parameter, trainLayer, validationLayer, testLayer, name);
+        public static NetworkSyntax Network(string name) => Network(name, NetworkParameter(), null);
+        public static NetworkSyntax Network(string name, NetworkParameterSyntax parameter) => Network(name, parameter, null);
 
-        public static InputLayerSyntax InputLayer(InputLayerKind type, string name = null) => InputLayer(type, Syntax.Data.Empty, Label.Empty, name: name);
-        public static InputLayerSyntax InputLayer(InputLayerKind type, Data data, Label label, InputLayerParameterSyntax parameter = null, string name = null) => new InputLayerSyntax(type, data, label, parameter, name);
+        public static InputLayerSyntax InputLayer(string name, InputLayerKind type = InputLayerKind.Train) => InputLayer(name, Dimension.Default, Label.Empty, type: type);
+        public static InputLayerSyntax InputLayer(string name, Dimension data, Label label, InputLayerParameterSyntax parameter = null, InputLayerKind type = InputLayerKind.Train) => new InputLayerSyntax(type, data, label, parameter, name);
         
-        public static Data Data(ImmutableList<float[]> dataVector, int format, int channels) => new Data(dataVector, format, format, channels);
+        public static Dimension Data(int format, int channels) => new Dimension(format, format, channels);
 
         public static NetworkParameterSyntax NetworkParameter(
             int epochs = NetworkParameterSyntax.DefaultEpochSize,
@@ -33,9 +31,9 @@ namespace Titan.Core.Syntax
             int batchSize = NetworkParameterSyntax.DefaultBatchSize,
             int seed = NetworkParameterSyntax.DefaultSeedValue) => new NetworkParameterSyntax(epochs, updater, learningRate, batchSize, seed);
         
-        public static OutputLayerSyntax OutputLayer(string name = null) => new OutputLayerSyntax(name);
-        public static LayerSyntax PoolingLayer() => new PoolingLayerSyntax();
+        public static LayerSyntax PoolingLayer(string name, string input) => new PoolingLayerSyntax(name, input);
+        public static ConvolutionalLayerSyntax ConvolutionalLayer(string name, string input) => new ConvolutionalLayerSyntax(name);
+        public static OutputLayerSyntax OutputLayer(string name, string input) => new OutputLayerSyntax(name);
 
-        public static ConvolutionalLayerSyntax ConvolutionalLayer(string name = null) => new ConvolutionalLayerSyntax(name);
     }
 }

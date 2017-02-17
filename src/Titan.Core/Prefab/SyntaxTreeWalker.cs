@@ -7,17 +7,18 @@ namespace Titan.Core.Prefab
         protected void Traverse(NetworkSyntax network)
         {
             if (network == null) return;
-            NetworkSyntaxEnter(network);
-
-            NetworkParameterSyntaxEnter(network.Parameter);
-            Traverse(network.Parameter);
-            NetworkParameterSyntaxEnter(network.Parameter);
+            network.NodeEnterEvent.
+            OnNetworkSyntaxEnter();
+            network.Visit<NetworkSyntax>(OnNetworkSyntaxVisit);
+            network.Parameter?.Visit<NetworkParameterSyntax>(NetworkParameterSyntax);
+            NetworkParameterSyntax(network.Parameter);
 
             if (network.InputLayers != null)
             {
                 foreach (var inputLayer in network.InputLayers)
                 {
                     InputLayerEnter(inputLayer);
+                    inputLayer.Traverse()
                     Traverse(inputLayer);
                     InputLayerExit(inputLayer);
                 }
@@ -43,7 +44,7 @@ namespace Titan.Core.Prefab
                 }
             }
 
-            NetworkSyntaxExit(network);
+            NetworkSyntaxPostAction(network);
         }
 
         protected void Traverse(LayerSyntax layer)
@@ -70,9 +71,10 @@ namespace Titan.Core.Prefab
             param.Visit();
         }
 
-        protected virtual void NetworkSyntaxEnter(NetworkSyntax network) { }
-        protected virtual void NetworkSyntaxExit(NetworkSyntax network) { }
-        protected virtual void NetworkParameterSyntaxEnter(NetworkParameterSyntax networkParameter) { }
+        protected virtual void OnNetworkSyntaxEnter() { }
+        protected virtual void OnNetworkSyntaxVisit(NetworkSyntax node) { }
+        protected virtual void OnNetworkSyntaxLeave() { }
+        protected virtual void NetworkParameterSyntax(NetworkParameterSyntax networkParameter) { }
         protected virtual void NetworkParameterSyntaxExit(NetworkParameterSyntax networkParameter) { }
         protected virtual void LayerSyntaxEnter(LayerSyntax layer) { }
         protected virtual void LayerSyntaxExit(LayerSyntax layer) { }
