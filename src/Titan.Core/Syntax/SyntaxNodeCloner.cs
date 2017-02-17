@@ -12,7 +12,7 @@ namespace Titan.Core.Syntax
 {
     public static class SyntaxNodeCloner
     {
-        public static TTarget DeepClone<TTarget>(this TTarget source)
+        public static TTarget DeepClone<TTarget>(this TTarget source) where TTarget : SyntaxNode
         {
             using (MemoryStream stream = new MemoryStream())
             {
@@ -23,7 +23,7 @@ namespace Titan.Core.Syntax
             }
         }
                 
-        public static TTarget ShallowClone<TTarget>(this TTarget source)
+        public static TTarget ShallowClone<TTarget>(this TTarget source) where TTarget : SyntaxNode
         {
             if (source == null)
                 return default(TTarget);
@@ -54,7 +54,7 @@ namespace Titan.Core.Syntax
             return (TTarget)obj;
         }
 
-        public static TTarget[] ArrayClone<TTarget>(TTarget[] sourceArray)
+        public static TTarget[] ArrayClone<TTarget>(TTarget[] sourceArray) where TTarget : SyntaxNode
         {
             if (sourceArray == null)
                 return null;
@@ -70,7 +70,7 @@ namespace Titan.Core.Syntax
             return targetArray;
         }
 
-        public static ImmutableList<TTarget> ListClone<TTarget>(ImmutableList<TTarget> sourceList)
+        public static ImmutableList<TTarget> ListClone<TTarget>(ImmutableList<TTarget> sourceList) where TTarget : SyntaxNode
         {
             if (sourceList == null)
                 return null;
@@ -82,9 +82,9 @@ namespace Titan.Core.Syntax
             return targetList;
         }
 
-        public static ImmutableList<TTarget> ListClone<TTarget>(TTarget[] sourceList)
+        public static ImmutableList<TTarget> ListClone<TTarget>(TTarget[] sourceList) where TTarget : SyntaxNode
             => sourceList == null ? null : ListClone(sourceList.ToImmutableList());
-        public static TTarget[] ArrayClone<TTarget>(ImmutableList<TTarget> sourceList)
+        public static TTarget[] ArrayClone<TTarget>(ImmutableList<TTarget> sourceList) where TTarget : SyntaxNode
             => sourceList == null ? null : ArrayClone(sourceList.ToArray());
     }
 }

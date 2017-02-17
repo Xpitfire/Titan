@@ -25,8 +25,8 @@ namespace Titan.Service.Impl.HeuristicLab
         {
             var networkParam = SyntaxFactory.NetworkParameter();
             var network = SyntaxFactory
-                .Network(networkParam, SyntaxFactory.InputLayer(InputLayerKind.Train))
-                .AddLayer(SyntaxFactory.ConvolutionalLayer());
+                .Network("Demo", networkParam, SyntaxFactory.InputLayer("train", InputLayerKind.Train))
+                .AddLayer(SyntaxFactory.ConvolutionalLayer("conv1", "train"));
             return network;
         }
     }

@@ -20,7 +20,7 @@ namespace Titan.Plugin.Caffe.Parser
             var message = new ParserMessage
             {
                 // TODO: Perform real syntax tree definition
-                SyntaxTree = SyntaxFactory.Network(),
+                SyntaxTree = SyntaxFactory.Network("CaffeDemo"),
                 Data = source,
                 ParseDate = DateTime.Now,
                 ParserName = ParserName

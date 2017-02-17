@@ -57,6 +57,7 @@ namespace Titan.Core.Syntax
 
         public override void Traverse()
         {
+            base.Traverse();
             OnNodeEnterEvent();
             OnNodeVisitEvent(this);
             foreach (var layer in LeftBranch)

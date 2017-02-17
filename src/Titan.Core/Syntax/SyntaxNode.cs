@@ -1,7 +1,10 @@
 ﻿using System;
+using Titan.Core.CodeGen;
+
 namespace Titan.Core.Syntax
 {
     [Serializable]
+    [Traversable]
     public abstract class SyntaxNode : ICloneable
     {
         public event Action NodeEnterEvent;
@@ -46,10 +49,6 @@ namespace Titan.Core.Syntax
             OnNodeVisitEvent(this);
             OnNodeLeaveEvent();
         }
-
-        public virtual void Traverse()
-        {
-            InvokeEvents();
-        }
+        public virtual void Traverse() => SyntaxNodeVisitor.Visit(this);
     }
 }

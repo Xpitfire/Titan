@@ -12,7 +12,7 @@ namespace Titan.Core.Prefab
 
         public static LayerSyntax Convolution1x1()
         {
-            return new ConvolutionalLayerSyntax();
+            return new ConvolutionalLayerSyntax("con1x1");
         }
 
     }
