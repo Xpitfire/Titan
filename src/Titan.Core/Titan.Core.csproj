@@ -65,6 +65,7 @@
     <Compile Include="Syntax\Helper\Identifier.cs" />
     <Compile Include="Syntax\Helper\SyntaxFactory.cs" />
     <Compile Include="Syntax\InceptionLayerSyntax.cs" />
+    <Compile Include="Syntax\MergeLayerSyntax.cs" />
     <Compile Include="Syntax\SyntaxNode.cs" />
     <Compile Include="Syntax\ConvolutionalLayerSyntax.cs" />
     <Compile Include="Syntax\InputLayerSyntax.cs" />

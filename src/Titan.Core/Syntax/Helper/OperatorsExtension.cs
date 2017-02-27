@@ -14,12 +14,7 @@ namespace Titan.Core.Syntax
             if (node2 == null) throw new InvalidOperationException($"Null value for parameter {nameof(node2)} not supported!");
             return new[] {node1.DeepClone(), node2}.ToImmutableList();
         }
-
-        public static ImmutableList<LayerSyntax> Append(this LayerSyntax node1, LayerSyntax node2)
-        {
-            return node1.Add(node2);
-        }
-
+        
         public static ImmutableList<LayerSyntax> Remove(this ImmutableList<LayerSyntax> immutableList, params LayerSyntax[] nodes)
         {
             var list = immutableList.ToList();
@@ -43,15 +38,25 @@ namespace Titan.Core.Syntax
             return new ImmutableList<LayerSyntax>(immutableList1, immutableList2);
         }
 
-        public static InceptionLayerSyntax InceptionBranch(this SyntaxNode root, string name, params SyntaxNode[] nodes)
+        public static InceptionLayerSyntax InceptionBranch(this SyntaxNode inputLayer, string name = null, params SyntaxNode[] outputLayers)
         {
-            return new InceptionLayerSyntax(name, root, nodes);
+            return new InceptionLayerSyntax(name, inputLayer, outputLayers);
         }
 
-        public static ResidualLayerSyntax ResidualBranch(this SyntaxNode parent, string name, SyntaxNode left, SyntaxNode right)
+        public static ResidualLayerSyntax ResidualBranch(this SyntaxNode root, SyntaxNode left, SyntaxNode right, string name = null)
         {
-            return new ResidualLayerSyntax(name, parent, left, right);
+            return new ResidualLayerSyntax(name, root, left, right);
         }
-        
+
+        public static MergeLayerSyntax Merge(this InceptionLayerSyntax inceptionLayer, SyntaxNode outputLayer, string name = null)
+        {
+            return new MergeLayerSyntax(name, outputLayer, inceptionLayer);
+        }
+
+        public static MergeLayerSyntax Merge(this ResidualLayerSyntax residualLayer, SyntaxNode outputLayer, string name = null)
+        {
+            return new MergeLayerSyntax(name, outputLayer, residualLayer);
+        }
+
     }
 }

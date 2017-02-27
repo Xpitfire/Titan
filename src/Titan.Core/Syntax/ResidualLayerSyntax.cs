@@ -8,25 +8,29 @@ namespace Titan.Core.Syntax
     public sealed class ResidualLayerSyntax : SyntaxNode
     {
         public SyntaxNode InputLayer { get; internal set; }
-        public SyntaxNode LeftBranchOutput { get; internal set; }
-        public SyntaxNode RightBranchOutput { get; internal set; }
+        public SyntaxNode LeftBranchOutputLayer { get; internal set; }
+        public SyntaxNode RightBranchOutputLayer { get; internal set; }
+        public SyntaxNode LeftLeafLayer { get; internal set; }
+        public SyntaxNode RightLeafLayer { get; internal set; }
 
         private ResidualLayerSyntax() : base() { }
         internal ResidualLayerSyntax(string name,
             SyntaxNode inputLayer,
-            SyntaxNode leftBranchOutput,
-            SyntaxNode rightBranchOutput) : base(name)
+            SyntaxNode leftBranchOutputLayer,
+            SyntaxNode rightBranchOutputLayer) : base(name)
         {
             InputLayer = inputLayer;
-            LeftBranchOutput = leftBranchOutput;
-            RightBranchOutput = rightBranchOutput;
+            LeftBranchOutputLayer = leftBranchOutputLayer;
+            RightBranchOutputLayer = rightBranchOutputLayer;
+            LeftLeafLayer = LeftBranchOutputLayer;
+            RightLeafLayer = RightBranchOutputLayer;
         }
 
         public override void Traverse()
         {
             base.Traverse();
-            LeftBranchOutput?.Traverse();
-            RightBranchOutput?.Traverse();
+            LeftBranchOutputLayer?.Traverse();
+            RightBranchOutputLayer?.Traverse();
         }
     }
 }

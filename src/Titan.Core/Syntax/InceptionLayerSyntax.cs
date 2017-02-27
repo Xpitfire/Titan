@@ -12,12 +12,14 @@ namespace Titan.Core.Syntax
     {
         public SyntaxNode InputLayer { get; internal set; }
         public ImmutableList<SyntaxNode> OutputLayers { get; internal set; }
+        public ImmutableList<SyntaxNode> LeafLayers { get; internal set; }
 
         private InceptionLayerSyntax() : base() { }
-        internal InceptionLayerSyntax(string name, SyntaxNode inputLayer, SyntaxNode[] nodes) : base(name)
+        internal InceptionLayerSyntax(string name, SyntaxNode inputLayer, params SyntaxNode[] outputLayers) : base(name)
         {
             InputLayer = inputLayer;
-            OutputLayers = nodes.ToImmutableList();
+            OutputLayers = outputLayers.ToImmutableList();
+            LeafLayers = OutputLayers;
         }
     }
 }

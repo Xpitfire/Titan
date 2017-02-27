@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Titan.Core.Immutable;
-using Titan.Core.Syntax;
 
 namespace Titan.Core.Collection
 {
@@ -16,12 +16,15 @@ namespace Titan.Core.Collection
 
         public T this[int index]
         {
-            get => _data[index];
-            set => _data[index] = value;
+            get { return _data[index]; }
+            set { _data[index] = value; }
         }
 
-        private ImmutableList() { }
         internal ImmutableList(ImmutableList<T> layers)
+        {
+            _data = layers.ToList();
+        }
+        internal ImmutableList(params T[] layers)
         {
             _data = layers.ToList();
         }
@@ -91,32 +94,6 @@ namespace Titan.Core.Collection
                     _data.Add(item);
             }
         }
-        internal ImmutableList(T[] array)
-        {
-            if (array != null)
-            {
-                foreach (var layer in array)
-                {
-                    _data.Add(layer);
-                }
-            }
-        }
-
-        public void Add(T element) => throw new ImmutableException();
-        public void AddRange(IEnumerable<T> collection) => throw new ImmutableException();
-        public void Clear() => throw new ImmutableException();
-        public void Insert(int index, T item) => throw new ImmutableException();
-        public void InsertRange(int index, IEnumerable<T> collection) => throw new ImmutableException();
-        public bool Remove(T item) => throw new ImmutableException();
-        public int RemoveAll(Predicate<T> match) => throw new ImmutableException();
-        public void RemoveAt(int index) => throw new ImmutableException();
-        public void RemoveRange(int index, int count) => throw new ImmutableException();
-        public void Reverse(int index, int count) => throw new ImmutableException();
-        public void Reverse() => throw new ImmutableException();
-        public void Sort(int index, int count, IComparer<T> comparer) => throw new ImmutableException();
-        public void Sort(Comparison<T> comparison) => throw new ImmutableException();
-        public void Sort() => throw new ImmutableException();
-        public void Sort(IComparer<T> comparer) => throw new ImmutableException();
 
         public int IndexOf(T item) => _data.IndexOf(item);
         public bool Contains(T item) => _data.Contains(item);
@@ -143,6 +120,86 @@ namespace Titan.Core.Collection
             }
             return list;
         }
+
+
+        #region Invalid ImmutableList operations
+
+        public void Add(T element)
+        {
+            throw new ImmutableException();
+        }
+
+        public void AddRange(IEnumerable<T> collection)
+        {
+            throw new ImmutableException();
+        }
+
+        public void Clear()
+        {
+            throw new ImmutableException();
+        }
+
+        public void Insert(int index, T item)
+        {
+            throw new ImmutableException();
+        }
+
+        public void InsertRange(int index, IEnumerable<T> collection)
+        {
+            throw new ImmutableException();
+        }
+
+        public bool Remove(T item)
+        {
+            throw new ImmutableException();
+        }
+
+        public int RemoveAll(Predicate<T> match)
+        {
+            throw new ImmutableException();
+        }
+
+        public void RemoveAt(int index)
+        {
+            throw new ImmutableException();
+        }
+
+        public void RemoveRange(int index, int count)
+        {
+            throw new ImmutableException();
+        }
+
+        public void Reverse(int index, int count)
+        {
+            throw new ImmutableException();
+        }
+
+        public void Reverse()
+        {
+            throw new ImmutableException();
+        }
+
+        public void Sort(int index, int count, IComparer<T> comparer)
+        {
+            throw new ImmutableException();
+        }
+
+        public void Sort(Comparison<T> comparison)
+        {
+            throw new ImmutableException();
+        }
+
+        public void Sort()
+        {
+            throw new ImmutableException();
+        }
+
+        public void Sort(IComparer<T> comparer)
+        {
+            throw new ImmutableException();
+        }
+        #endregion
+
     }
 
     public static class ImmutableListExtension
