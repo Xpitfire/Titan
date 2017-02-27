@@ -15,27 +15,16 @@ namespace Titan.Core.Syntax
             Scaling,
             BatchNormalization,
             FullyConnected,
-            Residual,
-            Inception,  
             Softmax
         }
 
-        public string Input { get; internal set; }
+        public LayerSyntax InputLayer { get; internal set; }
+        public LayerSyntax OutputLayer { get; internal set; }
         public SyntaxKind Kind { get; internal set; }
         
-        protected LayerSyntax(SyntaxKind kind, string input, string name = null) : base(name)
+        protected LayerSyntax(SyntaxKind kind, string name) : base(name)
         {
-            Input = input;
             Kind = kind;
         }
-
-        internal virtual LayerSyntax FindLayerByIdentifier(Identifier id)
-            => (id == null) ? null : FindLayerByName(id.Id);
-        internal virtual LayerSyntax FindLayerByName(string name)
-        {
-            if (string.IsNullOrEmpty(name)) return null;
-            return (Identifier.Id == name) ? this : null;
-        }
-
     }
 }

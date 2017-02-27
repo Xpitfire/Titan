@@ -51,8 +51,8 @@
   <ItemGroup>
     <Compile Include="CodeGen\CodeGenMessage.cs" />
     <Compile Include="CodeGen\ICodeGen.cs" />
-    <Compile Include="Syntax\SyntaxNodeVisitor.cs" />
-    <Compile Include="Syntax\SyntaxNodeVisitorAttribute.cs" />
+    <Compile Include="Syntax\Helper\OperatorsExtension.cs" />
+    <Compile Include="Syntax\Helper\SyntaxNodeVisitorAttribute.cs" />
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Communication\Message.cs" />
     <Compile Include="Communication\Response.cs" />
@@ -62,8 +62,9 @@
     <Compile Include="Parser\ParserMessage.cs" />
     <Compile Include="Prefab\LayerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Syntax\Identifier.cs" />
-    <Compile Include="Syntax\SyntaxFactory.cs" />
+    <Compile Include="Syntax\Helper\Identifier.cs" />
+    <Compile Include="Syntax\Helper\SyntaxFactory.cs" />
+    <Compile Include="Syntax\InceptionLayerSyntax.cs" />
     <Compile Include="Syntax\SyntaxNode.cs" />
     <Compile Include="Syntax\ConvolutionalLayerSyntax.cs" />
     <Compile Include="Syntax\InputLayerSyntax.cs" />
@@ -72,8 +73,7 @@
     <Compile Include="Syntax\OutputLayerSyntax.cs" />
     <Compile Include="Syntax\PoolingLayerSyntax.cs" />
     <Compile Include="Syntax\ResidualLayerSyntax.cs" />
-    <Compile Include="Syntax\SyntaxNodeCloner.cs" />
-    <Compile Include="Syntax\TraversableAttribute.cs" />
+    <Compile Include="Syntax\Helper\SyntaxNodeCloner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

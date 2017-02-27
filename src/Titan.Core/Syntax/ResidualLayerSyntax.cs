@@ -5,70 +5,28 @@ using Titan.Core.Collection;
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    public sealed class ResidualLayerSyntax : LayerSyntax
+    public sealed class ResidualLayerSyntax : SyntaxNode
     {
-        public ImmutableList<LayerSyntax> LeftBranch { get; internal set; }
-        public ImmutableList<LayerSyntax> RightBranch { get; internal set; }
+        public SyntaxNode InputLayer { get; internal set; }
+        public SyntaxNode LeftBranchOutput { get; internal set; }
+        public SyntaxNode RightBranchOutput { get; internal set; }
 
-        private ResidualLayerSyntax(string name, string input) : base(SyntaxKind.Residual, input) { }
-        internal ResidualLayerSyntax(string name, string input,
-            ImmutableList<LayerSyntax> leftBranch,
-            ImmutableList<LayerSyntax> rightBranch) : base(SyntaxKind.Residual, input)
+        private ResidualLayerSyntax() : base() { }
+        internal ResidualLayerSyntax(string name,
+            SyntaxNode inputLayer,
+            SyntaxNode leftBranchOutput,
+            SyntaxNode rightBranchOutput) : base(name)
         {
-            LeftBranch = leftBranch;
-            RightBranch = rightBranch;
-        }
-        public LayerSyntax AddLeftLayer(LayerSyntax layer)
-        {
-            // TODO: not correct -> implement right behavior
-            var clone = this.DeepClone();
-            return clone;
-        }
-
-        public LayerSyntax AddRightLayer(LayerSyntax layer)
-        {
-            // TODO: not correct -> implement right behavior
-            var clone = this.DeepClone();
-            return clone;
-        }
-        
-        internal override LayerSyntax FindLayerByName(string name)
-        {
-            if (string.IsNullOrEmpty(name)) return null;
-            if (Name == name) return this;
-            if (LeftBranch != null)
-            {
-                foreach (var n in LeftBranch)
-                {
-                    var res = n.FindLayerByName(name);
-                    if (res != null) return res;
-                }
-            }
-            if (RightBranch != null)
-            {
-                foreach (var n in RightBranch)
-                {
-                    var res = n.FindLayerByName(name);
-                    if (res != null) return res;
-                }
-            }
-            return null;
+            InputLayer = inputLayer;
+            LeftBranchOutput = leftBranchOutput;
+            RightBranchOutput = rightBranchOutput;
         }
 
         public override void Traverse()
         {
             base.Traverse();
-            OnNodeEnterEvent();
-            OnNodeVisitEvent(this);
-            foreach (var layer in LeftBranch)
-            {
-                layer.Traverse();
-            }
-            foreach (var layer in RightBranch)
-            {
-                layer.Traverse();
-            }
-            OnNodeLeaveEvent();
+            LeftBranchOutput?.Traverse();
+            RightBranchOutput?.Traverse();
         }
     }
 }

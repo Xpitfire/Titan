@@ -7,8 +7,8 @@ namespace Titan.Core.Syntax
     {
         public PoolingLayerKind PoolingKind { get; internal set; }
 
-        internal PoolingLayerSyntax(string name, string input) : this(PoolingLayerKind.Max, name, input) { }
-        internal PoolingLayerSyntax(PoolingLayerKind kind, string name, string input) : base(SyntaxKind.Pooling, name, input)
+        internal PoolingLayerSyntax(string name) : this(PoolingLayerKind.Max, name) { }
+        internal PoolingLayerSyntax(PoolingLayerKind kind, string name) : base(SyntaxKind.Pooling, name)
         {
             PoolingKind = kind;
         }

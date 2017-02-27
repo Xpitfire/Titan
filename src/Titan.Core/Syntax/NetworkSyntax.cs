@@ -9,61 +9,23 @@ namespace Titan.Core.Syntax
     public class NetworkSyntax : SyntaxNode
     {
         public NetworkParameterSyntax Parameter { get; internal set; }
-        public ImmutableList<InputLayerSyntax> InputLayers { get; internal set; }
-        public LayerSyntax Root => Layers?.FirstOrDefault();
-        public ImmutableList<LayerSyntax> Layers { get; internal set; }
-        public ImmutableList<OutputLayerSyntax> OutputLayers { get; internal set; }
+        public ImmutableList<SyntaxNode> Layers { get; internal set; }
 
-        private NetworkSyntax() : this(null) { } // required due to serialization
-        internal NetworkSyntax(string name = null) : this(null, name) { }
-        internal NetworkSyntax(NetworkParameterSyntax parameter, string name = null) : this(parameter, null, name: name) { }
+        private NetworkSyntax() : base() { } // required due to serialization
+        internal NetworkSyntax(string name) : this(name, null) { }
         internal NetworkSyntax(
-            NetworkParameterSyntax parameter,
-            InputLayerSyntax trainLayer,
-            InputLayerSyntax validationLayer = null,
-            InputLayerSyntax testLayer = null,
-            string name = null) : base(name)
+            string name,
+            NetworkParameterSyntax parameter = null,
+            ImmutableList<SyntaxNode> layers = null) : base(name)
         {
             Parameter = parameter;
-            var list = new List<InputLayerSyntax>
-            {
-                trainLayer,
-                validationLayer,
-                testLayer
-            };
-            InputLayers = list.ToImmutableList();
-        }
-
-        public NetworkSyntax AddInputLayers(
-            InputLayerSyntax trainLayer,
-            InputLayerSyntax validationLayer = null,
-            InputLayerSyntax testLayer = null)
-        {
-            var network = this.DeepClone();
-            network.InputLayers = new List<InputLayerSyntax>
-            {
-                trainLayer,
-                validationLayer,
-                testLayer
-            }.ToImmutableList();
-            return network;
-        }
-
-        public NetworkSyntax AddOutputLayers(
-            params OutputLayerSyntax[] outputLayers)
-        {
-            var network = this.DeepClone();
-            if (outputLayers != null)
-            {
-                network.OutputLayers = outputLayers.ToImmutableList();
-            }
-            return network;
+            Layers = layers;
         }
         
-        public NetworkSyntax AddLayer(LayerSyntax layer)
+        public NetworkSyntax AddLayer(SyntaxNode layer)
         {
             var network = this.DeepClone();
-            var layers = network.Layers != null ? network.Layers.ToList() : new List<LayerSyntax>();
+            var layers = network.Layers != null ? network.Layers.ToList() : new List<SyntaxNode>();
             layers.Add(layer);
             network.Layers = layers.ToImmutableList();
             return network;
@@ -74,34 +36,18 @@ namespace Titan.Core.Syntax
         public LayerSyntax FindLayerByName(string name)
         {
             if (name == null) return null;
-            LayerSyntax layer;
-            foreach (var l in Layers)
-            {
-                layer = l.FindLayerByName(name);
-                if (layer != null) return layer;
-            }
+            // TODO implement working search
             return null;
         }
 
         public override void Traverse()
         {
             base.Traverse();
-            OnNodeEnterEvent();
-            OnNodeVisitEvent(this);
             Parameter?.Traverse();
-            foreach (var layer in InputLayers)
-            {
-                layer.Traverse();
-            }
             foreach (var layer in Layers)
             {
                 layer.Traverse();
             }
-            foreach (var layer in OutputLayers)
-            {
-                layer.Traverse();
-            }
-            OnNodeLeaveEvent();
         }
     }
 

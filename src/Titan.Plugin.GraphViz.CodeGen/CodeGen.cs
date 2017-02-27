@@ -16,14 +16,10 @@ namespace Titan.Plugin.GraphViz.CodeGen
     {
         public const string CodeGenName = "GraphViz";
         public event MessageDelegate<CodeGenMessage> CodeGeneratedEvent;
-        public CodeGen()
-        {
-            SyntaxNodeVisitor.Register(Assembly.GetExecutingAssembly());
-        }
 
         public CodeGenMessage Generate(NetworkSyntax network)
         {
-            string code = CodeGenWriter.Build(network);
+            var code = CodeGenWriter.Build(network);
             var message = new CodeGenMessage
             {
                 Text = code,

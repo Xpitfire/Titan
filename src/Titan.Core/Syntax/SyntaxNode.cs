@@ -4,13 +4,8 @@ using Titan.Core.CodeGen;
 namespace Titan.Core.Syntax
 {
     [Serializable]
-    [Traversable]
     public abstract class SyntaxNode : ICloneable
     {
-        public event Action NodeEnterEvent;
-        public event Action<SyntaxNode> NodeVisitEvent;
-        public event Action NodeLeaveEvent;
-
         public Identifier Identifier { get; internal set; }
         private string _name;
         public string Name {
@@ -31,24 +26,7 @@ namespace Titan.Core.Syntax
 
         public object Clone() => this.DeepClone();
 
-        internal virtual void OnNodeEnterEvent()
-        {
-            NodeEnterEvent?.Invoke();
-        }
-        internal virtual void OnNodeVisitEvent(SyntaxNode value)
-        {
-            NodeVisitEvent?.Invoke(value);
-        }
-        internal virtual void OnNodeLeaveEvent()
-        {
-            NodeLeaveEvent?.Invoke();
-        }
-        internal virtual void InvokeEvents()
-        {
-            OnNodeEnterEvent();
-            OnNodeVisitEvent(this);
-            OnNodeLeaveEvent();
-        }
-        public virtual void Traverse() => SyntaxNodeVisitor.Visit(this);
+        public virtual void Traverse() { }
+
     }
 }

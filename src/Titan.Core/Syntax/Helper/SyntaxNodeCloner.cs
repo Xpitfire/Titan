@@ -74,12 +74,12 @@ namespace Titan.Core.Syntax
         {
             if (sourceList == null)
                 return null;
-            var targetList = new ImmutableList<TTarget>();
+            var targetList = new List<TTarget>();
             foreach (var item in sourceList)
             {
                 targetList.Add(DeepClone(item));
             }
-            return targetList;
+            return targetList.ToImmutableList();
         }
 
         public static ImmutableList<TTarget> ListClone<TTarget>(TTarget[] sourceList) where TTarget : SyntaxNode

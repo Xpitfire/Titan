@@ -10,23 +10,13 @@ namespace Titan.Core.Test
     [TestClass]
     public class SyntaxTest
     {
-        public static readonly NetworkSyntax network = 
-            Network("Demo")
-            .AddInputLayers(
-            InputLayer(name: "train"),
-            InputLayer(name: "val", type: InputLayerKind.Validation),
-            InputLayer(name: "test", type: InputLayerKind.Test))
-            .AddLayer(ConvolutionalLayer(name: "conv1", input: "train"))
-            .AddLayer(ConvolutionalLayer(name: "conv2", input: "conv1"))
-            .AddLayer(ConvolutionalLayer(name: "conv3", input: "conv2"))
-            .AddLayer(ConvolutionalLayer(name: "conv4", input: "conv3"))
-            .AddOutputLayers(OutputLayer(name: "output", input: "conv4"));
+        private static readonly NetworkSyntax Network = Network("Demo");
         
         [TestMethod]
         public void TestNodeClone()
         {
             var network = Network("Demo", NetworkParameter())
-                .AddInputLayers(InputLayer (name: "train", data: Dimension.Default, label: Label.Empty));
+                .AddLayer(InputLayer (name: "train", dimensionData: DimensionData.Default, labelData: LabelData.Empty));
             Assert.IsNotNull(network);
         }
 
@@ -34,7 +24,7 @@ namespace Titan.Core.Test
         public void TestCodeGen()
         {
             var codeGenInstance = InstanceFactory.CodeGenInstance;
-            var gen = codeGenInstance.Generate(network);
+            var gen = codeGenInstance.Generate(Network);
             Assert.IsNotNull(gen?.Text);
             Debug.WriteLine(gen.Text);
         }
@@ -44,19 +34,19 @@ namespace Titan.Core.Test
         {
             var networkParam = NetworkParameter();
             var trainLayer = InputLayer(name: "train");
-            var network = Network("Demo", networkParam, trainLayer)
+            var network = Network("Demo", networkParam)
                 .AddLayer(ConvolutionalLayer(name: "conv1", input: "train"))
-                .AddLayer(PoolingLayer(name: "pool1", input: "conv1"))
+                .AddLayer(PoolingLayer(name: "pool1"))
                 .AddLayer(ConvolutionalLayer(name: "conv2", input: "conv1"));
 
-            Assert.IsNotNull(network.Root);
+            Assert.IsNotNull(network.Layers);
             Console.WriteLine(InstanceFactory.CodeGenInstance.Generate(network).Text);
         }
 
         [TestMethod]
         public void TestFindChild()
         {
-            var node = network.FindLayerByName("conv3");
+            var node = Network.FindLayerByName("conv3");
             Assert.IsNotNull(node);
         }
 

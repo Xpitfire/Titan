@@ -6,37 +6,40 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class InputLayerSyntax : SyntaxNode
     {
-        public Dimension Dimension { get; internal set; }
-        public Label Label { get; internal set; }
+        public DimensionData DimensionData { get; internal set; }
+        public LabelData LabelData { get; internal set; }
         public InputLayerKind InputKind { get; internal set; }
         public InputLayerParameterSyntax Parameter { get; internal set; }
+        public ImmutableList<SyntaxNode> OutputLayers { get; internal set; }
 
         private InputLayerSyntax() : base() { }
-        internal InputLayerSyntax(InputLayerKind kind, string name = null) : this(kind, Dimension.Default, Label.Empty, null, name) { }
+        internal InputLayerSyntax(string name, InputLayerKind kind) : this(name, kind, DimensionData.Default, LabelData.Empty) { }
         internal InputLayerSyntax(
+            string name,
             InputLayerKind kind, 
-            Dimension dimension, 
-            Label label, 
+            DimensionData dimensionData, 
+            LabelData labelData, 
             InputLayerParameterSyntax parameter = null,
-            string name = null) : base(name)
+            ImmutableList<SyntaxNode> outputLayers = null) : base(name)
         {
             InputKind = kind;
-            Dimension = dimension;
-            Label = label;
+            DimensionData = dimensionData;
+            LabelData = labelData;
             Parameter = parameter;
+            OutputLayers = outputLayers;
         }
-        
-        public InputLayerSyntax AddData(Dimension data)
+
+        public InputLayerSyntax AddData(DimensionData data)
         {
             var clone = this.DeepClone();
-            clone.Dimension = data;
+            clone.DimensionData = data;
             return clone;
         }
 
-        public InputLayerSyntax AddLabel(Label label)
+        public InputLayerSyntax AddLabel(LabelData labelData)
         {
             var clone = this.DeepClone();
-            clone.Label = label;
+            clone.LabelData = labelData;
             return clone;
         }
 
@@ -46,13 +49,20 @@ namespace Titan.Core.Syntax
             clone.Parameter = parameter;
             return clone;
         }
+
+        public InputLayerSyntax AddOutputLayers(ImmutableList<SyntaxNode> outputLayers)
+        {
+            var clone = this.DeepClone();
+            clone.OutputLayers = outputLayers;
+            return clone;
+        }
         
     }
 
     [Serializable]
-    public struct Dimension
+    public struct DimensionData
     {
-        public static readonly Dimension Default = new Dimension();
+        public static readonly DimensionData Default = new DimensionData();
 
         public const int DefaultHeightDimension = 224;
         public const int DefaultWidthDimension = 224;
@@ -62,7 +72,7 @@ namespace Titan.Core.Syntax
         public int Width { get; internal set; }
         public int Channels { get; internal set; }
         
-        public Dimension(int height = DefaultHeightDimension, 
+        public DimensionData(int height = DefaultHeightDimension, 
             int width = DefaultWidthDimension, 
             int channels = DefaultChannelsDimension)
         {
@@ -73,12 +83,12 @@ namespace Titan.Core.Syntax
     }
 
     [Serializable]
-    public struct Label
+    public struct LabelData
     {
-        public static readonly Label Empty = new Label(0);
+        public static readonly LabelData Empty = new LabelData(0);
         public int Length { get; internal set; }
 
-        public Label(int length)
+        public LabelData(int length)
         {
             Length = length;
         }
