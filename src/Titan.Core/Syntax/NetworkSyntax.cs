@@ -39,16 +39,7 @@ namespace Titan.Core.Syntax
             // TODO implement working search
             return null;
         }
-
-        public override void Traverse()
-        {
-            base.Traverse();
-            Parameter?.Traverse();
-            foreach (var layer in Layers)
-            {
-                layer.Traverse();
-            }
-        }
+        
     }
 
     [Serializable]

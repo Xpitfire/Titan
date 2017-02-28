@@ -25,12 +25,6 @@ namespace Titan.Core.Syntax
             LeftLeafLayer = LeftBranchOutputLayer;
             RightLeafLayer = RightBranchOutputLayer;
         }
-
-        public override void Traverse()
-        {
-            base.Traverse();
-            LeftBranchOutputLayer?.Traverse();
-            RightBranchOutputLayer?.Traverse();
-        }
+        
     }
 }

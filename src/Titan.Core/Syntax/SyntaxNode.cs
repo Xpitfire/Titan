@@ -25,8 +25,6 @@ namespace Titan.Core.Syntax
         }
 
         public object Clone() => this.DeepClone();
-
-        public virtual void Traverse() { }
-
+        
     }
 }
