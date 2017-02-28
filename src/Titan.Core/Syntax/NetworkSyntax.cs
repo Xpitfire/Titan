@@ -9,37 +9,15 @@ namespace Titan.Core.Syntax
     public class NetworkSyntax : SyntaxNode
     {
         public NetworkParameterSyntax Parameter { get; internal set; }
-        public ImmutableList<SyntaxNode> Layers { get; internal set; }
 
-        private NetworkSyntax() : base() { } // required due to serialization
+        private NetworkSyntax() { }
         internal NetworkSyntax(string name) : this(name, null) { }
         internal NetworkSyntax(
             string name,
-            NetworkParameterSyntax parameter = null,
-            ImmutableList<SyntaxNode> layers = null) : base(name)
+            NetworkParameterSyntax parameter = null) : base(name)
         {
             Parameter = parameter;
-            Layers = layers;
         }
-        
-        public NetworkSyntax AddLayer(SyntaxNode layer)
-        {
-            var network = this.DeepClone();
-            var layers = network.Layers != null ? network.Layers.ToList() : new List<SyntaxNode>();
-            layers.Add(layer);
-            network.Layers = layers.ToImmutableList();
-            return network;
-        }
-
-        public LayerSyntax FindLayerByIdentifier(Identifier id)
-            => (id == null) ? null : FindLayerByName(id.Id);
-        public LayerSyntax FindLayerByName(string name)
-        {
-            if (name == null) return null;
-            // TODO implement working search
-            return null;
-        }
-        
     }
 
     [Serializable]

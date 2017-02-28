@@ -13,7 +13,7 @@ namespace Titan.Core.Syntax
         public static NetworkSyntax Network(
             string name,
             NetworkParameterSyntax parameter,
-            ImmutableList<SyntaxNode> layers) => new NetworkSyntax(name, parameter, layers);
+            ImmutableList<SyntaxNode> layers) => new NetworkSyntax(name, parameter);
         public static NetworkSyntax Network(string name) => Network(name, NetworkParameter(), null);
         public static NetworkSyntax Network(string name, NetworkParameterSyntax parameter) => Network(name, parameter, null);
 

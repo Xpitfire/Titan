@@ -14,9 +14,9 @@ namespace Titan.Core.Syntax
     {
         public static TTarget DeepClone<TTarget>(this TTarget source) where TTarget : SyntaxNode
         {
-            using (MemoryStream stream = new MemoryStream())
+            using (var stream = new MemoryStream())
             {
-                BinaryFormatter formatter = new BinaryFormatter();
+                var formatter = new BinaryFormatter();
                 formatter.Serialize(stream, source);
                 stream.Position = 0;
                 return (TTarget)formatter.Deserialize(stream);

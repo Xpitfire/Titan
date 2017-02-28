@@ -17,9 +17,7 @@ namespace Titan.Core.Syntax
             FullyConnected,
             Softmax
         }
-
-        public LayerSyntax InputLayer { get; internal set; }
-        public LayerSyntax OutputLayer { get; internal set; }
+        
         public SyntaxKind Kind { get; internal set; }
         
         protected LayerSyntax(SyntaxKind kind, string name) : base(name)

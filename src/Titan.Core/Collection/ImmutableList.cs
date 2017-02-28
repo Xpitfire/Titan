@@ -120,8 +120,7 @@ namespace Titan.Core.Collection
             }
             return list;
         }
-
-
+        
         #region Invalid ImmutableList operations
 
         public void Add(T element)

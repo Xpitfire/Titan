@@ -12,11 +12,12 @@ namespace Titan.Core.Syntax
     {
         private const string Alphabet = "abcdefghijklmnopqrstuvwyxz";
         private const int DefaultIdSize = 10;
-        private static readonly Random rand = new Random();
+        private static readonly Random Random = new Random();
         private static readonly ConcurrentBag<string> UniqueIdSet;
+
         public static readonly Identifier Empty;
 
-        public string Id { get; private set; }
+        public string Id { get; }
 
         static Identifier()
         {
@@ -44,10 +45,10 @@ namespace Titan.Core.Syntax
             var sb = new StringBuilder();
             do
             {
-                sb.Append(Alphabet[rand.Next(Alphabet.Length)]);
+                sb.Append(Alphabet[Random.Next(Alphabet.Length)]);
                 for (int i = 0; i < DefaultIdSize; i++)
                 {
-                    sb.Append(Alphabet[rand.Next(Alphabet.Length)]);
+                    sb.Append(Alphabet[Random.Next(Alphabet.Length)]);
                 }
             } while (UniqueIdSet.Contains(sb.ToString()));
             return sb.ToString();

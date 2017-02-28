@@ -10,9 +10,9 @@ namespace Titan.Core.Syntax
         public LabelData LabelData { get; internal set; }
         public InputLayerKind InputKind { get; internal set; }
         public InputLayerParameterSyntax Parameter { get; internal set; }
-        public ImmutableList<SyntaxNode> OutputLayers { get; internal set; }
 
-        private InputLayerSyntax() : base() { }
+        private InputLayerSyntax() { }
+        internal InputLayerSyntax(string name) : this(name, InputLayerKind.Train) { }
         internal InputLayerSyntax(string name, InputLayerKind kind) : this(name, kind, DimensionData.Default, LabelData.Empty) { }
         internal InputLayerSyntax(
             string name,
@@ -26,7 +26,6 @@ namespace Titan.Core.Syntax
             DimensionData = dimensionData;
             LabelData = labelData;
             Parameter = parameter;
-            OutputLayers = outputLayers;
         }
 
         public InputLayerSyntax AddData(DimensionData data)
@@ -47,13 +46,6 @@ namespace Titan.Core.Syntax
         {
             var clone = this.DeepClone();
             clone.Parameter = parameter;
-            return clone;
-        }
-
-        public InputLayerSyntax AddOutputLayers(ImmutableList<SyntaxNode> outputLayers)
-        {
-            var clone = this.DeepClone();
-            clone.OutputLayers = outputLayers;
             return clone;
         }
         
