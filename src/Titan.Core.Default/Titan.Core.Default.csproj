@@ -53,6 +53,7 @@
     <Compile Include="Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Titan.snk" />
   </ItemGroup>
   <ItemGroup>

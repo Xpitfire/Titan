@@ -23,8 +23,7 @@ namespace Titan.Core.Prefab
             var conv1Block = ConvolutionalBlock("conv1");
             var pool1 = new PoolingLayerSyntax("pool1", 
                 new PoolingParameterSyntax(PoolingLayerKind.Max, kernelSize: 3, stride: 2));
-
-            var left
+            
 
 
             return resNet50;

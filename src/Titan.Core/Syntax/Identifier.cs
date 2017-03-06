@@ -10,48 +10,16 @@ namespace Titan.Core.Syntax
     [Serializable]
     public sealed class Identifier
     {
-        private const string Alphabet = "abcdefghijklmnopqrstuvwyxz";
-        private const int DefaultIdSize = 10;
-        private static readonly Random Random = new Random();
-        private static readonly ConcurrentBag<string> UniqueIdSet;
-
-        public static readonly Identifier Empty;
-
         public string Id { get; }
-
-        static Identifier()
+        
+        public Identifier()
         {
-            UniqueIdSet = new ConcurrentBag<string>();
-            Empty = new Identifier();
+            Id = GenerateId();
         }
 
-        public Identifier(string id = null)
+        public static string GenerateId()
         {
-            if (UniqueIdSet.Contains(id))
-            {
-                throw new ArgumentException(
-                    $"Id collision: {id} already defined!");
-            }
-            if (id == null)
-            {
-                id = GenerateId();
-            }
-            Id = id;
-            UniqueIdSet.Add(id);
-        }
-
-        private string GenerateId()
-        {
-            var sb = new StringBuilder();
-            do
-            {
-                sb.Append(Alphabet[Random.Next(Alphabet.Length)]);
-                for (int i = 0; i < DefaultIdSize; i++)
-                {
-                    sb.Append(Alphabet[Random.Next(Alphabet.Length)]);
-                }
-            } while (UniqueIdSet.Contains(sb.ToString()));
-            return sb.ToString();
+            return Guid.NewGuid().ToString("N");
         }
 
         public override bool Equals(object obj)
