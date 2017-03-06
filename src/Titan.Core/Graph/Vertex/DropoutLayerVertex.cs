@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Titan.Core.Graph.Vertex
 {
-    class DropoutLayerVertex
+    [Serializable]
+    public sealed class DropoutLayerVertex : LayerVertex
     {
+        public double Rate { get; internal set; }
+
+        private DropoutLayerVertex() : this(null, 0.0) { }
+        public DropoutLayerVertex(string name, double rate) : base(VertexKind.Dropout, name)
+        {
+            Rate = rate;
+        }
     }
 }

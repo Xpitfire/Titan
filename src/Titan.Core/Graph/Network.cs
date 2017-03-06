@@ -24,13 +24,24 @@ namespace Titan.Core.Graph
             Graph = graph ?? new AdjacencyGraph<LayerVertex, Edge<LayerVertex>>(allowParallelEdges: true); ;
         }
 
-        internal Network AddVertex(LayerVertex vertex)
+        public Network AddVertex(LayerVertex vertex)
         {
+            if (vertex == null) return this;
             Graph.AddVertex(vertex);
             return this;
         }
-        
-        internal Network AddEdge(string vertexId1, string vertexId2, bool cycle = false)
+
+        public Network AddVertices(LayerVertex[] paramLayers)
+        {
+            foreach (var layerVertex in paramLayers)
+            {
+                if (layerVertex == null) continue;
+                Graph.AddVertex(layerVertex);
+            }
+            return this;
+        }
+
+        public Network AddEdge(string vertexId1, string vertexId2, bool cycle = false)
         {
             var vertex1 = Graph.Vertices.First(v => v.Identifier.Id == vertexId1);
             var vertex2 = Graph.Vertices.FirstOrDefault(v => v.Identifier.Id == vertexId2);
@@ -43,6 +54,7 @@ namespace Titan.Core.Graph
                 Graph.AddEdge(new Edge<LayerVertex>(vertex2, vertex1));
             return this;
         }
+
     }
 
     [Serializable]

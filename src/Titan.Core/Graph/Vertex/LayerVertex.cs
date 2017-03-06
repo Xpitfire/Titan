@@ -12,6 +12,7 @@ namespace Titan.Core.Graph.Vertex
             Convolutional,
             Pooling,
             Scaling,
+            Dropout,
             BatchNormalization,
             Activation,
             Eltwise,

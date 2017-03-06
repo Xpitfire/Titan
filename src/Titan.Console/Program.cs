@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using QuickGraph;
 using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
-using Titan.Core.Graph.Edge;
+using Titan.Core.Graph;
 using Titan.Core.Graph.Vertex;
 using Titan.Service;
 using Titan.Service.Impl.HeuristicLab;
@@ -21,7 +21,7 @@ namespace Titan.Console
 
         static void Main(string[] args)
         {
-            var resNet50 = LayerBuilder.ResNet50();
+            var resNet50 = NetworkBuilder.BuildResNet50();
             var graphviz = new GraphvizAlgorithm<LayerVertex, Edge<LayerVertex>>(resNet50.Graph);
             graphviz.CommonVertexFormat.Shape = GraphvizVertexShape.Record;
             graphviz.CommonVertexFormat.Style = GraphvizVertexStyle.Filled;

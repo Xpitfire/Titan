@@ -8,7 +8,7 @@ namespace Titan.Core.Graph.Vertex
         public ConvolutionalParameter Parameter { get; internal set; }
 
         private ConvolutionalLayerVertex() : this(null) { }
-        internal ConvolutionalLayerVertex(string name, ConvolutionalParameter parameter = null) : base(VertexKind.Convolutional, name)
+        public ConvolutionalLayerVertex(string name, ConvolutionalParameter parameter = null) : base(VertexKind.Convolutional, name)
         {
             Parameter = parameter;
         }
