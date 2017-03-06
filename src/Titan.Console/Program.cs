@@ -22,6 +22,17 @@ namespace Titan.Console
         static void Main(string[] args)
         {
             var resNet50 = NetworkBuilder.BuildResNet50();
+
+            var sb = new StringBuilder();
+            foreach (var edge in resNet50.Graph.Edges)
+            {
+                sb.Append("");
+                if (edge.Source.Kind == VertexKind.Input)
+                {
+                    var input = edge.Source as InputLayerVertex;
+                }
+            }
+
             var graphviz = new GraphvizAlgorithm<LayerVertex, Edge<LayerVertex>>(resNet50.Graph);
             graphviz.CommonVertexFormat.Shape = GraphvizVertexShape.Record;
             graphviz.CommonVertexFormat.Style = GraphvizVertexStyle.Filled;
@@ -29,7 +40,6 @@ namespace Titan.Console
 
             var output = graphviz.Generate();
             System.Console.WriteLine(output);
-
 
             //string input;
             //while (true)
@@ -54,7 +64,7 @@ namespace Titan.Console
             e.VertexFormatter.Record = rec;
             e.VertexFormatter.Label = ent.Name;
         }
-
+        
         static bool MatchCmd(string input, string cmd)
         {
             if (string.IsNullOrEmpty(input)) return false;

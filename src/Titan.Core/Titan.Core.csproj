@@ -78,7 +78,7 @@
     <Compile Include="Collection\ImmutableException.cs" />
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\ParserMessage.cs" />
-    <Compile Include="Graph\GraphBuilder.cs" />
+    <Compile Include="Graph\Builder\GraphBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graph\Identifier.cs" />
     <Compile Include="Graph\Vertex\VertexBase.cs" />
