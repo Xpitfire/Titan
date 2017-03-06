@@ -49,49 +49,38 @@
     <Reference Include="FSharpx.Core, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FSharpx.Core.1.7.3\lib\40\FSharpx.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Collections-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Collections-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Collections-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Collections-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Common-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Common-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Common-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Common-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Core-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Core-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Core-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Core-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Data-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Data-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Data-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Data-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Encodings.SymbolicExpressionTreeEncoding-3.4, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Encodings.SymbolicExpressionTreeEncoding-3.4.dll</HintPath>
+    <Reference Include="HeuristicLab.Encodings.SymbolicExpressionTreeEncoding-3.4">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Encodings.SymbolicExpressionTreeEncoding-3.4.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Operators-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Operators-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Operators-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Operators-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Optimization-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Optimization-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Optimization-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Optimization-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Parameters-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Parameters-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Parameters-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Parameters-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Persistence-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Persistence-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.Persistence-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Persistence-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.PluginInfrastructure-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.PluginInfrastructure-3.3.dll</HintPath>
+    <Reference Include="HeuristicLab.PluginInfrastructure-3.3">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.PluginInfrastructure-3.3.dll</HintPath>
     </Reference>
-    <Reference Include="HeuristicLab.Problems.ExternalEvaluation-3.4, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\svn\HeuristicLab\bin\HeuristicLab.Problems.ExternalEvaluation-3.4.dll</HintPath>
+    <Reference Include="HeuristicLab.Problems.ExternalEvaluation-3.4">
+      <HintPath>..\Titan.Service.Impl.HeuristicLab\lib-r14670\HeuristicLab.Problems.ExternalEvaluation-3.4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

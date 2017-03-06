@@ -1,48 +1,38 @@
 ﻿using System;
 using Titan.Core.Collection;
 
-namespace Titan.Core.Syntax
+namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class InputLayerSyntax : SyntaxNode
+    public sealed class InputLayerVertex : LayerVertex
     {
         public DimensionData DimensionData { get; internal set; }
-        public LabelData LabelData { get; internal set; }
         public InputLayerKind InputKind { get; internal set; }
-        public InputLayerParameterSyntax Parameter { get; internal set; }
+        public InputLayerParameter Parameter { get; internal set; }
 
-        private InputLayerSyntax() { }
-        internal InputLayerSyntax(string name) : this(name, InputLayerKind.Train) { }
-        internal InputLayerSyntax(string name, InputLayerKind kind) : this(name, kind, DimensionData.Default, LabelData.Empty) { }
-        internal InputLayerSyntax(
+        private InputLayerVertex() : this(null) { }
+        public InputLayerVertex(string name) : this(name, InputLayerKind.Train) { }
+        public InputLayerVertex(string name, InputLayerKind kind) : this(name, kind, DimensionData.Default) { }
+        public InputLayerVertex(
             string name,
             InputLayerKind kind, 
             DimensionData dimensionData, 
-            LabelData labelData, 
-            InputLayerParameterSyntax parameter = null,
-            ImmutableList<SyntaxNode> outputLayers = null) : base(name)
+            InputLayerParameter parameter = null,
+            ImmutableList<VertexBase> outputLayers = null) : base(VertexKind.Input, name)
         {
             InputKind = kind;
             DimensionData = dimensionData;
-            LabelData = labelData;
             Parameter = parameter;
         }
 
-        public InputLayerSyntax AddData(DimensionData data)
+        public InputLayerVertex AddData(DimensionData data)
         {
             var clone = this.DeepClone();
             clone.DimensionData = data;
             return clone;
         }
 
-        public InputLayerSyntax AddLabel(LabelData labelData)
-        {
-            var clone = this.DeepClone();
-            clone.LabelData = labelData;
-            return clone;
-        }
-
-        public InputLayerSyntax AddParameter(InputLayerParameterSyntax parameter)
+        public InputLayerVertex AddParameter(InputLayerParameter parameter)
         {
             var clone = this.DeepClone();
             clone.Parameter = parameter;
@@ -73,21 +63,9 @@ namespace Titan.Core.Syntax
             Channels = channels;
         }
     }
-
+    
     [Serializable]
-    public struct LabelData
-    {
-        public static readonly LabelData Empty = new LabelData(0);
-        public int Length { get; internal set; }
-
-        public LabelData(int length)
-        {
-            Length = length;
-        }
-    }
-
-    [Serializable]
-    public sealed class InputLayerParameterSyntax : SyntaxNode
+    public sealed class InputLayerParameter
     {
         public const int DefaultCropSize = 227;
         public const int DefaultBatchSize = 128;
@@ -96,8 +74,8 @@ namespace Titan.Core.Syntax
         public bool Mirror { get; internal set; }
         public int BatchSize { get; internal set; }
 
-        internal InputLayerParameterSyntax() { }
-        internal InputLayerParameterSyntax(
+        internal InputLayerParameter() { }
+        internal InputLayerParameter(
             int cropSize = DefaultCropSize,
             int batchSize = DefaultBatchSize,
             bool mirror = false)

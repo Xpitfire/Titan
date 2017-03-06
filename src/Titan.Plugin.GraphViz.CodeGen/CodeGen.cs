@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Titan.Core.CodeGen;
 using Titan.Core.Communication;
-using Titan.Core.Prefab;
-using Titan.Core.Syntax;
+using Titan.Core.Graph;
+using Titan.Core.Graph.Vertex;
 using Titan.Plugin.CodeGen;
 
 namespace Titan.Plugin.GraphViz.CodeGen
@@ -17,7 +17,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
         public const string CodeGenName = "GraphViz";
         public event MessageDelegate<CodeGenMessage> CodeGeneratedEvent;
 
-        public CodeGenMessage Generate(NetworkSyntax network)
+        public CodeGenMessage Generate(Network network)
         {
             var code = CodeGenWriter.Build(network);
             var message = new CodeGenMessage

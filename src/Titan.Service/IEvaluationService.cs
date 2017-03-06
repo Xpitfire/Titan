@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Titan.Core.Syntax;
+using Titan.Core.Graph;
+using Titan.Core.Graph.Vertex;
 
 namespace Titan.Service
 {
     public interface IEvaluationService
     {
-        double Evaluate(NetworkSyntax node);
-        string GraphDescription(NetworkSyntax node);
-        NetworkSyntax GenerateNetwork();
+        double Evaluate(Network node);
+        string GraphDescription(Network node);
+        Network GenerateNetwork();
     }
 }

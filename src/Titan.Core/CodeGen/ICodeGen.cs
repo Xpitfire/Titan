@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Titan.Core.Communication;
-using Titan.Core.Syntax;
+using Titan.Core.Graph;
+using Titan.Core.Graph.Vertex;
 
 namespace Titan.Core.CodeGen
 {
@@ -12,6 +13,6 @@ namespace Titan.Core.CodeGen
     {
         event MessageDelegate<TMessage> CodeGeneratedEvent;
 
-        TMessage Generate(NetworkSyntax network);
+        TMessage Generate(Network network);
     }
 }

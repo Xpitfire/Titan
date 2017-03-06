@@ -6,7 +6,8 @@ using HeuristicLab.Common;
 using HeuristicLab.Core;
 using HeuristicLab.Encodings.SymbolicExpressionTreeEncoding;
 using HeuristicLab.Optimization;
-using Titan.Core.Syntax;
+using Titan.Core.Graph;
+using Titan.Core.Graph.Vertex;
 
 namespace Titan.HeuristicLab.Problem
 {
@@ -22,8 +23,8 @@ namespace Titan.HeuristicLab.Problem
             //g.AddSymbol("pool", 1, 1);
             //g.AddSymbol("branch", 2, 2);
             //g.AddTerminalSymbols(new[] { "1", "2", "3" });
-            g.AddSymbol(nameof(ConvolutionalLayerSyntax), 1, 1);
-            g.AddSymbol(nameof(PoolingLayerSyntax), 1, 1);
+            g.AddSymbol(nameof(ConvolutionalLayerVertex), 1, 1);
+            g.AddSymbol(nameof(PoolingLayerVertex), 1, 1);
             //g.AddSymbol(nameof(In), );
 
             Encoding = new SymbolicExpressionTreeEncoding(SymbolicTreeName, g, 10, 5);
@@ -38,7 +39,6 @@ namespace Titan.HeuristicLab.Problem
             return quality;
         }
         
-
         public override bool Maximization => false;
     }
 }

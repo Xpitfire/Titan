@@ -1,9 +1,10 @@
-﻿using Titan.Core.Syntax;
+﻿using Titan.Core.Graph;
+using Titan.Core.Graph.Vertex;
 
 namespace Titan.Plugin.Caffe.CodeGen
 {
     public partial class CaffeScriptSolverTemplate
     {
-        public NetworkSyntax Network { get; set; }
+        public Network Network { get; set; }
     }
 }

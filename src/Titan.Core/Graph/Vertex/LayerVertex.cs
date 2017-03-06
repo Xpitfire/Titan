@@ -1,26 +1,27 @@
 ﻿using System;
-using System.Linq;
-using Titan.Core.Collection;
 
-namespace Titan.Core.Syntax
+namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public abstract class LayerSyntax : SyntaxNode
+    public abstract class LayerVertex : VertexBase
     {
         [Serializable]
-        public enum SyntaxKind
+        public enum VertexKind
         {
+            Input,
             Convolutional,
             Pooling,
             Scaling,
             BatchNormalization,
+            Activation,
+            Eltwise,
             FullyConnected,
             Softmax
         }
         
-        public SyntaxKind Kind { get; internal set; }
+        public VertexKind Kind { get; internal set; }
         
-        protected LayerSyntax(SyntaxKind kind, string name) : base(name)
+        protected LayerVertex(VertexKind kind, string name) : base(name)
         {
             Kind = kind;
         }

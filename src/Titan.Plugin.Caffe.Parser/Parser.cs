@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Titan.Core.Communication;
 using Titan.Core.Parser;
-using Titan.Core.Syntax;
+using Titan.Core.Graph;
 using Titan.Plugin.Parser;
 
 namespace Titan.Plugin.Caffe.Parser
@@ -17,16 +17,17 @@ namespace Titan.Plugin.Caffe.Parser
         public event MessageDelegate<ParserMessage> MessageParsedEvent;
         public ParserMessage Parse(string source)
         {
-            var message = new ParserMessage
-            {
-                // TODO: Perform real syntax tree definition
-                SyntaxTree = SyntaxFactory.Network("CaffeDemo"),
-                Data = source,
-                ParseDate = DateTime.Now,
-                ParserName = ParserName
-            };
-            MessageParsedEvent?.Invoke(message);
-            return message;
+            //var message = new ParserMessage
+            //{
+            //    // TODO: Perform real syntax tree definition
+            //    Network = SyntaxFactory.Network("CaffeDemo"),
+            //    Data = source,
+            //    ParseDate = DateTime.Now,
+            //    ParserName = ParserName
+            //};
+            //MessageParsedEvent?.Invoke(message);
+            //return message;
+            return null;
         }
     }
 }

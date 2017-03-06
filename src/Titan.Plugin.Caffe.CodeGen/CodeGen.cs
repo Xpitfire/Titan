@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using Titan.Core.CodeGen;
 using Titan.Core.Communication;
-using Titan.Core.Syntax;
+using Titan.Core.Graph;
+using Titan.Core.Graph.Vertex;
 using Titan.Plugin.CodeGen;
 
 namespace Titan.Plugin.Caffe.CodeGen
@@ -12,7 +13,7 @@ namespace Titan.Plugin.Caffe.CodeGen
         public const string CodeGenName = "Caffe";
         public event MessageDelegate<CodeGenMessage> CodeGeneratedEvent;
         
-        public CodeGenMessage Generate(NetworkSyntax network)
+        public CodeGenMessage Generate(Network network)
         {
             if (network == null) return null;
 
