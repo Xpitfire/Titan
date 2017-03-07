@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="CodeGen\CodeGenMessage.cs" />
     <Compile Include="CodeGen\ICodeGen.cs" />
+    <Compile Include="Graph\Builder\IBuilder.cs" />
+    <Compile Include="Graph\Builder\LayerBuilder.cs" />
+    <Compile Include="Graph\Builder\ResidualBuilder.cs" />
     <Compile Include="Graph\GraphOperatorExtension.cs" />
     <Compile Include="Graph\NetworkBuilder.cs" />
     <Compile Include="Graph\Vertex\ActivationLayerVertex.cs" />
