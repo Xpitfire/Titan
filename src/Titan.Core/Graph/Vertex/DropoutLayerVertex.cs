@@ -11,10 +11,7 @@ namespace Titan.Core.Graph.Vertex
     {
         public double Rate { get; internal set; }
 
-        private DropoutLayerVertex() : this(null, 0.0) { }
-        public DropoutLayerVertex(string name, double rate) : base(VertexKind.Dropout, name)
-        {
-            Rate = rate;
-        }
+        internal DropoutLayerVertex() : this(null) { }
+        internal DropoutLayerVertex(string name) : base(VertexKind.Dropout, name) { }
     }
 }

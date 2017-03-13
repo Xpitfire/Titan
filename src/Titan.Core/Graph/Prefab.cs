@@ -8,14 +8,12 @@ using Titan.Core.Graph.Vertex;
 
 namespace Titan.Core.Graph
 {
-    public static class NetworkBuilder
+    public static class Prefab
     {
         public static Network BuildNetwork()
         {
-            return new NetworkBuilder()
-
-                .AddInput(new InputLayerVertex("data"))
-
+            var builder = new NetworkBuilder("LeNet")
+                .AddInputLayer(new InputLayerVertex("data"))
                 .AddLayerBlock(
                     b => b.AddLayer(new ConvolutionalLayerVertex("conv1", new ConvolutionalParameter(
                             numberOfOutput: 64,
@@ -32,7 +30,7 @@ namespace Titan.Core.Graph
                     kernelSize: 3,
                     stride: 2)))
 
-                .AddResidualBlcok(
+                .AddResidualBlock(
                     left: b => b.AddLayerBlock(
                         lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch1", new ConvolutionalParameter(
                             numberOfOutput: 256,
@@ -62,7 +60,7 @@ namespace Titan.Core.Graph
                                 stride: 1,
                                 biasTerm: false)))
                               .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch2b"))
-                              .AddScale(new ScaleLayerVertex("scale2a_branch2b")))
+                              .AddScale(new ScaleLayerVertex("scale2a_branch2b"))
                               .AddActivation(new ActivationLayerVertex("res2a_branch2b_relu")))
 
                           .AddLayerBlock(
@@ -73,13 +71,14 @@ namespace Titan.Core.Graph
                                 stride: 1,
                                 biasTerm: false)))
                               .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch2c"))
-                              .AddScale(new ScaleLayerVertex("scale2a_branch2c"))))
+                              .AddScale(new ScaleLayerVertex("scale2a_branch2c")))))
                 .AddEltwise(new EltwiseLayerVertex("res2a"))
-                .AddActivation(new ActivationLayerVertex("res2a_relu"))
+                .AddActivation(new ActivationLayerVertex("res2a_relu"));
 
-                .Build();
+            return builder.BuildNetwork();
         }
         
+        /*
         public static Network BuildResNet50()
         {
             var resNet50 = new Network("ResNet-50")
@@ -98,7 +97,7 @@ namespace Titan.Core.Graph
                 .AddConvLayerOut64Kernel3Pad1Stride1ReLUBatchNormScale("res2a_branch2b")
                 .AddConvLayerOut256Kernel1Pad0Stride1BatchNormScale("res2a_branch2c")
                 
-                .AddLayer(new EltwiseLayerVertex("res2a"), new ActivationLayerVertex("res2a_relu"))
+                .AddLayer(new ConcatLayerVertex("res2a"), new ActivationLayerVertex("res2a_relu"))
 
                 .AddEdge("data", "conv1")
                 .AddEdge("conv1", "pool1")
@@ -114,5 +113,6 @@ namespace Titan.Core.Graph
 
             return resNet50;
         }
+        */
     }
 }

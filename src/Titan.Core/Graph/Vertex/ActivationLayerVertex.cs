@@ -11,12 +11,8 @@ namespace Titan.Core.Graph.Vertex
     {
         public ActivationFunctionType ActivationFunction { get; internal set; }
 
-        private ActivationLayerVertex() : this(null) { }
-        public ActivationLayerVertex(string name, 
-            ActivationFunctionType activationFunction = ActivationFunctionType.ReLU) : base(VertexKind.Activation, name)
-        {
-            ActivationFunction = activationFunction;
-        }
+        internal ActivationLayerVertex() : this(null) { }
+        internal ActivationLayerVertex(string name) : base(VertexKind.Activation, name) { }
     }
 
     public enum ActivationFunctionType

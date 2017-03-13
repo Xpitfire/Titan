@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Titan.Core.Graph.Builder
 {
-    public class ResidualBuilder : LayerBuilder
+    public class SequenceBuilder : LayerBuilder
     {
-
-
-
     }
 }

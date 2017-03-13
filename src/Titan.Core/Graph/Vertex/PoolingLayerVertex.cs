@@ -6,9 +6,11 @@ namespace Titan.Core.Graph.Vertex
     public sealed class PoolingLayerVertex : LayerVertex
     {
         public PoolingParameter Parameter { get; internal set; }
-        
-        private PoolingLayerVertex() : this(null) { }
-        public PoolingLayerVertex(string name, PoolingParameter parameter = null) : base(VertexKind.Pooling, name)
+
+        internal PoolingLayerVertex() : this(null) { }
+        internal PoolingLayerVertex(string name) : base(VertexKind.Pooling, name) { }
+
+        public PoolingLayerVertex(string name, PoolingParameter parameter) : this(name)
         {
             Parameter = parameter;
         }
@@ -21,12 +23,10 @@ namespace Titan.Core.Graph.Vertex
         public int KernelSize { get; internal set; }
         public int Stride { get; internal set; }
 
-        private PoolingParameter() { }
-        public PoolingParameter(PoolingLayerKind poolingKind,
-            int kernelSize,
-            int stride)
+        internal PoolingParameter() { }
+        internal PoolingParameter(PoolingLayerKind kind, int kernelSize, int stride)
         {
-            PoolingKind = poolingKind;
+            PoolingKind = kind;
             KernelSize = kernelSize;
             Stride = stride;
         }

@@ -24,6 +24,7 @@ namespace Titan.Core.Graph.Vertex
         BatchNormalization,
         Activation,
         Eltwise,
+        Concat,
         FullyConnected,
         Softmax
     }

@@ -9,9 +9,7 @@ namespace Titan.Core.Graph.Vertex
     [Serializable]
     public sealed class EltwiseLayerVertex : LayerVertex
     {
-        private EltwiseLayerVertex() : this(null) { }
-        public EltwiseLayerVertex(string name) : base(VertexKind.Eltwise, name)
-        {
-        }
+        internal EltwiseLayerVertex() : this(null) { }
+        internal EltwiseLayerVertex(string name) : base(VertexKind.Eltwise, name) { }
     }
 }

@@ -8,59 +8,24 @@ namespace Titan.Core.Graph
     [Serializable]
     public class Network
     {
-        public AdjacencyGraph<LayerVertex, Edge<LayerVertex>> Graph { get; }
-        public NetworkParameter Parameter { get; }
-        public string Name { get; }
+        public ArrayAdjacencyGraph<LayerVertex, Edge<LayerVertex>> Graph { get; internal set; }
+        public NetworkParameter Parameter { get; internal set; }
+        public string Name { get; internal set; }
 
-        private Network() { }
-        public Network(string name) : this(name, null) { }
-        public Network(
-            string name,
-            NetworkParameter parameter = null,
-            AdjacencyGraph<LayerVertex, Edge<LayerVertex>> graph = null)
-        {
-            Name = name;
-            Parameter = parameter ?? NetworkParameter.DefaultNetworkParameter;
-            Graph = graph ?? new AdjacencyGraph<LayerVertex, Edge<LayerVertex>>(allowParallelEdges: true); ;
-        }
-
-        public Network AddVertex(LayerVertex vertex)
-        {
-            if (vertex == null) return this;
-            Graph.AddVertex(vertex);
-            return this;
-        }
-
-        public Network AddVertices(LayerVertex[] paramLayers)
-        {
-            foreach (var layerVertex in paramLayers)
-            {
-                if (layerVertex == null) continue;
-                Graph.AddVertex(layerVertex);
-            }
-            return this;
-        }
-
-        public Network AddEdge(string vertexId1, string vertexId2, bool cycle = false)
-        {
-            var vertex1 = Graph.Vertices.First(v => v.Identifier.Id == vertexId1);
-            var vertex2 = Graph.Vertices.FirstOrDefault(v => v.Identifier.Id == vertexId2);
-            if (vertex1 == null)
-                throw new ArgumentException($"Could not find defined vertex ID: {vertexId1}");
-            if (vertex2 == null)
-                throw new ArgumentException($"Could not find defined vertex ID: {vertexId2}");
-            Graph.AddEdge(new Edge<LayerVertex>(vertex1, vertex2));
-            if (cycle)
-                Graph.AddEdge(new Edge<LayerVertex>(vertex2, vertex1));
-            return this;
-        }
-
+        internal Network() { }
     }
 
     [Serializable]
     public sealed class NetworkParameter
     {
-        public static readonly NetworkParameter DefaultNetworkParameter = new NetworkParameter();
+        public static readonly NetworkParameter DefaultNetworkParameter = new NetworkParameter
+        {
+            BatchSize = DefaultBatchSize,
+            Epochs = DefaultEpochSize,
+            Seed = DefaultSeedValue,
+            Updater = DefaultUpdaterType,
+            LearningRate = DefaultLearningRate
+        };
 
         public const int DefaultEpochSize = 100;
         public const UpdaterType DefaultUpdaterType = UpdaterType.StochasticGradientDescent;
@@ -74,21 +39,7 @@ namespace Titan.Core.Graph
         public UpdaterType Updater { get; internal set; }
         public float LearningRate { get; internal set; }
 
-        private NetworkParameter() { }
-        public NetworkParameter(
-            int epochs = DefaultEpochSize,
-            UpdaterType updater = DefaultUpdaterType,
-            float learningRate = DefaultLearningRate,
-            int batchSize = DefaultBatchSize,
-            int seed = DefaultSeedValue)
-        {
-            Epochs = epochs;
-            BatchSize = batchSize;
-            Seed = seed;
-            Updater = updater;
-            LearningRate = learningRate;
-        }
-        
+        internal NetworkParameter() { }        
     }
 
     [Serializable]

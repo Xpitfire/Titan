@@ -7,10 +7,7 @@ namespace Titan.Core.Graph.Vertex
     {
         public bool UseGlobalStats { get; internal set; }
 
-        private BatchNormalizationLayerVertex() : this(null)  { }
-        public BatchNormalizationLayerVertex(string name, bool useGlobalStats = true) : base(VertexKind.BatchNormalization, name)
-        {
-            UseGlobalStats = useGlobalStats;
-        }
+        internal BatchNormalizationLayerVertex() : this(null)  { }
+        internal BatchNormalizationLayerVertex(string name) : base(VertexKind.BatchNormalization, name) { }
     }
 }

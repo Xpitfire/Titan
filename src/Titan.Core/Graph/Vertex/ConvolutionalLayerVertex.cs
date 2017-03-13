@@ -7,17 +7,11 @@ namespace Titan.Core.Graph.Vertex
     {
         public ConvolutionalParameter Parameter { get; internal set; }
 
-        private ConvolutionalLayerVertex() : this(null) { }
-        public ConvolutionalLayerVertex(string name, ConvolutionalParameter parameter = null) : base(VertexKind.Convolutional, name)
+        internal ConvolutionalLayerVertex() : this(null) { }
+        internal ConvolutionalLayerVertex(string name) : base(VertexKind.Convolutional, name) { }
+        internal ConvolutionalLayerVertex(string name, ConvolutionalParameter parameter) : this(name)
         {
             Parameter = parameter;
-        }
-
-        public ConvolutionalLayerVertex AddParameter(ConvolutionalParameter parameter)
-        {
-            var clone = this.DeepClone();
-            clone.Parameter = parameter;
-            return clone;
         }
     }
 
@@ -30,8 +24,8 @@ namespace Titan.Core.Graph.Vertex
         public int Stride { get; internal set; }
         public bool BiasTerm { get; internal set; }
 
-        private ConvolutionalParameter() { }
-        public ConvolutionalParameter(
+        internal ConvolutionalParameter() { }
+        internal ConvolutionalParameter(
             int numberOfOutput, 
             int kernelSize, 
             int padding, 

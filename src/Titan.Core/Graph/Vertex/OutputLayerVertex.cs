@@ -7,11 +7,7 @@ namespace Titan.Core.Graph.Vertex
     {
         public int NumberOfClasses { get; internal set; }
 
-        private OutputLayerVertex() : this(null, 0) { }
-
-        public OutputLayerVertex(string name, int numberOfClasses) : base(VertexKind.Softmax, name)
-        {
-            NumberOfClasses = numberOfClasses;
-        }
+        internal OutputLayerVertex() : this(null) { }
+        internal OutputLayerVertex(string name) : base(VertexKind.Softmax, name) { }
     }
 }

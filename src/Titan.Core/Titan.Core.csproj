@@ -63,16 +63,22 @@
   <ItemGroup>
     <Compile Include="CodeGen\CodeGenMessage.cs" />
     <Compile Include="CodeGen\ICodeGen.cs" />
-    <Compile Include="Graph\Builder\IBuilder.cs" />
+    <Compile Include="Graph\Builder\EltwiseLayerBuilder.cs" />
+    <Compile Include="Graph\Builder\GraphBuilderBase.cs" />
+    <Compile Include="Graph\Builder\IGraphBuilder.cs" />
+    <Compile Include="Graph\Builder\LayerBlockBuilder.cs" />
     <Compile Include="Graph\Builder\LayerBuilder.cs" />
-    <Compile Include="Graph\Builder\ResidualBuilder.cs" />
+    <Compile Include="Graph\Builder\NetworkBuilder.cs" />
+    <Compile Include="Graph\Builder\ResidualBlockBuilder.cs" />
+    <Compile Include="Graph\Builder\SequenceBuilder.cs" />
     <Compile Include="Graph\GraphOperatorExtension.cs" />
-    <Compile Include="Graph\NetworkBuilder.cs" />
+    <Compile Include="Graph\Prefab.cs" />
     <Compile Include="Graph\Vertex\ActivationLayerVertex.cs" />
     <Compile Include="Graph\Vertex\BatchNormalizationLayerVertex.cs" />
-    <Compile Include="Graph\Vertex\DropoutLayerVertex.cs" />
     <Compile Include="Graph\Vertex\EltwiseLayerVertex.cs" />
-    <Compile Include="Graph\Vertex\IVertex.cs" />
+    <Compile Include="Graph\Vertex\DropoutLayerVertex.cs" />
+    <Compile Include="Graph\Vertex\ConcatLayerVertex.cs" />
+    <Compile Include="Graph\IVertex.cs" />
     <Compile Include="Graph\Vertex\ScaleLayerVertex.cs" />
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Communication\Message.cs" />
@@ -81,7 +87,7 @@
     <Compile Include="Collection\ImmutableException.cs" />
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\ParserMessage.cs" />
-    <Compile Include="Graph\Builder\GraphBuilder.cs" />
+    <Compile Include="Graph\GraphBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graph\Identifier.cs" />
     <Compile Include="Graph\Vertex\VertexBase.cs" />

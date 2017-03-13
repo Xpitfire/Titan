@@ -7,24 +7,54 @@ using Titan.Core.Graph.Vertex;
 
 namespace Titan.Core.Graph.Builder
 {
-    public class LayerBuilder<TVertex> : IBuilder<TVertex> where TVertex : IVertex
+    public class LayerBuilder : GraphBuilderBase
     {
+        private NetworkBuilder _networkBuilder;
 
-        public TVertex Vertex { get; internal set; }
-
-        public LayerBuilder(TVertex vertex)
+        public LayerBuilder() : base() { }
+        internal LayerBuilder(NetworkBuilder builder, Identifier parentId) : base(builder.Graph)
         {
-            Vertex = vertex;
-        }
-        
-        public static implicit operator TVertex(LayerBuilder<TVertex> builder)
-        {
-            return builder.Vertex;
+            _networkBuilder = builder;
+            PreviousId = parentId;
         }
 
-        public static implicit operator LayerBuilder<TVertex>(TVertex vertex)
+        public LayerBuilder AddLayer(LayerVertex layer)
         {
-            return new LayerBuilder<TVertex>(vertex);
+            base.AddVertex(layer);
+            base.AddEdge(PreviousId, layer.Identifier);
+            PreviousId = layer.Identifier;
+            return this;
         }
+
+        public LayerBuilder AddLayerBlock(Func<LayerBlockBuilder, LayerBlockBuilder> builder)
+        {
+            var layer = builder(new LayerBlockBuilder(this, PreviousId)).Build();
+            base.AddEdge(PreviousId, layer.Identifier);
+            PreviousId = layer.Identifier;
+            return this;
+        }
+
+        public EltwiseLayerBuilder AddResidualBlock(Func<ResidualBlockLeftBuilder, LayerBuilder> left, Func<ResidualBlockRightBuilder, LayerBuilder> right)
+        {
+            // TODO correct
+            return new EltwiseLayerBuilder();
+        }
+
+        public LayerBuilder AddSequence(Func<SequenceBuilder, LayerBuilder> builder)
+        {
+            // TODO correct
+            return null;
+        }
+
+        public LayerBuilder AddActivation(ActivationLayerVertex layer)
+        {
+            return null;
+        }
+
+        public Network BuildNetwork()
+        {
+            return _networkBuilder.Build();
+        }
+
     }
 }

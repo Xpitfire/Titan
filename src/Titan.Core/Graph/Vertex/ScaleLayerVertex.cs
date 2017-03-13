@@ -7,10 +7,7 @@ namespace Titan.Core.Graph.Vertex
     {
         public bool BiasTerm { get; internal set; }
 
-        private ScaleLayerVertex() : this(null) { }
-        public ScaleLayerVertex(string name, bool biasTerm = true) : base(VertexKind.Scaling, name)
-        {
-            BiasTerm = biasTerm;
-        }
+        internal ScaleLayerVertex() : this(null) { }
+        internal ScaleLayerVertex(string name) : base(VertexKind.Scaling, name) { }
     }
 }

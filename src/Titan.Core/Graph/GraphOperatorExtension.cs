@@ -68,7 +68,7 @@ namespace Titan.Core.Graph
             LayerVertex layerRoot,
             LayerVertex[] leftBranch,
             LayerVertex[] rightBranch,
-            EltwiseLayerVertex eltwiseLayer)
+            ConcatLayerVertex eltwiseLayer)
         {
             network.AddVertex(layerRoot);
             network.AddVertex(eltwiseLayer);
@@ -86,7 +86,7 @@ namespace Titan.Core.Graph
             this Network network,
             LayerVertex layerRoot,
             LayerVertex[] branches,
-            EltwiseLayerVertex eltwiseLayer)
+            ConcatLayerVertex eltwiseLayer)
         {
             network.AddVertex(layerRoot);
             network.AddVertices(branches);
@@ -104,7 +104,7 @@ namespace Titan.Core.Graph
             this Network network,
             LayerVertex layerRoot,
             LayerVertex[][] branches,
-            EltwiseLayerVertex eltwiseLayer)
+            ConcatLayerVertex eltwiseLayer)
         {
             network.AddVertex(layerRoot);
             network.AddVertex(eltwiseLayer);
