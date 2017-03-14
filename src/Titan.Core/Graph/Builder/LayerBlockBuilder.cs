@@ -42,6 +42,13 @@ namespace Titan.Core.Graph.Builder
             return this;
         }
 
+        public LayerBlockBuilder AddDropout(DropoutLayerVertex layer)
+        {
+            base.AddVertex(layer);
+            base.AddEdge(_layer.Identifier, layer.Identifier, cycle: true);
+            return this;
+        }
+
         public LayerVertex Build()
         {
             if (_layer == null) throw new InvalidOperationException();

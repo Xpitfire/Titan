@@ -15,7 +15,7 @@ namespace Titan.Core.Graph
             var builder = new NetworkBuilder("LeNet")
                 .AddInputLayer(new InputLayerVertex("data"))
                 .AddLayerBlock(
-                    b => b.AddLayer(new ConvolutionalLayerVertex("conv1", new ConvolutionalParameter(
+                    b => b.AddLayer(new ConvolutionalLayerVertex("conv1", new ConvolutionalLayerParameter(
                             numberOfOutput: 64,
                             kernelSize: 7,
                             padding: 3,
@@ -25,14 +25,14 @@ namespace Titan.Core.Graph
                           .AddBatchNorm(new BatchNormalizationLayerVertex("bn_conv1"))
                           .AddScale(new ScaleLayerVertex("scale_conv1")))
 
-                .AddLayer(new PoolingLayerVertex("pool1", new PoolingParameter(
+                .AddLayer(new PoolingLayerVertex("pool1", new PoolingLayerParameter(
                     PoolingLayerKind.Max,
                     kernelSize: 3,
                     stride: 2)))
 
                 .AddResidualBlock(
                     left: b => b.AddLayerBlock(
-                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch1", new ConvolutionalParameter(
+                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch1", new ConvolutionalLayerParameter(
                             numberOfOutput: 256,
                             kernelSize: 1,
                             padding: 0,
@@ -41,7 +41,7 @@ namespace Titan.Core.Graph
                           .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch1"))
                           .AddScale(new ScaleLayerVertex("scale2a_branch1"))),
                     right: b => b.AddLayerBlock(
-                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2a", new ConvolutionalParameter(
+                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2a", new ConvolutionalLayerParameter(
                             numberOfOutput: 64,
                             kernelSize: 1,
                             padding: 0,
@@ -51,7 +51,7 @@ namespace Titan.Core.Graph
                               .AddScale(new ScaleLayerVertex("scale2a_branch2a"))
                               .AddActivation(new ActivationLayerVertex("res2a_branch2a_relu")))
                             .AddLayerBlock(
-                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2b", new ConvolutionalParameter(
+                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2b", new ConvolutionalLayerParameter(
                                 numberOfOutput: 64,
                                 kernelSize: 3,
                                 padding: 1,
@@ -61,7 +61,7 @@ namespace Titan.Core.Graph
                               .AddScale(new ScaleLayerVertex("scale2a_branch2b"))
                               .AddActivation(new ActivationLayerVertex("res2a_branch2b_relu")))
                             .AddLayerBlock(
-                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2c", new ConvolutionalParameter(
+                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2c", new ConvolutionalLayerParameter(
                                 numberOfOutput: 256,
                                 kernelSize: 1,
                                 padding: 0,
