@@ -118,5 +118,14 @@ namespace Titan.Core.Graph.Vertex
             };
         }
 
+        public static EltwiseLayerVertex EltwiseLayer(string name, 
+            EltwiseOperationKind operation = EltwiseOperationKind.Add)
+        {
+            return new EltwiseLayerVertex
+            {
+                OperationKind = operation
+            };
+        }
+
     }
 }
