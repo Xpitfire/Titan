@@ -20,7 +20,7 @@ namespace Titan.Core.Graph.Builder
             this._right = right;
         }
 
-        internal LayerBuilder AddEltwise(EltwiseLayerVertex vertex)
+        public LayerBuilder AddEltwise(EltwiseLayerVertex vertex)
         {
             base.AddVertex(vertex);
             base.AddEdge(_left.PreviousId, vertex.Identifier);
