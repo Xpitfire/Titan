@@ -12,17 +12,30 @@ namespace Titan.Core.Graph.Builder
         private NetworkBuilder _networkBuilder;
 
         public LayerBuilder() : base() { }
-        internal LayerBuilder(NetworkBuilder builder, Identifier parentId) : base(builder.Graph)
+        public LayerBuilder(NetworkBuilder builder, Identifier parentId) : base(builder.Graph)
         {
             _networkBuilder = builder;
             PreviousId = parentId;
         }
-
+        public LayerBuilder(GraphBuilderBase graphBuilder, Identifier parentId) : base(graphBuilder.Graph)
+        {
+            PreviousId = parentId;
+        }
+        
         public LayerBuilder AddLayer(LayerVertex layer)
         {
             base.AddVertex(layer);
             base.AddEdge(PreviousId, layer.Identifier);
             PreviousId = layer.Identifier;
+            return this;
+        }
+
+        public LayerBuilder AddLayerSequence(params LayerVertex[] vertices)
+        {
+            foreach (var vertex in vertices)
+            {
+                AddLayer(vertex);
+            }
             return this;
         }
 
@@ -34,20 +47,16 @@ namespace Titan.Core.Graph.Builder
             return this;
         }
 
-        public EltwiseLayerBuilder AddResidualBlock(Func<ResidualBlockLeftBuilder, LayerBuilder> left, Func<ResidualBlockRightBuilder, LayerBuilder> right)
+        public EltwiseLayerBuilder AddResidualBlock(Func<LayerBuilder, LayerBuilder> left, Func<LayerBuilder, LayerBuilder> right)
         {
-            // TODO correct
-            return new EltwiseLayerBuilder();
+            return new EltwiseLayerBuilder(this, 
+                left(new LayerBuilder(this, base.PreviousId)), 
+                right(new LayerBuilder(this, base.PreviousId)));
         }
-
-        public LayerBuilder AddSequence(Func<SequenceBuilder, LayerBuilder> builder)
-        {
-            // TODO correct
-            return null;
-        }
-
+        
         public LayerBuilder AddActivation(ActivationLayerVertex layer)
         {
+
             return null;
         }
 

@@ -9,9 +9,23 @@ namespace Titan.Core.Graph.Builder
 {
     public class EltwiseLayerBuilder : GraphBuilderBase
     {
-        internal LayerBuilder AddEltwise(EltwiseLayerVertex concatLayerVertex)
+        private LayerBuilder _builder;
+        private LayerBuilder _left;
+        private LayerBuilder _right;
+
+        public EltwiseLayerBuilder(LayerBuilder builder, LayerBuilder left, LayerBuilder right) : base(builder.Graph)
         {
-            throw new NotImplementedException();
+            this._builder = builder;
+            this._left = left;
+            this._right = right;
+        }
+
+        internal LayerBuilder AddEltwise(EltwiseLayerVertex vertex)
+        {
+            base.AddVertex(vertex);
+            base.AddEdge(_left.PreviousId, vertex.Identifier);
+            base.AddEdge(_right.PreviousId, vertex.Identifier);
+            return new LayerBuilder(this, vertex.Identifier);
         }
     }
 }

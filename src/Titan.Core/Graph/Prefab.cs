@@ -40,20 +40,18 @@ namespace Titan.Core.Graph
                             biasTerm: false)))
                           .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch1"))
                           .AddScale(new ScaleLayerVertex("scale2a_branch1"))),
-                    right: b => b.AddSequence(
-                        s => s.AddLayerBlock(
-                            lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2a", new ConvolutionalParameter(
-                                numberOfOutput: 64,
-                                kernelSize: 1,
-                                padding: 0,
-                                stride: 1,
-                                biasTerm: false)))
+                    right: b => b.AddLayerBlock(
+                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2a", new ConvolutionalParameter(
+                            numberOfOutput: 64,
+                            kernelSize: 1,
+                            padding: 0,
+                            stride: 1,
+                            biasTerm: false)))
                               .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch2a"))
                               .AddScale(new ScaleLayerVertex("scale2a_branch2a"))
                               .AddActivation(new ActivationLayerVertex("res2a_branch2a_relu")))
-                          
-                          .AddLayerBlock(
-                            lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2b", new ConvolutionalParameter(
+                            .AddLayerBlock(
+                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2b", new ConvolutionalParameter(
                                 numberOfOutput: 64,
                                 kernelSize: 3,
                                 padding: 1,
@@ -62,22 +60,21 @@ namespace Titan.Core.Graph
                               .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch2b"))
                               .AddScale(new ScaleLayerVertex("scale2a_branch2b"))
                               .AddActivation(new ActivationLayerVertex("res2a_branch2b_relu")))
-
-                          .AddLayerBlock(
-                            lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2c", new ConvolutionalParameter(
+                            .AddLayerBlock(
+                        lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2c", new ConvolutionalParameter(
                                 numberOfOutput: 256,
                                 kernelSize: 1,
                                 padding: 0,
                                 stride: 1,
                                 biasTerm: false)))
                               .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch2c"))
-                              .AddScale(new ScaleLayerVertex("scale2a_branch2c")))))
+                              .AddScale(new ScaleLayerVertex("scale2a_branch2c"))))
                 .AddEltwise(new EltwiseLayerVertex("res2a"))
                 .AddActivation(new ActivationLayerVertex("res2a_relu"));
 
             return builder.BuildNetwork();
         }
-        
+
         /*
         public static Network BuildResNet50()
         {
