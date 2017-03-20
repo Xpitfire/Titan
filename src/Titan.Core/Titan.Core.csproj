@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="CodeGen\CodeGenMessage.cs" />
     <Compile Include="CodeGen\ICodeGen.cs" />
+    <Compile Include="Graph\Builder\ConcatLayerBuilder.cs" />
     <Compile Include="Graph\Builder\EltwiseLayerBuilder.cs" />
     <Compile Include="Graph\Builder\GraphBuilderBase.cs" />
     <Compile Include="Graph\Builder\IGraphBuilder.cs" />

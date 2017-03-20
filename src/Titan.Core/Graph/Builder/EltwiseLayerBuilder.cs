@@ -9,10 +9,10 @@ namespace Titan.Core.Graph.Builder
 {
     public class EltwiseLayerBuilder : GraphBuilderBase
     {
-        private LayerBuilder _leftLayerBuilder;
-        private LayerBuilder _rightLayerBuilder;
+        private readonly LayerBuilder _leftLayerBuilder;
+        private readonly LayerBuilder _rightLayerBuilder;
 
-        public EltwiseLayerBuilder(LayerBuilder parentLayerBuilder, LayerBuilder leftLayerBuilder, LayerBuilder rightLayerBuilder) : base(parentLayerBuilder.Graph)
+        public EltwiseLayerBuilder(GraphBuilderBase parentLayerBuilder, LayerBuilder leftLayerBuilder, LayerBuilder rightLayerBuilder) : base(parentLayerBuilder.Graph)
         {
             _leftLayerBuilder = leftLayerBuilder;
             _rightLayerBuilder = rightLayerBuilder;

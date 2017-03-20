@@ -42,6 +42,18 @@ namespace Titan.Core.Graph.Builder
         {
             return new EltwiseLayerBuilder(this, left(new LayerBuilder(this)), right(new LayerBuilder(this)));
         }
+
+        public ConcatLayerBuilder AddInceptionBlock(params Func<LayerBuilder, LayerBuilder>[] layers)
+        {
+            if (layers == null || layers.Length <= 0) throw new InvalidOperationException();
+
+            var builders = new LayerBuilder[layers.Length];
+            for (var i = 0; i < layers.Length; i++)
+            {
+                builders[i] = layers[i](new LayerBuilder(this));
+            }
+            return new ConcatLayerBuilder(this, builders);
+        }
         
         public LayerBuilder AddActivation(ActivationLayerVertex layer)
         {
