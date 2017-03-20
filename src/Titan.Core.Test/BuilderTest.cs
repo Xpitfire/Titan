@@ -21,7 +21,7 @@ namespace Titan.Core.Test
                 .AddInputLayer(inputLayer);
             var graph = builder.BuildGraph();
             Assert.IsTrue(graph.ContainsVertex(inputLayer));
-            Assert.IsTrue(graph.Vertices.First(v => v.Identifier == inputLayer.Identifier) != null);
+            Assert.IsTrue(graph.Vertices.First(v => Equals(v.Identifier, inputLayer.Identifier)) != null);
         }
 
         [TestMethod]

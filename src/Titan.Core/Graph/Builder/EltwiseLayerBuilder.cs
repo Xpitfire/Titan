@@ -23,6 +23,7 @@ namespace Titan.Core.Graph.Builder
             base.AddVertex(eltwiseLayerVertex);
             base.AddEdge(_leftLayerBuilder.PreviousId, eltwiseLayerVertex.Identifier);
             base.AddEdge(_rightLayerBuilder.PreviousId, eltwiseLayerVertex.Identifier);
+            PreviousId = eltwiseLayerVertex.Identifier;
             return new LayerBuilder(this);
         }
     }

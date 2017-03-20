@@ -23,6 +23,7 @@ namespace Titan.Core.Graph.Builder
             {
                 base.AddEdge(builder.PreviousId, concatLayerVertex.Identifier);
             }
+            PreviousId = concatLayerVertex.Identifier;
             return new LayerBuilder(this);
         }
 
