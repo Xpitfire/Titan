@@ -11,9 +11,9 @@ namespace Titan.Core.Graph.Builder
     {
         private LayerVertex _layer;
 
-        public LayerBlockBuilder(LayerBuilder layerBuilder, Identifier parent) : base(layerBuilder.Graph)
+        public LayerBlockBuilder(GraphBuilderBase layerBuilder) : base(layerBuilder.Graph)
         {
-            PreviousId = parent;
+            PreviousId = layerBuilder.PreviousId;
         }
 
         public LayerBlockBuilder AddLayer(LayerVertex layer)

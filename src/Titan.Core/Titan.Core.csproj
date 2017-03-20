@@ -69,8 +69,6 @@
     <Compile Include="Graph\Builder\LayerBlockBuilder.cs" />
     <Compile Include="Graph\Builder\LayerBuilder.cs" />
     <Compile Include="Graph\Builder\NetworkBuilder.cs" />
-    <Compile Include="Graph\Builder\ResidualBlockBuilder.cs" />
-    <Compile Include="Graph\Builder\SequenceBuilder.cs" />
     <Compile Include="Graph\GraphOperatorExtension.cs" />
     <Compile Include="Graph\Prefab.cs" />
     <Compile Include="Graph\Vertex\ActivationLayerVertex.cs" />

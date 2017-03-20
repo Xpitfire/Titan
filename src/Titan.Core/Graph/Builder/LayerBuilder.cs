@@ -9,13 +9,17 @@ namespace Titan.Core.Graph.Builder
 {
     public class LayerBuilder : GraphBuilderBase
     {
-        private NetworkBuilder _networkBuilder;
+        private readonly NetworkBuilder _networkBuilder;
 
         public LayerBuilder() : base() { }
-        internal LayerBuilder(NetworkBuilder builder, Identifier parentId) : base(builder.Graph)
+        public LayerBuilder(NetworkBuilder builder) : base(builder.Graph)
         {
             _networkBuilder = builder;
-            PreviousId = parentId;
+            PreviousId = builder.PreviousId;
+        }
+        public LayerBuilder(GraphBuilderBase builder) : base(builder.Graph)
+        {
+            PreviousId = builder.PreviousId;
         }
 
         public LayerBuilder AddLayer(LayerVertex layer)
@@ -28,27 +32,22 @@ namespace Titan.Core.Graph.Builder
 
         public LayerBuilder AddLayerBlock(Func<LayerBlockBuilder, LayerBlockBuilder> builder)
         {
-            var layer = builder(new LayerBlockBuilder(this, PreviousId)).Build();
+            var layer = builder(new LayerBlockBuilder(this)).Build();
             base.AddEdge(PreviousId, layer.Identifier);
             PreviousId = layer.Identifier;
             return this;
         }
 
-        public EltwiseLayerBuilder AddResidualBlock(Func<ResidualBlockLeftBuilder, LayerBuilder> left, Func<ResidualBlockRightBuilder, LayerBuilder> right)
+        public EltwiseLayerBuilder AddResidualBlock(Func<LayerBuilder, LayerBuilder> left, Func<LayerBuilder, LayerBuilder> right)
         {
-            // TODO correct
-            return new EltwiseLayerBuilder();
+            return new EltwiseLayerBuilder(this, left(new LayerBuilder(this)), right(new LayerBuilder(this)));
         }
-
-        public LayerBuilder AddSequence(Func<SequenceBuilder, LayerBuilder> builder)
-        {
-            // TODO correct
-            return null;
-        }
-
+        
         public LayerBuilder AddActivation(ActivationLayerVertex layer)
         {
-            return null;
+            base.AddVertex(layer);
+            base.AddEdge(PreviousId, layer.Identifier, cycle: true);
+            return this;
         }
 
         public Network BuildNetwork()

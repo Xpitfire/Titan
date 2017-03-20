@@ -40,8 +40,7 @@ namespace Titan.Core.Graph
                             biasTerm: false)))
                           .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch1"))
                           .AddScale(new ScaleLayerVertex("scale2a_branch1"))),
-                    right: b => b.AddSequence(
-                        s => s.AddLayerBlock(
+                    right: b => b.AddLayerBlock(
                             lb => lb.AddLayer(new ConvolutionalLayerVertex("res2a_branch2a", new ConvolutionalParameter(
                                 numberOfOutput: 64,
                                 kernelSize: 1,
@@ -71,48 +70,12 @@ namespace Titan.Core.Graph
                                 stride: 1,
                                 biasTerm: false)))
                               .AddBatchNorm(new BatchNormalizationLayerVertex("bn2a_branch2c"))
-                              .AddScale(new ScaleLayerVertex("scale2a_branch2c")))))
+                              .AddScale(new ScaleLayerVertex("scale2a_branch2c"))))
                 .AddEltwise(new EltwiseLayerVertex("res2a"))
                 .AddActivation(new ActivationLayerVertex("res2a_relu"));
 
             return builder.BuildNetwork();
         }
         
-        /*
-        public static Network BuildResNet50()
-        {
-            var resNet50 = new Network("ResNet-50")
-                
-                .AddVertex(new InputLayerVertex("data"))
-                
-                .AddConvLayerOut64Kernel7Pad3Stride2BiasReLUBatchNormScale("conv1")
-
-                .AddVertex(new PoolingLayerVertex("pool1", new PoolingParameter(
-                    PoolingLayerKind.Max,
-                    kernelSize: 3,
-                    stride: 2)))
-                
-                .AddConvLayerOut256Kernel1Pad0Stride1BatchNormScale("res2a_branch1")
-                .AddConvLayerOut64Kernel1Pad0Stride1ReLUBatchNormScale("res2a_branch2a")
-                .AddConvLayerOut64Kernel3Pad1Stride1ReLUBatchNormScale("res2a_branch2b")
-                .AddConvLayerOut256Kernel1Pad0Stride1BatchNormScale("res2a_branch2c")
-                
-                .AddLayer(new ConcatLayerVertex("res2a"), new ActivationLayerVertex("res2a_relu"))
-
-                .AddEdge("data", "conv1")
-                .AddEdge("conv1", "pool1")
-
-                .AddEdge("pool1", "res2a_branch1")
-                .AddEdge("pool1", "res2a_branch2a")
-
-                .AddEdge("res2a_branch2a", "res2a_branch2b")
-                .AddEdge("res2a_branch2b", "res2a_branch2c")
-                .AddEdge("res2a_branch1", "res2a")
-                .AddEdge("res2a_branch2c", "res2a")
-                ;
-
-            return resNet50;
-        }
-        */
     }
 }

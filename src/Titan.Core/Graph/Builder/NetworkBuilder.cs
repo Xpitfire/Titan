@@ -10,8 +10,8 @@ namespace Titan.Core.Graph.Builder
 {
     public class NetworkBuilder : GraphBuilderBase
     {
-        private string _name;
-        private NetworkParameter _parameter;
+        private readonly string _name;
+        private readonly NetworkParameter _parameter;
         public NetworkBuilder(string name, NetworkParameter parameter = null) : base()
         {
             _name = name;
@@ -21,7 +21,8 @@ namespace Titan.Core.Graph.Builder
         public LayerBuilder AddInputLayer(InputLayerVertex layer)
         {
             base.AddVertex(layer);
-            return new LayerBuilder(this, layer.Identifier);
+            base.PreviousId = layer.Identifier;
+            return new LayerBuilder(this);
         }
 
         public Network Build()
