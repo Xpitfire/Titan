@@ -9,23 +9,21 @@ namespace Titan.Core.Graph.Builder
 {
     public class EltwiseLayerBuilder : GraphBuilderBase
     {
-        private LayerBuilder _builder;
-        private LayerBuilder _left;
-        private LayerBuilder _right;
+        private readonly LayerBuilder _leftLayerBuilder;
+        private readonly LayerBuilder _rightLayerBuilder;
 
-        public EltwiseLayerBuilder(LayerBuilder builder, LayerBuilder left, LayerBuilder right) : base(builder.Graph)
+        public EltwiseLayerBuilder(GraphBuilderBase parentLayerBuilder, LayerBuilder leftLayerBuilder, LayerBuilder rightLayerBuilder) : base(parentLayerBuilder.Graph)
         {
-            this._builder = builder;
-            this._left = left;
-            this._right = right;
+            _leftLayerBuilder = leftLayerBuilder;
+            _rightLayerBuilder = rightLayerBuilder;
         }
 
-        public LayerBuilder AddEltwise(EltwiseLayerVertex vertex)
+        public LayerBuilder AddEltwise(EltwiseLayerVertex eltwiseLayerVertex)
         {
-            base.AddVertex(vertex);
-            base.AddEdge(_left.PreviousId, vertex.Identifier);
-            base.AddEdge(_right.PreviousId, vertex.Identifier);
-            return new LayerBuilder(this, vertex.Identifier);
+            base.AddVertex(eltwiseLayerVertex);
+            base.AddEdge(_leftLayerBuilder.PreviousId, eltwiseLayerVertex.Identifier);
+            base.AddEdge(_rightLayerBuilder.PreviousId, eltwiseLayerVertex.Identifier);
+            return new LayerBuilder(this);
         }
     }
 }
