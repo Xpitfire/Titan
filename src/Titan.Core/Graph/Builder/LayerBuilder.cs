@@ -11,7 +11,7 @@ namespace Titan.Core.Graph.Builder
     {
         private readonly NetworkBuilder _networkBuilder;
 
-        public LayerBuilder() : base() { }
+        private LayerBuilder() : this(null) { }
         public LayerBuilder(NetworkBuilder builder) : base(builder.Graph)
         {
             _networkBuilder = builder;

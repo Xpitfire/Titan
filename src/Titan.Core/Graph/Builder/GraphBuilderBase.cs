@@ -16,20 +16,23 @@ namespace Titan.Core.Graph.Builder
 
         public IDictionary<string, LayerVertex> Vertices { get; }
         public IList<Tuple<string, string, bool>> References { get; }
+        public Identifier GraphId { get; private set; }
 
         internal GraphBuilderBase Graph { get; set; }
         internal Identifier PreviousId { get; set; }
 
-
-        protected GraphBuilderBase()
+        private GraphBuilderBase() { }
+        protected GraphBuilderBase(string graphId)
         {
             Graph = this;
+            GraphId = new Identifier(graphId);
             Vertices = new ConcurrentDictionary<string, LayerVertex>();
             References = new List<Tuple<string, string, bool>>();
         }
         protected GraphBuilderBase(GraphBuilderBase graph)
         {
             Graph = graph;
+            GraphId = graph.GraphId;
         }
 
         public void PersistGraph()
@@ -48,14 +51,15 @@ namespace Titan.Core.Graph.Builder
                         if (i < labels.Count - 1)
                             query.Append(", ");
                     }
-                    session.Run($"CREATE (a:Layer {{{query}}})", 
+
+                    session.Run($"CREATE (a:{Graph.GraphId.Id} {{{query}}})", 
                         vertex.Value.Serialize());
                 }
                 foreach (var reference in Graph.References)
                 {
                     if (reference.Item3) // cycles
                     {
-                        session.Run($"MATCH (l1:Layer {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:Layer {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
+                        session.Run($"MATCH (l1:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
                                     "CREATE (l1)-[:forward]->(l2)" +
                                     "CREATE (l2)-[:forward]->(l1)", 
                                     new Dictionary<string, object>
@@ -66,7 +70,7 @@ namespace Titan.Core.Graph.Builder
                     }
                     else // directed
                     {
-                        session.Run($"MATCH (l1:Layer {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:Layer {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
+                        session.Run($"MATCH (l1:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
                                     "CREATE (l1)-[:forward]->(l2)",
                                     new Dictionary<string, object>
                                     {

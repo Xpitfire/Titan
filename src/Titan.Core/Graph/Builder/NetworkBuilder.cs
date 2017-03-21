@@ -10,11 +10,9 @@ namespace Titan.Core.Graph.Builder
 {
     public class NetworkBuilder : GraphBuilderBase
     {
-        private readonly string _name;
         private readonly NetworkParameter _parameter;
-        public NetworkBuilder(string name, NetworkParameter parameter = null) : base()
+        public NetworkBuilder(string name, NetworkParameter parameter = null) : base(name)
         {
-            _name = name;
             _parameter = parameter ?? NetworkParameter.DefaultNetworkParameter;
         }
         
@@ -28,7 +26,7 @@ namespace Titan.Core.Graph.Builder
         public Network Build()
         {
             return new Network{
-                Name = _name,
+                Name = base.Graph.GraphId.Id,
                 Parameter = _parameter,
                 Graph = base.Graph
             };

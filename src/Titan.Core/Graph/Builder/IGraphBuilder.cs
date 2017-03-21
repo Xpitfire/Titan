@@ -12,6 +12,7 @@ namespace Titan.Core.Graph.Builder
     {
         IDictionary<string, TType> Vertices { get; }
         IList<Tuple<string, string, bool>> References { get; }
+        Identifier GraphId { get; }
         void PersistGraph();
     }
 }
