@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Titan.Core.Graph.Vertex
 {
@@ -12,6 +13,17 @@ namespace Titan.Core.Graph.Vertex
         internal ConvolutionalLayerVertex(string name, ConvolutionalLayerParameter parameter) : this(name)
         {
             Parameter = parameter;
+        }
+
+        public override IDictionary<string, object> Serialize()
+        {
+            var props = base.Serialize();
+            props[nameof(Parameter.NumberOfOutput)] = Parameter.NumberOfOutput;
+            props[nameof(Parameter.KernelSize)] = Parameter.KernelSize;
+            props[nameof(Parameter.Padding)] = Parameter.Padding;
+            props[nameof(Parameter.Stride)] = Parameter.Stride;
+            props[nameof(Parameter.BiasTerm)] = Parameter.BiasTerm;
+            return props;
         }
     }
 

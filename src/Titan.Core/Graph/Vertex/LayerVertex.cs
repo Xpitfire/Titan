@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Titan.Core.Graph.Vertex
 {
@@ -10,6 +11,15 @@ namespace Titan.Core.Graph.Vertex
         protected LayerVertex(VertexKind kind, string name) : base(name)
         {
             Kind = kind;
+        }
+
+        public virtual IDictionary<string, object> Serialize()
+        {
+            return new Dictionary<string, object>
+            {
+                { nameof(Name), Name },
+                { nameof(Kind), Kind.ToString() }
+            };
         }
     }
 
@@ -28,4 +38,5 @@ namespace Titan.Core.Graph.Vertex
         FullyConnected,
         Softmax
     }
+
 }

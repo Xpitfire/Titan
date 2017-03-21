@@ -13,6 +13,13 @@ namespace Titan.Core.Graph.Vertex
 
         internal EltwiseLayerVertex() : this(null) { }
         internal EltwiseLayerVertex(string name) : base(VertexKind.Eltwise, name) { }
+
+        public override IDictionary<string, object> Serialize()
+        {
+            var props = base.Serialize();
+            props[nameof(OperationKind)] = OperationKind.ToString();
+            return props;
+        }
     }
 
     [Serializable]

@@ -10,6 +10,8 @@ namespace Titan.Core.Graph.Builder
 {
     public interface IGraphBuilder<TType>
     {
-        ArrayAdjacencyGraph<TType, Edge<TType>> BuildGraph();
+        IDictionary<string, TType> Vertices { get; }
+        IList<Tuple<string, string, bool>> References { get; }
+        void PersistGraph();
     }
 }

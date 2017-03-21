@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Titan.Core.Graph.Vertex
 {
@@ -13,6 +14,15 @@ namespace Titan.Core.Graph.Vertex
         public PoolingLayerVertex(string name, PoolingLayerParameter parameter) : this(name)
         {
             Parameter = parameter;
+        }
+
+        public override IDictionary<string, object> Serialize()
+        {
+            var props = base.Serialize();
+            props[nameof(Parameter.PoolingKind)] = Parameter.PoolingKind.ToString();
+            props[nameof(Parameter.KernelSize)] = Parameter.KernelSize;
+            props[nameof(Parameter.Stride)] = Parameter.Stride;
+            return props;
         }
     }
 

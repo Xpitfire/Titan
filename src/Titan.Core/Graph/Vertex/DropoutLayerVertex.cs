@@ -13,5 +13,12 @@ namespace Titan.Core.Graph.Vertex
 
         internal DropoutLayerVertex() : this(null) { }
         internal DropoutLayerVertex(string name) : base(VertexKind.Dropout, name) { }
+
+        public override IDictionary<string, object> Serialize()
+        {
+            var props = base.Serialize();
+            props[nameof(Rate)] = Rate;
+            return props;
+        }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using QuickGraph;
 using Titan.Core.Graph.Vertex;
 using Neo4j.Driver.V1;
 
@@ -15,25 +14,74 @@ namespace Titan.Core.Graph.Builder
         public const string User = "xpitfire";
         public const string Password = "xpitfire";
 
-        internal AdjacencyGraph<LayerVertex, Edge<LayerVertex>> Graph { get; set; }
+        public IDictionary<string, LayerVertex> Vertices { get; }
+        public IList<Tuple<string, string, bool>> References { get; }
+
+        internal GraphBuilderBase Graph { get; set; }
         internal Identifier PreviousId { get; set; }
 
 
-        protected GraphBuilderBase() : this(new AdjacencyGraph<LayerVertex, Edge<LayerVertex>>()) { }
-        protected GraphBuilderBase(AdjacencyGraph<LayerVertex, Edge<LayerVertex>> graph)
+        protected GraphBuilderBase()
+        {
+            Graph = this;
+            Vertices = new ConcurrentDictionary<string, LayerVertex>();
+            References = new List<Tuple<string, string, bool>>();
+        }
+        protected GraphBuilderBase(GraphBuilderBase graph)
         {
             Graph = graph;
         }
 
-        public ArrayAdjacencyGraph<LayerVertex, Edge<LayerVertex>> BuildGraph()
+        public void PersistGraph()
         {
-            return Graph.ToArrayAdjacencyGraph();
+            using (var driver = GraphDatabase.Driver(ConncetionString, AuthTokens.Basic(User, Password)))
+            using (var session = driver.Session())
+            {
+                foreach (var vertex in Graph.Vertices)
+                {
+                    var props = vertex.Value.Serialize();
+                    var labels = props.Keys.ToList();
+                    var query = new StringBuilder();
+                    for (var i = 0; i < labels.Count; i++)
+                    {
+                        query.Append($"{labels[i]}: {{{labels[i]}}}");
+                        if (i < labels.Count - 1)
+                            query.Append(", ");
+                    }
+                    session.Run($"CREATE (a:Layer {{{query}}})", 
+                        vertex.Value.Serialize());
+                }
+                foreach (var reference in Graph.References)
+                {
+                    if (reference.Item3) // cycles
+                    {
+                        session.Run($"MATCH (l1:Layer {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:Layer {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
+                                    "CREATE (l1)-[:forward]->(l2)" +
+                                    "CREATE (l2)-[:forward]->(l1)", 
+                                    new Dictionary<string, object>
+                                    {
+                                        { "name1", $"{reference.Item1}" },
+                                        { "name2", $"{reference.Item2}" }
+                                    });
+                    }
+                    else // directed
+                    {
+                        session.Run($"MATCH (l1:Layer {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:Layer {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
+                                    "CREATE (l1)-[:forward]->(l2)",
+                                    new Dictionary<string, object>
+                                    {
+                                        { "name1", $"{reference.Item1}" },
+                                        { "name2", $"{reference.Item2}" }
+                                    });
+                    }
+                }
+            }
         }
 
         protected void AddVertex(LayerVertex vertex)
         {
             if (vertex == null) return;
-            Graph.AddVertex(vertex);
+            Graph.Vertices[vertex.Identifier.Id] = vertex;
         }
 
         protected void AddVertices(LayerVertex[] paramLayers)
@@ -41,22 +89,14 @@ namespace Titan.Core.Graph.Builder
             foreach (var layerVertex in paramLayers)
             {
                 if (layerVertex == null) continue;
-                Graph.AddVertex(layerVertex);
+                AddVertex(layerVertex);
             }
         }
 
-        protected void AddEdge(Identifier vertexId1, Identifier vertexId2, bool cycle = false) => AddEdge(vertexId1.Id, vertexId2.Id, cycle);
-        protected void AddEdge(string vertexId1, string vertexId2, bool cycle = false)
+        protected void AddEdge(Identifier vertexId1, Identifier vertexId2, bool cycle = false)
         {
-            var vertex1 = Graph.Vertices.First(v => v.Identifier.Id == vertexId1);
-            var vertex2 = Graph.Vertices.FirstOrDefault(v => v.Identifier.Id == vertexId2);
-            if (vertex1 == null)
-                throw new ArgumentException($"Could not find defined vertex ID: {vertexId1}");
-            if (vertex2 == null)
-                throw new ArgumentException($"Could not find defined vertex ID: {vertexId2}");
-            Graph.AddEdge(new Edge<LayerVertex>(vertex1, vertex2));
-            if (cycle)
-                Graph.AddEdge(new Edge<LayerVertex>(vertex2, vertex1));
+            var graphRef = new Tuple<string, string, bool>(vertexId1.Id, vertexId2.Id, cycle);
+            Graph.References.Add(graphRef);
         }
     }
 }

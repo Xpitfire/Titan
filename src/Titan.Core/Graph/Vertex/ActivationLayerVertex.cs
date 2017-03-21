@@ -13,6 +13,13 @@ namespace Titan.Core.Graph.Vertex
 
         internal ActivationLayerVertex() : this(null) { }
         internal ActivationLayerVertex(string name) : base(VertexKind.Activation, name) { }
+
+        public override IDictionary<string, object> Serialize()
+        {
+            var props = base.Serialize();
+            props[nameof(ActivationFunction)] = ActivationFunction.ToString();
+            return props;
+        }
     }
 
     public enum ActivationFunctionType

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using QuickGraph;
+using Titan.Core.Graph.Builder;
 using Titan.Core.Graph.Vertex;
 
 namespace Titan.Core.Graph
@@ -8,7 +8,7 @@ namespace Titan.Core.Graph
     [Serializable]
     public class Network
     {
-        public ArrayAdjacencyGraph<LayerVertex, Edge<LayerVertex>> Graph { get; internal set; }
+        public GraphBuilderBase Graph { get; internal set; }
         public NetworkParameter Parameter { get; internal set; }
         public string Name { get; internal set; }
 

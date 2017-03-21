@@ -30,7 +30,7 @@ namespace Titan.Core.Graph.Builder
             return new Network{
                 Name = _name,
                 Parameter = _parameter,
-                Graph = base.Graph.ToArrayAdjacencyGraph()
+                Graph = base.Graph
             };
         }
                 

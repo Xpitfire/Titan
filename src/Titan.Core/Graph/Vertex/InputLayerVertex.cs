@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Titan.Core.Collection;
 
 namespace Titan.Core.Graph.Vertex
@@ -12,7 +13,19 @@ namespace Titan.Core.Graph.Vertex
 
         internal InputLayerVertex() : this(null) { }
         internal InputLayerVertex(string name) : base(VertexKind.Input, name) { }
-        
+
+        public override IDictionary<string, object> Serialize()
+        {
+            var props = base.Serialize();
+            props[nameof(DimensionData.Channels)] = DimensionData.Channels;
+            props[nameof(DimensionData.Height)] = DimensionData.Height;
+            props[nameof(DimensionData.Width)] = DimensionData.Width;
+            props[nameof(InputKind)] = InputKind.ToString();
+            props[nameof(Parameter.BatchSize)] = Parameter.BatchSize;
+            props[nameof(Parameter.CropSize)] = Parameter.CropSize;
+            props[nameof(Parameter.Mirror)] = Parameter.Mirror;
+            return props;
+        }
     }
 
     [Serializable]

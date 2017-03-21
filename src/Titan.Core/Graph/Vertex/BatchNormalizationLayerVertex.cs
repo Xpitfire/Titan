@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Titan.Core.Graph.Vertex
 {
@@ -9,5 +10,12 @@ namespace Titan.Core.Graph.Vertex
 
         internal BatchNormalizationLayerVertex() : this(null)  { }
         internal BatchNormalizationLayerVertex(string name) : base(VertexKind.BatchNormalization, name) { }
+
+        public override IDictionary<string, object> Serialize()
+        {
+            var props = base.Serialize();
+            props[nameof(UseGlobalStats)] = UseGlobalStats;
+            return props;
+        }
     }
 }
