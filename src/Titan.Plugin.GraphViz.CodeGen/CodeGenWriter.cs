@@ -28,7 +28,7 @@ namespace Titan.Plugin.GraphViz.CodeGen
             Builder.Append($"\t{layer.Name} -> {network.Name};\n");
         }
 
-        protected static void OutputLayerEnter(OutputLayerVertex outputLayer)
+        protected static void OutputLayerEnter(SoftmaxLayerVertex outputLayer)
         {
             if (outputLayer == null) return;
         }

@@ -4,12 +4,16 @@ using System.Collections.Generic;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class OutputLayerVertex : LayerVertex
+    public sealed class SoftmaxLayerVertex : LayerVertex
     {
         public int NumberOfClasses { get; internal set; }
 
-        internal OutputLayerVertex() : this(null) { }
-        internal OutputLayerVertex(string name) : base(VertexKind.Softmax, name) { }
+        internal SoftmaxLayerVertex() : this(null) { }
+        internal SoftmaxLayerVertex(string name) : this(name, 0) { }
+        public SoftmaxLayerVertex(string name, int numberOfClasses) : base(VertexKind.Softmax, name)
+        {
+            NumberOfClasses = numberOfClasses;
+        }
 
         public override IDictionary<string, object> Serialize()
         {

@@ -127,5 +127,10 @@ namespace Titan.Core.Graph.Vertex
             };
         }
 
+        public static SoftmaxLayerVertex SoftmaxLayer(string name, int numberOfClasses)
+        {
+            return new SoftmaxLayerVertex(name, numberOfClasses);
+        }
+
     }
 }

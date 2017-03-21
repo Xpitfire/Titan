@@ -173,7 +173,7 @@
     <Compile Include="Graph\Vertex\InputLayerVertex.cs" />
     <Compile Include="Graph\Vertex\LayerVertex.cs" />
     <Compile Include="Graph\Network.cs" />
-    <Compile Include="Graph\Vertex\OutputLayerVertex.cs" />
+    <Compile Include="Graph\Vertex\SoftmaxLayerVertex.cs" />
     <Compile Include="Graph\Vertex\PoolingLayerVertex.cs" />
     <Compile Include="Graph\Vertex\VertexCloner.cs" />
   </ItemGroup>

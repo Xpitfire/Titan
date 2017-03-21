@@ -132,6 +132,7 @@ namespace Titan.Core.Test
             var scale3 = ScaleLayer("scale5-3");
             var eltwise = EltwiseLayer("res5");
             var pool = PoolLayer("pool5", PoolLayerParam(5));
+            var softmax = SoftmaxLayer("softmax5", 5);
 
             var builder = new NetworkBuilder("test5")
                 .AddInputLayer(inputLayer)
@@ -151,7 +152,8 @@ namespace Titan.Core.Test
                             .AddBatchNorm(batchNorm3)
                             .AddScale(scale3)))
                 .AddEltwise(eltwise)
-                .AddLayer(pool);
+                .AddLayer(pool)
+                .AddLayer(softmax);
 
             builder.PersistGraph();
 
