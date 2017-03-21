@@ -5,11 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using QuickGraph;
 using Titan.Core.Graph.Vertex;
+using Neo4j.Driver.V1;
 
 namespace Titan.Core.Graph.Builder
 {
     public abstract class GraphBuilderBase : IGraphBuilder<LayerVertex>
     {
+        public const string ConncetionString = "bolt://localhost:7687";
+        public const string User = "xpitfire";
+        public const string Password = "xpitfire";
+
         internal AdjacencyGraph<LayerVertex, Edge<LayerVertex>> Graph { get; set; }
         internal Identifier PreviousId { get; set; }
 

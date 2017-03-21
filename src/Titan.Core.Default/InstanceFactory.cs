@@ -14,16 +14,16 @@ namespace Titan.Core.Default
 {
     public sealed class InstanceFactory
     {
-        private static ICommunication<string, string> communicationInstance;
+        private static ICommunication<string, string> _communicationInstance;
         public static ICommunication<string, string> CommunicationInstance => 
-            communicationInstance ?? (communicationInstance = PluginFactory.Get<ICommunicationPlugin>());
+            _communicationInstance ?? (_communicationInstance = PluginFactory.Get<ICommunicationPlugin>());
 
-        private static IParser<ParserMessage> parserInstance;
+        private static IParser<ParserMessage> _parserInstance;
         public static IParser<ParserMessage> ParserInstance => 
-            parserInstance ?? (parserInstance = PluginFactory.Get<IParserPlugin>());
+            _parserInstance ?? (_parserInstance = PluginFactory.Get<IParserPlugin>());
 
-        private static ICodeGen<CodeGenMessage> codeGenInstance;
+        private static ICodeGen<CodeGenMessage> _codeGenInstance;
         public static ICodeGen<CodeGenMessage> CodeGenInstance =>
-            codeGenInstance ?? (codeGenInstance = PluginFactory.Get<ICodeGenPlugin>());
+            _codeGenInstance ?? (_codeGenInstance = PluginFactory.Get<ICodeGenPlugin>());
     }
 }
