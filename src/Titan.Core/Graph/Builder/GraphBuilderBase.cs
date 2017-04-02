@@ -4,16 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Titan.Core.Graph.Vertex;
-using Neo4j.Driver.V1;
+using Titan.Core.Graph.Database;
 
 namespace Titan.Core.Graph.Builder
 {
     public abstract class GraphBuilderBase : IGraphBuilder<LayerVertex>
     {
-        public const string ConncetionString = "bolt://localhost:7687";
-        public const string User = "xpitfire";
-        public const string Password = "xpitfire";
-
         public IDictionary<string, LayerVertex> Vertices { get; }
         public IList<Tuple<string, string, bool>> References { get; }
         public Identifier GraphId { get; private set; }
@@ -37,8 +33,7 @@ namespace Titan.Core.Graph.Builder
 
         public void PersistGraph()
         {
-            using (var driver = GraphDatabase.Driver(ConncetionString, AuthTokens.Basic(User, Password)))
-            using (var session = driver.Session())
+            ConnectionPool.Instance.Execute(session =>
             {
                 foreach (var vertex in Graph.Vertices)
                 {
@@ -52,7 +47,7 @@ namespace Titan.Core.Graph.Builder
                             query.Append(", ");
                     }
 
-                    session.Run($"CREATE (a:{Graph.GraphId.Id} {{{query}}})", 
+                    session.Run($"CREATE (a:{Graph.GraphId.Id} {{{query}}})",
                         vertex.Value.Serialize());
                 }
                 foreach (var reference in Graph.References)
@@ -61,7 +56,7 @@ namespace Titan.Core.Graph.Builder
                     {
                         session.Run($"MATCH (l1:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
                                     "CREATE (l1)-[:forward]->(l2)" +
-                                    "CREATE (l2)-[:forward]->(l1)", 
+                                    "CREATE (l2)-[:forward]->(l1)",
                                     new Dictionary<string, object>
                                     {
                                         { "name1", $"{reference.Item1}" },
@@ -79,7 +74,7 @@ namespace Titan.Core.Graph.Builder
                                     });
                     }
                 }
-            }
+            });
         }
 
         protected void AddVertex(LayerVertex vertex)
