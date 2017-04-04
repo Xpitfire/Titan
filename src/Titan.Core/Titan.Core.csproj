@@ -150,8 +150,6 @@
     <Compile Include="Graph\Builder\LayerBuilder.cs" />
     <Compile Include="Graph\Builder\NetworkBuilder.cs" />
     <Compile Include="Graph\Database\ConnectionPool.cs" />
-    <Compile Include="Graph\Divider\SequenceDivider.cs" />
-    <Compile Include="Graph\Operator\Operators.cs" />
     <Compile Include="Graph\Prefab.cs" />
     <Compile Include="Graph\Vertex\ActivationLayerVertex.cs" />
     <Compile Include="Graph\Vertex\BatchNormalizationLayerVertex.cs" />

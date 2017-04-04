@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.HeuristicLab.Problem", "Titan.HeuristicLab.Problem\Titan.HeuristicLab.Problem.csproj", "{B0F5CACA-204D-473E-A6AC-EF63DFB053A5}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -40,8 +40,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Service", "Titan.Service\Titan.Service.csproj", "{C47F8D46-7320-4675-BEA4-44B0C7999E0E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Service.Impl.HeuristicLab", "Titan.Service.Impl.HeuristicLab\Titan.Service.Impl.HeuristicLab.csproj", "{C58885F4-3D3E-416C-AB5A-C53DF3454B59}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Titan.Console", "Titan.Console\Titan.Console.csproj", "{75A5C72F-52D0-46D5-AC3E-41F9E1A8491B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,10 +95,6 @@ Global
 		{C58885F4-3D3E-416C-AB5A-C53DF3454B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C58885F4-3D3E-416C-AB5A-C53DF3454B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C58885F4-3D3E-416C-AB5A-C53DF3454B59}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75A5C72F-52D0-46D5-AC3E-41F9E1A8491B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75A5C72F-52D0-46D5-AC3E-41F9E1A8491B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75A5C72F-52D0-46D5-AC3E-41F9E1A8491B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75A5C72F-52D0-46D5-AC3E-41F9E1A8491B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
