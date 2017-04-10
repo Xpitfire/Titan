@@ -98,7 +98,13 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Symbol\LayerSymbol.cs" />
+    <Compile Include="Symbol\ConvolutionalLayerSymbol.cs" />
+    <Compile Include="Symbol\FullyConnectedLayerSymbol.cs" />
+    <Compile Include="Symbol\InceptionLayerSymbol.cs" />
+    <Compile Include="Symbol\PoolingLayerSymbol.cs" />
+    <Compile Include="Symbol\ResNetLayerSymbol.cs" />
+    <Compile Include="Symbol\SoftmaxSymbol.cs" />
+    <Compile Include="Symbol\SymbolicExpressionGrammar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
