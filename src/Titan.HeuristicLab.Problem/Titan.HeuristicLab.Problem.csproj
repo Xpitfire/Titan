@@ -94,7 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IEvaluator.cs" />
+    <Compile Include="Interpreter.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,7 +103,6 @@
     <Compile Include="Symbol\InceptionLayerSymbol.cs" />
     <Compile Include="Symbol\PoolingLayerSymbol.cs" />
     <Compile Include="Symbol\ResNetLayerSymbol.cs" />
-    <Compile Include="Symbol\SoftmaxSymbol.cs" />
     <Compile Include="Symbol\SymbolicExpressionGrammar.cs" />
   </ItemGroup>
   <ItemGroup>

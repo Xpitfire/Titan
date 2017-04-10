@@ -5,19 +5,19 @@ using HeuristicLab.Persistence.Default.CompositeSerializers.Storable;
 namespace Titan.HeuristicLab.Problem
 {
     [StorableClass]
-    public class PoolingSymbol : Symbol
+    public class PoolingLayerSymbol : Symbol
     {
-        private PoolingSymbol(PoolingSymbol original, Cloner cloner) : base(original, cloner)
+        private PoolingLayerSymbol(PoolingLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public PoolingSymbol() : base("PoolingSymbol", "Creates a pooling layer on the previous output neurons.")
+        public PoolingLayerSymbol() : base("PoolingSymbol", "Creates a pooling layer on the previous output neurons.")
         {
         }
 
         public override IDeepCloneable Clone(Cloner cloner)
         {
-            return new PoolingSymbol(this, cloner);
+            return new PoolingLayerSymbol(this, cloner);
         }
 
         public override int MinimumArity => 1;

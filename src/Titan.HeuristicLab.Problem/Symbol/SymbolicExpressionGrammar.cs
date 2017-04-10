@@ -7,7 +7,7 @@ using HeuristicLab.Persistence.Default.CompositeSerializers.Storable;
 namespace Titan.HeuristicLab.Problem
 {
     [StorableClass]
-    [Item("Lawn Mower Grammar", "The grammar for the lawn mower demo GP problem.")]
+    [Item("Network Grammar", "The grammar for DNN GP problem.")]
     public class Grammar : SymbolicExpressionGrammar
     {
 
@@ -20,7 +20,7 @@ namespace Titan.HeuristicLab.Problem
         {
         }
 
-        public Grammar() : base("Grammar", "The grammar for the lawn mower demo GP problem.")
+        public Grammar() : base("Grammar", "The grammar for DNN GP problem.")
         {
             Initialize();
         }
@@ -34,8 +34,8 @@ namespace Titan.HeuristicLab.Problem
         private void Initialize() {
             // create all symbols
             var conv = new ConvolutionalLayerSymbol();
-            var fc = new FullyConnectedSymbol();
-            var pool = new PoolingSymbol();
+            var fc = new FullyConnectedLayerSymbol();
+            var pool = new PoolingLayerSymbol();
             var inception = new InceptionLayerSymbol();
             var resnet = new ResNetLayerSymbol();
 
@@ -55,7 +55,16 @@ namespace Titan.HeuristicLab.Problem
             // define grammar rules
             // all symbols are allowed ...
             foreach (var s in allSymbols) {
-                
+                AddAllowedChildSymbol(conv, s, 0);
+                AddAllowedChildSymbol(conv, s, 1);
+
+                AddAllowedChildSymbol(fc, s, 0);
+                AddAllowedChildSymbol(fc, s, 1);
+
+                AddAllowedChildSymbol(pool, s, 1);
+                AddAllowedChildSymbol(inception, s, 1);
+                AddAllowedChildSymbol(resnet, s, 1);
+
                 // ... as root symbol
                 AddAllowedChildSymbol(StartSymbol, s, 0);
             }

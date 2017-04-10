@@ -5,19 +5,19 @@ using HeuristicLab.Persistence.Default.CompositeSerializers.Storable;
 namespace Titan.HeuristicLab.Problem
 {
     [StorableClass]
-    public class FullyConnectedSymbol : Symbol
+    public class FullyConnectedLayerSymbol : Symbol
     {
-        private FullyConnectedSymbol(FullyConnectedSymbol original, Cloner cloner) : base(original, cloner)
+        private FullyConnectedLayerSymbol(FullyConnectedLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public FullyConnectedSymbol() : base("FullyConnectedSymbol", "Creates a fully connected layer on the previous output neurons.")
+        public FullyConnectedLayerSymbol() : base("FullyConnectedSymbol", "Creates a fully connected layer on the previous output neurons.")
         {
         }
 
         public override IDeepCloneable Clone(Cloner cloner)
         {
-            return new FullyConnectedSymbol(this, cloner);
+            return new FullyConnectedLayerSymbol(this, cloner);
         }
 
         public override int MinimumArity => 1;
