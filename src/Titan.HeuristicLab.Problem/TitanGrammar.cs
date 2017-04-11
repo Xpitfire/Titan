@@ -8,25 +8,25 @@ namespace Titan.HeuristicLab.Problem
 {
     [StorableClass]
     [Item("Network Grammar", "The grammar for DNN GP problem.")]
-    public class Grammar : SymbolicExpressionGrammar
+    public class TitanGrammar : SymbolicExpressionGrammar
     {
 
         [StorableConstructor]
-        private Grammar(bool deserializing) : base(deserializing)
+        private TitanGrammar(bool deserializing) : base(deserializing)
         {
         }
 
-        private Grammar(Grammar original, Cloner cloner) : base(original, cloner)
+        private TitanGrammar(TitanGrammar original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public Grammar() : base("Grammar", "The grammar for DNN GP problem.")
+        public TitanGrammar() : base(nameof(TitanGrammar), "The grammar for DNN GP problem.")
         {
             Initialize();
         }
 
         public override IDeepCloneable Clone(Cloner cloner) {
-            return new Grammar(this, cloner);
+            return new TitanGrammar(this, cloner);
         }
 
         // initialize set of allowed symbols and define
@@ -61,12 +61,14 @@ namespace Titan.HeuristicLab.Problem
                 AddAllowedChildSymbol(fc, s, 0);
                 AddAllowedChildSymbol(fc, s, 1);
 
+                AddAllowedChildSymbol(pool, s, 0);
                 AddAllowedChildSymbol(pool, s, 1);
+
                 AddAllowedChildSymbol(inception, s, 1);
                 AddAllowedChildSymbol(resnet, s, 1);
 
                 // ... as root symbol
-                AddAllowedChildSymbol(StartSymbol, s, 0);
+                AddAllowedChildSymbol(StartSymbol, s, 1);
             }
         }
     }

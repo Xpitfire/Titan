@@ -7,11 +7,12 @@ namespace Titan.HeuristicLab.Problem
     [StorableClass]
     public class ResNetLayerSymbol : Symbol
     {
+        [StorableConstructor]
         private ResNetLayerSymbol(ResNetLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public ResNetLayerSymbol() : base("ResNetLayerSymbol", "Creates a residual-branch layer on the previous output neurons.")
+        public ResNetLayerSymbol() : base(nameof(ResNetLayerSymbol), "Creates a residual-branch layer on the previous output neurons.")
         {
         }
 

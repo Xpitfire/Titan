@@ -35,11 +35,11 @@ namespace Titan.HeuristicLab.Problem
                   Parameters[BranchDepthParameterName];
             }
         }
-        public IValueParameter<Grammar> GrammarParameter
+        public IValueParameter<TitanGrammar> GrammarParameter
         {
             get
             {
-                return (IValueParameter<Grammar>)
+                return (IValueParameter<TitanGrammar>)
                   Parameters[NetworkGrammarParameterName];
             }
         }
@@ -62,7 +62,7 @@ namespace Titan.HeuristicLab.Problem
             Parameters.Add(
                 new FixedValueParameter<IntValue>(
                     BranchDepthParameterName, "Depth of the branches.", new IntValue(8)));
-            Encoding = new SymbolicExpressionTreeEncoding(new Grammar());
+            Encoding = new SymbolicExpressionTreeEncoding(new TitanGrammar());
         }
 
         public override IDeepCloneable Clone(Cloner cloner) => new Problem(this, cloner);

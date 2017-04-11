@@ -7,11 +7,16 @@ namespace Titan.HeuristicLab.Problem
     [StorableClass]
     public class InceptionLayerSymbol : Symbol
     {
+        [StorableConstructor]
+        private InceptionLayerSymbol(bool deserializing) : base(deserializing)
+        {
+        }
+
         private InceptionLayerSymbol(InceptionLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public InceptionLayerSymbol() : base("InceptionLayerSymbol", "Creates a multi-branch layer on the previous output neurons.")
+        public InceptionLayerSymbol() : base(nameof(InceptionLayerSymbol), "Creates a multi-branch layer on the previous output neurons.")
         {
         }
 

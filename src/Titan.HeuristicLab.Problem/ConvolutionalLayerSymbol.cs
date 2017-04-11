@@ -13,11 +13,16 @@ namespace Titan.HeuristicLab.Problem
     [StorableClass]
     public class ConvolutionalLayerSymbol : Symbol
     {
+        [StorableConstructor]
+        private ConvolutionalLayerSymbol(bool deserializing) : base(deserializing)
+        {
+        }
+
         private ConvolutionalLayerSymbol(ConvolutionalLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public ConvolutionalLayerSymbol() : base("ConvolutionalLayerSymbol", "Creates a convolution on the previous output neurons.")
+        public ConvolutionalLayerSymbol() : base(nameof(ConvolutionalLayerSymbol), "Creates a convolution on the previous output neurons.")
         {
         }
 

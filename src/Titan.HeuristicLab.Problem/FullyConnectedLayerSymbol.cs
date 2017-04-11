@@ -7,11 +7,16 @@ namespace Titan.HeuristicLab.Problem
     [StorableClass]
     public class FullyConnectedLayerSymbol : Symbol
     {
+        [StorableConstructor]
+        private FullyConnectedLayerSymbol(bool deserializing) : base(deserializing)
+        {
+        }
+
         private FullyConnectedLayerSymbol(FullyConnectedLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public FullyConnectedLayerSymbol() : base("FullyConnectedSymbol", "Creates a fully connected layer on the previous output neurons.")
+        public FullyConnectedLayerSymbol() : base(nameof(FullyConnectedLayerSymbol), "Creates a fully connected layer on the previous output neurons.")
         {
         }
 

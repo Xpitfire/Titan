@@ -7,11 +7,16 @@ namespace Titan.HeuristicLab.Problem
     [StorableClass]
     public class PoolingLayerSymbol : Symbol
     {
+        [StorableConstructor]
+        private PoolingLayerSymbol(bool deserializing) : base(deserializing)
+        {
+        }
+
         private PoolingLayerSymbol(PoolingLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
-        public PoolingLayerSymbol() : base("PoolingSymbol", "Creates a pooling layer on the previous output neurons.")
+        public PoolingLayerSymbol() : base(nameof(PoolingLayerSymbol), "Creates a pooling layer on the previous output neurons.")
         {
         }
 
