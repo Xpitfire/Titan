@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Titan.Core.Communication;
-using Titan.Core.Parser;
 using Titan.Core.Graph;
+using Titan.Service.Communication;
 using Titan.Service.Parser;
 
 namespace Titan.Plugin.Caffe.Parser

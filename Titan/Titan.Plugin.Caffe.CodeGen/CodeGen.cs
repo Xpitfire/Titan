@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Titan.Core.CodeGen;
-using Titan.Core.Communication;
 using Titan.Core.Graph;
 using Titan.Core.Graph.Vertex;
 using Titan.Service.CodeGen;
+using Titan.Service.Communication;
 
 namespace Titan.Plugin.Caffe.CodeGen
 {

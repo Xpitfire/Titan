@@ -131,13 +131,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGen\CodeGenMessage.cs" />
-    <Compile Include="CodeGen\ICodeGen.cs" />
     <Compile Include="Collection\ImmutableException.cs" />
     <Compile Include="Collection\ImmutableList.cs" />
-    <Compile Include="Communication\ICommunication.cs" />
-    <Compile Include="Communication\Message.cs" />
-    <Compile Include="Communication\Response.cs" />
     <Compile Include="Graph\Builder\ConcatLayerBuilder.cs" />
     <Compile Include="Graph\Builder\EltwiseLayerBuilder.cs" />
     <Compile Include="Graph\Builder\GraphBuilderBase.cs" />
@@ -165,8 +160,6 @@
     <Compile Include="Graph\Vertex\VertexBase.cs" />
     <Compile Include="Graph\Vertex\VertexCloner.cs" />
     <Compile Include="Graph\Vertex\VertexFactory.cs" />
-    <Compile Include="Parser\IParser.cs" />
-    <Compile Include="Parser\ParserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

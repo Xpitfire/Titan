@@ -1,9 +1,8 @@
 ﻿using System;
-using Titan.Core.Communication;
 using Titan.Core.Graph;
-using Titan.Core.Graph.Vertex;
+using Titan.Service.Communication;
 
-namespace Titan.Core.Parser
+namespace Titan.Service.Parser
 {
     [Serializable]
     public class ParserMessage : Message<string>

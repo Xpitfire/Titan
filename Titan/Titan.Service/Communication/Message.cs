@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Titan.Core.Communication
+namespace Titan.Service.Communication
 {
     [Serializable]
     public class Message<T>

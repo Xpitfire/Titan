@@ -1,7 +1,4 @@
-﻿using Titan.Core.CodeGen;
-using Titan.Core.Communication;
-using Titan.Core.Parser;
-using Titan.Service.CodeGen;
+﻿using Titan.Service.CodeGen;
 using Titan.Service.Communication;
 using Titan.Service.Parser;
 

@@ -1,9 +1,8 @@
 ﻿using System;
-using Titan.Core.Communication;
 using Titan.Core.Graph;
-using Titan.Core.Graph.Vertex;
+using Titan.Service.Communication;
 
-namespace Titan.Core.CodeGen
+namespace Titan.Service.CodeGen
 {
     [Serializable]
     public class CodeGenMessage : Message<Network>

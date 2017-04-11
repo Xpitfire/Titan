@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Titan.Core.Communication;
+using Titan.Service.Communication;
 
 namespace Titan.Plugin.Caffe.Test
 {

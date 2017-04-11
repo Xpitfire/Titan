@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using RestSharp;
-using Titan.Core.Communication;
 using Titan.Service.Communication;
 
 namespace Titan.Plugin.Caffe.Comm.REST

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Titan.Core.Communication
+namespace Titan.Service.Communication
 {
     public interface ICommunication<in TSendMessage, out TReceiveMessage>
     {

@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Titan.Core.Communication;
+﻿using Titan.Service.Communication;
 
-namespace Titan.Core.Parser
+namespace Titan.Service.Parser
 {
     public interface IParser<out TMessage> where TMessage : ParserMessage
     {
