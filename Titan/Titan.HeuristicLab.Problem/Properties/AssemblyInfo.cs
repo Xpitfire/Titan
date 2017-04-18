@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Titan.HeuristicLab.Problem")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Provides a external problem representation for Deep Learning")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Celum GmbH")]
 [assembly: AssemblyProduct("Titan")]

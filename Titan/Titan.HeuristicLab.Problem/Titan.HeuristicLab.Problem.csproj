@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Titan.HeuristicLab.Problem</RootNamespace>
-    <AssemblyName>Titan.HeuristicLab.Problem</AssemblyName>
+    <AssemblyName>Titan.HeuristicLab.Problem-1.0</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -45,6 +45,10 @@
     <Reference Include="HeuristicLab.Common-3.3">
       <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Common-3.3.dll</HintPath>
     </Reference>
+    <Reference Include="HeuristicLab.Common.Resources-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Common.Resources-3.3.dll</HintPath>
+    </Reference>
     <Reference Include="HeuristicLab.Core-3.3">
       <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Core-3.3.dll</HintPath>
     </Reference>
@@ -60,6 +64,10 @@
     <Reference Include="HeuristicLab.Optimization-3.3">
       <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Optimization-3.3.dll</HintPath>
     </Reference>
+    <Reference Include="HeuristicLab.Optimization.Operators-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Optimization.Operators-3.3.dll</HintPath>
+    </Reference>
     <Reference Include="HeuristicLab.Parameters-3.3">
       <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Parameters-3.3.dll</HintPath>
     </Reference>
@@ -71,6 +79,14 @@
     </Reference>
     <Reference Include="HeuristicLab.Problems.ExternalEvaluation-3.4">
       <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Problems.ExternalEvaluation-3.4.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Problems.Instances-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Problems.Instances-3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="HeuristicLab.Random-3.3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=ba48961d6f65dcec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\HeuristicLab 3.3.14\HeuristicLab.Random-3.3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
