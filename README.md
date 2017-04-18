@@ -1,4 +1,4 @@
-# Visual Studio Code Extension based on Xtext for Deep Learning DSL
+# Titan Framwork
 
 This framework uses genetic programming to optimize Deep Learning network architectures.
 
