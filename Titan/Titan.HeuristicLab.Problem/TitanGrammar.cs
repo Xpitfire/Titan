@@ -56,20 +56,17 @@ namespace Titan.HeuristicLab.Problem
             // define grammar rules
             // all symbols are allowed ...
             foreach (var s in allSymbols) {
-                AddAllowedChildSymbol(conv, s, 0);
-                AddAllowedChildSymbol(conv, s, 1);
+                AddAllowedChildSymbol(conv, s);
 
-                AddAllowedChildSymbol(fc, s, 0);
-                AddAllowedChildSymbol(fc, s, 1);
+                AddAllowedChildSymbol(fc, s);
 
-                AddAllowedChildSymbol(pool, s, 0);
-                AddAllowedChildSymbol(pool, s, 1);
+                AddAllowedChildSymbol(pool, s);
 
-                AddAllowedChildSymbol(inception, s, 1);
-                AddAllowedChildSymbol(resnet, s, 1);
+                AddAllowedChildSymbol(inception, s);
+                AddAllowedChildSymbol(resnet, s);
 
-                // ... as root symbol
-                AddAllowedChildSymbol(StartSymbol, s, 1);
+                // root symbol
+                AddAllowedChildSymbol(StartSymbol, s);
             }
         }
     }

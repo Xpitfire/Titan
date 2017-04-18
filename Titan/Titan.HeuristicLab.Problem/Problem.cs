@@ -10,135 +10,85 @@ using Titan.HeuristicLab.Problem.Symbol;
 
 namespace Titan.HeuristicLab.Problem
 {
+    [StorableClass]
     public sealed class Problem : SingleObjectiveBasicProblem<SymbolicExpressionTreeEncoding>
     {
         #region parameter names
         private const string LayerDepthParameterName = "LayerDepth";
         private const string BranchDepthParameterName = "BranchDepth";
+        private const string MaxTimeStepsParameterName = "MaxTimeSteps";
         private const string NetworkProgramParameterName = "Program";
-        private const string NetworkGrammarParameterName = "Grammar";
+        //private const string NetworkGrammarParameterName = "Grammar";
         #endregion
 
         #region parameters
-        public IFixedValueParameter<IntValue> LayerDepthParameter
+        public IValueParameter<IntValue> LayerDepthParameter
         {
             get
             {
-                return (IFixedValueParameter<IntValue>)
+                return (IValueParameter<IntValue>)
                   Parameters[LayerDepthParameterName];
             }
         }
-        public IFixedValueParameter<IntValue> BranchDepthParameter
+        public IValueParameter<IntValue> BranchDepthParameter
         {
             get
             {
-                return (IFixedValueParameter<IntValue>)
+                return (IValueParameter<IntValue>)
                   Parameters[BranchDepthParameterName];
             }
         }
-        public IValueParameter<TitanGrammar> GrammarParameter
+        public IValueParameter<IntValue> MaxTimeStepsParameter
         {
             get
             {
-                return (IValueParameter<TitanGrammar>)
-                  Parameters[NetworkGrammarParameterName];
+                return (IValueParameter<IntValue>)
+                  Parameters[MaxTimeStepsParameterName];
             }
         }
         #endregion
 
+        #region item cloning and persistence
+        // persistence
         [StorableConstructor]
-        private Problem(bool deserializing) : base(deserializing)
-        {
-        }
+        private Problem(bool deserializing) : base(deserializing) { }
+        [StorableHook(HookType.AfterDeserialization)]
+        private void AfterDeserialization() { }
+        // cloning 
+        private Problem(Problem original, Cloner cloner) : base(original, cloner) { }
 
-        private Problem(Problem original, Cloner cloner) : base(original, cloner)
+        public override IDeepCloneable Clone(Cloner cloner)
         {
+            return new Problem(this, cloner);
         }
+        #endregion
 
         public Problem() : base()
         {
             Parameters.Add(
-                new FixedValueParameter<IntValue>(
-                    LayerDepthParameterName, "Depth of the layers.", new IntValue(8)));
+                new ValueParameter<IntValue>(
+                    LayerDepthParameterName, "Depth of the layers.", new IntValue(20)));
             Parameters.Add(
-                new FixedValueParameter<IntValue>(
-                    BranchDepthParameterName, "Depth of the branches.", new IntValue(8)));
-            Encoding = new SymbolicExpressionTreeEncoding(new TitanGrammar());
+                new ValueParameter<IntValue>(
+                    BranchDepthParameterName, "Depth of the branches.", new IntValue(10)));
+            Parameters.Add(
+                new ValueParameter<IntValue>(
+                    NetworkProgramParameterName, "Number of iterations the network can evolve.", new IntValue(1000)));
+            Encoding = new SymbolicExpressionTreeEncoding(
+                new TitanGrammar(),
+                LayerDepthParameter.Value.Value,
+                BranchDepthParameter.Value.Value);
         }
-
-        public override IDeepCloneable Clone(Cloner cloner) => new Problem(this, cloner);
 
         public override double Evaluate(Individual individual, IRandom random)
         {
             var tree = individual.SymbolicExpressionTree(NetworkProgramParameterName);
-            var quality = EvaluateNetworkProgram(
-                LayerDepthParameter.Value.Value, 
-                BranchDepthParameter.Value.Value, tree);
-            return quality;
+            var interpreter = new Interpreter(tree, MaxTimeStepsParameter.Value.Value);
+            interpreter.Evaluate();
+            return interpreter.Score;
         }
-        
+
         public override bool Maximization => true;
 
-        public static double EvaluateNetworkProgram(int layerDepth, int branchDepth,
-            ISymbolicExpressionTree tree)
-        {
-            var score = 0.0;
-
-            // start program execution at the root node
-            EvaluateNetworkProgram(tree.Root, layerDepth, branchDepth, ref score);
-
-            return score;
-        }
-
-        // evaluate a whole tree branch, each branch returns an integer vector
-        private static void EvaluateNetworkProgram(
-            ISymbolicExpressionTreeNode node,
-            int layerDepth, int branchDepth,
-            ref double score)
-        {
-            // The program-root and start symbols are predefined symbols 
-            // in each problem using the symbolic expression tree encoding.
-            // These symbols must be handled by the interpreter. Here simply
-            // evaluate the whole sub-tree 
-            if (node.Symbol is ProgramRootSymbol)
-            {
-                EvaluateNetworkProgram(node.GetSubtree(0),
-                    layerDepth, branchDepth, ref score);
-            }
-            else if (node.Symbol is StartSymbol)
-            {
-                EvaluateNetworkProgram(node.GetSubtree(0),
-                    layerDepth, branchDepth, ref score);
-            }
-            else if (node.Symbol is ConvolutionalLayerSymbol)
-            {
-                // TODO
-                score += 1;
-            }
-            else if (node.Symbol is FullyConnectedLayerSymbol)
-            {
-                // TODO
-                score += 0.5;
-            }
-            else if (node.Symbol is InceptionLayerSymbol)
-            {
-                // TODO
-                score += 5;
-            }
-            else if (node.Symbol is ResNetLayerSymbol)
-            {
-                // TODO
-            }
-            else if (node.Symbol is PoolingLayerSymbol)
-            {
-                // TODO
-                score += 2;
-            }
-            else
-            {
-                throw
-                  new ArgumentException("Invalid symbol in the network program.");
-            }
-        }
     }
 }
