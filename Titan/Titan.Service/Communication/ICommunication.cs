@@ -8,6 +8,8 @@ namespace Titan.Service.Communication
 {
     public interface ICommunication<in TSendMessage, TReceiveMessage>
     {
+        event MessageDelegate<string> JobCompletedEvent;
+
         Task<TReceiveMessage> PostAsync(TSendMessage message, string uriPath = null, IDictionary<string, string> headerParams = null);
 
         Task<TReceiveMessage> CreateClassificationModelAsync(Network model);
@@ -15,6 +17,8 @@ namespace Titan.Service.Communication
         Task<TReceiveMessage> LoginAsync(string username, string passwordHash = null);
 
         Task<TReceiveMessage> CreateClassificationDatasetAsync(Dataset dataset);
+
+        Task<ResponseMessage<DatasetStatus>> GetJobStatusAsync(Dataset dataset);
     }
 
     [Serializable]

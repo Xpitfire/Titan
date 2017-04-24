@@ -55,6 +55,7 @@
     <Compile Include="Parser\IParserPlugin.cs" />
     <Compile Include="Parser\ParserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task\PeriodicTaskFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
