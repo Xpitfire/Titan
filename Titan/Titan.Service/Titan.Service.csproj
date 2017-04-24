@@ -44,10 +44,11 @@
     <Compile Include="CodeGen\CodeGenMessage.cs" />
     <Compile Include="CodeGen\ICodeGen.cs" />
     <Compile Include="CodeGen\ICodeGenPlugin.cs" />
+    <Compile Include="Communication\CommunicationException.cs" />
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Communication\ICommunicationPlugin.cs" />
     <Compile Include="Communication\Message.cs" />
-    <Compile Include="Communication\Response.cs" />
+    <Compile Include="Communication\ResponseMessage.cs" />
     <Compile Include="IEvaluationService.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="Parser\IParser.cs" />
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">
       <Project>{5c7823a8-b9ce-4b96-a5c0-823107e8b296}</Project>
       <Name>Titan.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Model\Titan.Model.csproj">
+      <Project>{d8ba0cbe-752b-4ef1-b9f3-1632df3fdb90}</Project>
+      <Name>Titan.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Titan.Core.Collection.ImmutableException" Collapsed="true">
+    <Position X="25.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collection\ImmutableException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Collection.ImmutableList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGIACEAABAAAABAQCAAQBAQAAAAAAAAEKAgCAIBUIAA=</HashCode>
+      <FileName>Collection\ImmutableList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Titan.Core.Collection.ImmutableListExtension" Collapsed="true">
+    <Position X="29.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collection\ImmutableList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Builder.ConcatLayerBuilder" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Graph\Builder\ConcatLayerBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Builder.EltwiseLayerBuilder" Collapsed="true">
+    <Position X="9.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAIIAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Builder\EltwiseLayerBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Builder.GraphBuilderBase" Collapsed="true">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAIAAAAAAAAAAAACAAAAAAAAACQACgAEAAAAAACAAA=</HashCode>
+      <FileName>Graph\Builder\GraphBuilderBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Titan.Core.Graph.Builder.LayerBlockBuilder" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAEAAAAAAAIAAAAEgAAAgAAAAAAAEAA=</HashCode>
+      <FileName>Graph\Builder\LayerBlockBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Builder.LayerBuilder" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAgAAEAAAAAAAAAAAACAgAAAAAAAAgAAAAQAAAAA=</HashCode>
+      <FileName>Graph\Builder\LayerBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Builder.NetworkBuilder" Collapsed="true">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Builder\NetworkBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Database.ConnectionPool" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAJQAAAAAAAAAAAAAAAACQAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Database\ConnectionPool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Titan.Core.Graph.Generator.NetworkGenerator" Collapsed="true">
+    <Position X="27.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Generator\LayerGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Generator.GeneratorConfig" Collapsed="true">
+    <Position X="29.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Generator\LayerGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Identifier" Collapsed="true">
+    <Position X="24" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAIAEIAAAA=</HashCode>
+      <FileName>Graph\Identifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Network" Collapsed="true">
+    <Position X="25.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAQAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Network.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.NetworkParameter" Collapsed="true">
+    <Position X="29.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAACAAAAAIgAAAAAEAAAAAAAAgAAAAAAIAAASIAAAA=</HashCode>
+      <FileName>Graph\Network.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Prefab" Collapsed="true">
+    <Position X="25.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Prefab.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.ActivationLayerVertex" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\ActivationLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.BatchNormalizationLayerVertex" Collapsed="true">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\BatchNormalizationLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.ConcatLayerVertex" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\ConcatLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.ConvolutionalLayerVertex" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\ConvolutionalLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.ConvolutionalLayerParameter" Collapsed="true">
+    <Position X="25.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAIAAAAABAA=</HashCode>
+      <FileName>Graph\Vertex\ConvolutionalLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.DropoutLayerVertex" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\DropoutLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.EltwiseLayerVertex" Collapsed="true">
+    <Position X="19.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\EltwiseLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.InputLayerVertex" Collapsed="true">
+    <Position X="3.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAACAQAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\InputLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.DimensionData" Collapsed="true">
+    <Position X="27.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAABABAAAAAAAAAAAIEAAAAAAIAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Graph\Vertex\InputLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.InputLayerParameter" Collapsed="true">
+    <Position X="24" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEIgAAIAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\InputLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.LayerVertex" Collapsed="true">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\LayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.PoolingLayerVertex" Collapsed="true">
+    <Position X="21.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\PoolingLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.PoolingLayerParameter" Collapsed="true">
+    <Position X="24" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAQAAAAAAAAAABAA=</HashCode>
+      <FileName>Graph\Vertex\PoolingLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.ScaleLayerVertex" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\ScaleLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.SoftmaxLayerVertex" Collapsed="true">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\SoftmaxLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.VertexBase" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAQAAAAAAIAAAAAAQAAAABA=</HashCode>
+      <FileName>Graph\Vertex\VertexBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.VertexCloner" Collapsed="true">
+    <Position X="27.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAIAAAAAAAAAAIAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\VertexCloner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Titan.Core.Graph.Vertex.VertexFactory" Collapsed="true">
+    <Position X="29.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAIAAAAAAMAgABAIAAAAAIAAAAQAARAAEAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\VertexFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Titan.Core.Graph.Builder.IGraphBuilder&lt;TType&gt;" Collapsed="true">
+    <Position X="24" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAACAAA=</HashCode>
+      <FileName>Graph\Builder\IGraphBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Titan.Core.Graph.IVertex" Collapsed="true">
+    <Position X="25.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Graph\IVertex.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Titan.Core.Graph.UpdaterType" Collapsed="true">
+    <Position X="24" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABgAAAAAAAAAEAAAgCAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Graph\Network.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Titan.Core.Graph.Vertex.ActivationFunctionType" Collapsed="true">
+    <Position X="24" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAAEAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\ActivationLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Titan.Core.Graph.Vertex.EltwiseOperationKind" Collapsed="true">
+    <Position X="25.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\EltwiseLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Titan.Core.Graph.Vertex.InputLayerKind" Collapsed="true">
+    <Position X="27.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\InputLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Titan.Core.Graph.Vertex.VertexKind" Collapsed="true">
+    <Position X="25.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAIAAAAAEBAACAAAAIAAAAFAAAAAAAAAAAACAAEAA=</HashCode>
+      <FileName>Graph\Vertex\LayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Titan.Core.Graph.Vertex.PoolingLayerKind" Collapsed="true">
+    <Position X="29.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graph\Vertex\PoolingLayerVertex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

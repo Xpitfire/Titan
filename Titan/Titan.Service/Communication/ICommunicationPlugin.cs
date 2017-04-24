@@ -1,6 +1,8 @@
-﻿namespace Titan.Service.Communication
+﻿using Titan.Service.CodeGen;
+
+namespace Titan.Service.Communication
 {
-    public interface ICommunicationPlugin : ICommunication<string, string>, IPlugin
+    public interface ICommunicationPlugin : ICommunication<string, ResponseMessage<string>>, IPlugin
     {
     }
 }

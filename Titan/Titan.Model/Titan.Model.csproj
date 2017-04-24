@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4DE6FACD-FB1A-4D27-B149-7CA169AF75E4}</ProjectGuid>
+    <ProjectGuid>{D8BA0CBE-752B-4EF1-B9F3-1632DF3FDB90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Titan.Plugin.Caffe.Comm.REST</RootNamespace>
-    <AssemblyName>Titan.Plugin.Caffe.Comm.REST</AssemblyName>
+    <RootNamespace>Titan.Model</RootNamespace>
+    <AssemblyName>Titan.Model</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Communication.cs" />
+    <Compile Include="Dataset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,18 +49,6 @@
       <Project>{5c7823a8-b9ce-4b96-a5c0-823107e8b296}</Project>
       <Name>Titan.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Titan.Model\Titan.Model.csproj">
-      <Project>{d8ba0cbe-752b-4ef1-b9f3-1632df3fdb90}</Project>
-      <Name>Titan.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Titan.Service\Titan.Service.csproj">
-      <Project>{fafbb23c-e3b4-45df-b16e-cbd07f68a998}</Project>
-      <Name>Titan.Service</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

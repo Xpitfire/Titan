@@ -50,6 +50,9 @@
     <Reference Include="Neo4j.Driver, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Neo4j.Driver.1.2.0\lib\netstandard1.0\Neo4j.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
     </Reference>
@@ -147,6 +150,10 @@
     <ProjectReference Include="..\Titan.Default\Titan.Default.csproj">
       <Project>{f6a1ef31-71fd-4fab-963b-37cacdd86882}</Project>
       <Name>Titan.Default</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Titan.Model\Titan.Model.csproj">
+      <Project>{d8ba0cbe-752b-4ef1-b9f3-1632df3fdb90}</Project>
+      <Name>Titan.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Titan.Plugin.Caffe.CodeGen\Titan.Plugin.Caffe.CodeGen.csproj">
       <Project>{c3d0ddd4-a578-4cdb-94ab-b7539ec6315e}</Project>

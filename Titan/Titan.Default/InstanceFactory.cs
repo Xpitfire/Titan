@@ -6,8 +6,8 @@ namespace Titan.Default
 {
     public sealed class InstanceFactory
     {
-        private static ICommunication<string, string> _communicationInstance;
-        public static ICommunication<string, string> CommunicationInstance => 
+        private static ICommunication<string, ResponseMessage<string>> _communicationInstance;
+        public static ICommunication<string, ResponseMessage<string>> CommunicationInstance => 
             _communicationInstance ?? (_communicationInstance = PluginFactory.Get<ICommunicationPlugin>());
 
         private static IParser<ParserMessage> _parserInstance;
