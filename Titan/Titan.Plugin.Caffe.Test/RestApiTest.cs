@@ -54,6 +54,16 @@ namespace Titan.Plugin.Caffe.Test
             while (!eventFired) ;
         }
 
+        private async Task TestClassification(Dataset dataset)
+        {
+            var model = new Model.Model()
+            {
+                Name = "test",
+                Dataset = dataset
+            };
+            await _communication.CreateClassificationModelAsync(model);
+        }
+
         [TestMethod, Timeout(60000)] // timeout 60 sec.
         public async Task IngerationTestCaffeApi()
         {
@@ -62,6 +72,8 @@ namespace Titan.Plugin.Caffe.Test
             var status = await TestDatasetStatus(dataset);
             // blocks up to 60 seconds
             WaitForDatasetStatusComplete(dataset);
+            await TestClassification(dataset);
         }
+
     }
 }

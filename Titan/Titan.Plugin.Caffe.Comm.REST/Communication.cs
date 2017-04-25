@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using RestSharp;
 using Titan.Service.Communication;
 using System.Collections.Generic;
-using Titan.Core.Graph;
 using Titan.Model;
 using Newtonsoft.Json;
 using Titan.Service.Task;
@@ -15,7 +14,7 @@ namespace Titan.Plugin.Caffe.Comm.REST
     {
         public event MessageDelegate<string> JobCompletedEvent;
 
-        public const string DefaultBaseUri = "http://localhost:5000";
+        public const string DefaultBaseUri = "http://172.25.4.83:5000/";
         private string BaseUri;
         private System.Net.CookieContainer Cookies = new System.Net.CookieContainer();
 
@@ -42,9 +41,30 @@ namespace Titan.Plugin.Caffe.Comm.REST
             });
         }
 
-        public async Task<ResponseMessage<string>> CreateClassificationModelAsync(Network model)
+        public async Task<ResponseMessage<string>> CreateClassificationModelAsync(Model.Model model)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() =>
+            {
+                var client = CreateClient("/models/images/classification.json");
+                var request = CreateRequest();
+
+                request.AddParameter("method", "standard");
+                request.AddParameter("standard_networks", "lenet");
+                request.AddParameter("train_epochs", "30");
+                request.AddParameter("framework", "caffe");
+                request.AddParameter("model_name", model.Name);
+                request.AddParameter("dataset", model.Dataset.Id);
+                request.AddParameter("select_gpu_count", "2");
+                request.AddParameter("select_gpu", "0");
+                request.AddParameter("select_gpu", "1");
+
+                var response = client.Execute(request);
+                var result = EvaluateResponse<string>(response);
+
+                // TODO
+
+                return result;
+            });
         }
 
         public async Task<ResponseMessage<string>> CreateClassificationDatasetAsync(Dataset dataset)
@@ -68,6 +88,9 @@ namespace Titan.Plugin.Caffe.Comm.REST
                 var data = JsonConvert.DeserializeObject<Dataset>(response.Content);
                 dataset.Id = data?.Id;
                 result.Data = dataset.Id;
+
+                if (dataset.Id == null)
+                    throw new InvalidJobException($"Received Null for Id: {response.Content}");
 
                 MonitorDatasetJobStatus(dataset);
 
@@ -159,8 +182,8 @@ namespace Titan.Plugin.Caffe.Comm.REST
                 }
             }, 
             intervalInMilliseconds: 2000,
-            duration: 60000 * 60,
-            cancelToken: token); // wait for max. 1 hour
+            duration: 60000 * 60,  // wait for max. 1 hour until abort
+            cancelToken: token);
 
             monitor.ContinueWith(_ =>
             {

@@ -7,7 +7,11 @@
             InstanceFactory.ParserInstance.MessageParsedEvent +=
                 message => InstanceFactory.CodeGenInstance.Generate(message.Network);
             InstanceFactory.CodeGenInstance.CodeGeneratedEvent +=
-                message => InstanceFactory.CommunicationInstance.CreateClassificationModelAsync(message.Data);
+                message => InstanceFactory.CommunicationInstance.CreateClassificationModelAsync(
+                    new Model.Model
+                    {
+                        Network = message.Data
+                    });
         }
     }
 }

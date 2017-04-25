@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Dataset.cs" />
     <Compile Include="DatasetStatus.cs" />
+    <Compile Include="InvalidJobException.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

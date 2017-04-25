@@ -51,6 +51,10 @@
       <Project>{5c7823a8-b9ce-4b96-a5c0-823107e8b296}</Project>
       <Name>Titan.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Titan.Model\Titan.Model.csproj">
+      <Project>{D8BA0CBE-752B-4EF1-B9F3-1632DF3FDB90}</Project>
+      <Name>Titan.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Titan.Service\Titan.Service.csproj">
       <Project>{fafbb23c-e3b4-45df-b16e-cbd07f68a998}</Project>
       <Name>Titan.Service</Name>

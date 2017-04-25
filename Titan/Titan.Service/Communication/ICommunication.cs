@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Titan.Core.Graph;
 using Titan.Model;
 
 namespace Titan.Service.Communication
@@ -12,7 +11,7 @@ namespace Titan.Service.Communication
 
         Task<TReceiveMessage> PostAsync(TSendMessage message, string uriPath = null, IDictionary<string, string> headerParams = null);
 
-        Task<TReceiveMessage> CreateClassificationModelAsync(Network model);
+        Task<TReceiveMessage> CreateClassificationModelAsync(Model.Model model);
 
         Task<TReceiveMessage> LoginAsync(string username, string passwordHash = null);
 
