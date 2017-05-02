@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class DropoutLayerVertex : LayerVertex
+    public sealed class DropoutLayerVertex : LayerVertex, IAttachableLayer
     {
         public double Rate { get; internal set; }
 

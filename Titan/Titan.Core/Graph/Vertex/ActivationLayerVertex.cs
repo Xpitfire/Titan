@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class ActivationLayerVertex : LayerVertex
+    public sealed class ActivationLayerVertex : LayerVertex, IAttachableLayer
     {
         public ActivationFunctionType ActivationFunction { get; internal set; }
 

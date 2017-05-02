@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class ScaleLayerVertex : LayerVertex
+    public sealed class ScaleLayerVertex : LayerVertex, IAttachableLayer
     {
         public bool BiasTerm { get; internal set; }
 

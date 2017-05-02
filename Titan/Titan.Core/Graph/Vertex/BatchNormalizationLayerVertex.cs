@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class BatchNormalizationLayerVertex : LayerVertex
+    public sealed class BatchNormalizationLayerVertex : LayerVertex, IAttachableLayer
     {
         public bool UseGlobalStats { get; internal set; }
 

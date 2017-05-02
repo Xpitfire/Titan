@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class PoolingLayerVertex : LayerVertex
+    public sealed class PoolingLayerVertex : LayerVertex, IAttachableLayer
     {
         public PoolingLayerParameter Parameter { get; internal set; }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class ConcatLayerVertex : LayerVertex
+    public sealed class ConcatLayerVertex : LayerVertex, IAuxiliaryLayer
     {
         internal ConcatLayerVertex() : this(null) { }
         internal ConcatLayerVertex(string name) : base(VertexKind.Concat, name) { }

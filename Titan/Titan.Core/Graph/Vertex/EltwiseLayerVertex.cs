@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class EltwiseLayerVertex : LayerVertex
+    public sealed class EltwiseLayerVertex : LayerVertex, IAuxiliaryLayer
     {
         public EltwiseOperationKind OperationKind { get; internal set; }
 
