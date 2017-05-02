@@ -10,7 +10,9 @@ namespace Titan.Model
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
+        public string TrainPath { get; set; }
+        public string TestPath { get; set; }
+
         public string Encoding { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }

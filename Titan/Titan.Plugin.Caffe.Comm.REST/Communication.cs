@@ -14,7 +14,10 @@ namespace Titan.Plugin.Caffe.Comm.REST
     {
         public event MessageDelegate<string> JobCompletedEvent;
 
-        public const string DefaultBaseUri = "http://172.25.4.83:5000/";
+        public const string DefaultBaseUri = 
+        //    "http://172.25.4.83:5000/";
+            "http://127.0.0.1:5000/";
+
         private string BaseUri;
         private System.Net.CookieContainer Cookies = new System.Net.CookieContainer();
 
@@ -48,20 +51,61 @@ namespace Titan.Plugin.Caffe.Comm.REST
                 var client = CreateClient("/models/images/classification.json");
                 var request = CreateRequest();
 
-                request.AddParameter("method", "standard");
-                request.AddParameter("standard_networks", "lenet");
-                request.AddParameter("train_epochs", "30");
-                request.AddParameter("framework", "caffe");
+                // model
                 request.AddParameter("model_name", model.Name);
-                request.AddParameter("dataset", model.Dataset.Id);
-                request.AddParameter("select_gpu_count", "2");
-                request.AddParameter("select_gpu", "0");
-                request.AddParameter("select_gpu", "1");
+                request.AddParameter("dataset", model.DatasetId);
+                request.AddParameter("group_name", "generated");
+
+                // network
+                request.AddParameter("method", "custom");
+                request.AddParameter("framework", "caffe");
+                request.AddParameter("custom_network", model.Network);
+
+                // network global params
+                request.AddParameter("train_epochs", "10");
+                request.AddParameter("snapshot_interval", "1");
+                request.AddParameter("val_interval", "1");
+                request.AddParameter("random_seed", "");
+
+                // batch
+                request.AddParameter("batch_size", "50");
+
+                // solver
+                request.AddParameter("solver_type", "SGD");
+                request.AddParameter("rms_decay", "0.99");
+
+                // learning rate
+                request.AddParameter("learning_rate", "0.01");
+                request.AddParameter("lr_policy", "step");
+                request.AddParameter("lr_step_size", "33");
+                request.AddParameter("lr_step_gamma", "0.1");
+                request.AddParameter("lr_multistep_gamma", "0.5");
+                request.AddParameter("lr_exp_gamma", "0.95");
+                request.AddParameter("lr_inv_gamma", "0.1");
+                request.AddParameter("lr_inv_power", "0.5");
+                request.AddParameter("lr_poly_power", "3");
+                request.AddParameter("lr_sigmoid_step", "50");
+                request.AddParameter("lr_sigmoid_gamma", "0.1");
+
+                // image
+                request.AddParameter("use_mean", "image");
+
+                // gpu
+                if (model.UseGpu)
+                {
+                    request.AddParameter("select_gpu_count", model.GpuCount);
+                }
 
                 var response = client.Execute(request);
                 var result = EvaluateResponse<string>(response);
+                var data = JsonConvert.DeserializeObject<Model.Model>(response.Content);
+                model.Id = data?.Id;
+                result.Data = model.Id;
 
-                // TODO
+                if (model.Id == null)
+                    throw new InvalidJobException($"Received Null for Id: {response.Content}");
+
+                MonitorModelJobStatus(model);
 
                 return result;
             });
@@ -74,13 +118,24 @@ namespace Titan.Plugin.Caffe.Comm.REST
                 var client = CreateClient("/datasets/images/classification.json");
                 var request = CreateRequest();
 
-                request.AddParameter("folder_train", dataset.Path);
-                request.AddParameter("encoding", dataset.Encoding);
+                // dataset
+                request.AddParameter("dataset_name", dataset.Name);
+                request.AddParameter("group_name", "generated");
+                request.AddParameter("method", "folder");
+                request.AddParameter("backend", "lmdb");
+
+                // test & train params
+                request.AddParameter("folder_train", dataset.TrainPath);
+                request.AddParameter("folder_test", dataset.TestPath);
+                request.AddParameter("has_test_folder", "y");
+
+                // image params
                 request.AddParameter("resize_channels", dataset.Channels);
                 request.AddParameter("resize_width", dataset.Width);
                 request.AddParameter("resize_height", dataset.Height);
-                request.AddParameter("method", "folder");
-                request.AddParameter("dataset_name", dataset.Name);
+                request.AddParameter("resize_mode", "squash");
+                request.AddParameter("encoding", dataset.Encoding);
+                request.AddParameter("compression", "none");
 
                 var response = client.Execute(request);
                 var result = EvaluateResponse<string>(response);
@@ -98,17 +153,27 @@ namespace Titan.Plugin.Caffe.Comm.REST
             });
         }
 
-        public async Task<ResponseMessage<DatasetStatus>> GetJobStatusAsync(Dataset dataset)
+        public async Task<ResponseMessage<JobStatus>> GetJobStatusAsync(Dataset dataset)
+        {
+            return await GetJobStatusAsync($"/datasets/{dataset.Id}/status");
+        }
+
+        public async Task<ResponseMessage<JobStatus>> GetJobStatusAsync(Model.Model model)
+        {
+            return await GetJobStatusAsync($"/models/{model.Id}/status");
+        }
+
+        private async Task<ResponseMessage<JobStatus>> GetJobStatusAsync(string uri)
         {
             return await Task.Run(() =>
             {
-                var client = CreateClient($"/datasets/{dataset.Id}/status");
+                var client = CreateClient(uri);
                 var request = CreateRequest(Method.GET);
-                
-                var response = client.Execute(request);
-                var result = EvaluateResponse<DatasetStatus>(response);
 
-                var data = JsonConvert.DeserializeObject<DatasetStatus>(response.Content);
+                var response = client.Execute(request);
+                var result = EvaluateResponse<JobStatus>(response);
+
+                var data = JsonConvert.DeserializeObject<JobStatus>(response.Content);
                 result.Data = data;
 
                 return result;
@@ -166,28 +231,49 @@ namespace Titan.Plugin.Caffe.Comm.REST
             return result;
         }
 
+        private void MonitorModelJobStatus(Model.Model model)
+        {
+            // Define the cancellation token.
+            var source = new CancellationTokenSource();
+            var token = source.Token;
+
+            MonitorJobStatus(() =>
+            {
+                var response = default(ResponseMessage<JobStatus>);
+                if ((response = GetJobStatusAsync(model).Result).Data
+                    .Status == DatasetStatusType.Done)
+                {
+                    source.Cancel();
+                }
+            }, model.Id, token);
+        }
+
         private void MonitorDatasetJobStatus(Dataset dataset)
         {
             // Define the cancellation token.
             var source = new CancellationTokenSource();
             var token = source.Token;
 
-            var monitor = PeriodicTaskFactory.Start(() =>
+            MonitorJobStatus(() =>
             {
-                var response = default(ResponseMessage<DatasetStatus>);
+                var response = default(ResponseMessage<JobStatus>);
                 if ((response = GetJobStatusAsync(dataset).Result).Data
                     .Status == DatasetStatusType.Done)
                 {
                     source.Cancel();
                 }
-            }, 
+            }, dataset.Id, token);
+        }
+
+        private void MonitorJobStatus(Action job, string id, CancellationToken token)
+        {
+            var monitor = PeriodicTaskFactory.Start(job,
             intervalInMilliseconds: 2000,
             duration: 60000 * 60,  // wait for max. 1 hour until abort
             cancelToken: token);
-
             monitor.ContinueWith(_ =>
             {
-                JobCompletedEvent?.Invoke(dataset.Id);
+                JobCompletedEvent?.Invoke(id);
             });
         }
 

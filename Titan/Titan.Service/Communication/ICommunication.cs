@@ -17,7 +17,9 @@ namespace Titan.Service.Communication
 
         Task<TReceiveMessage> CreateClassificationDatasetAsync(Dataset dataset);
 
-        Task<ResponseMessage<DatasetStatus>> GetJobStatusAsync(Dataset dataset);
+        Task<ResponseMessage<JobStatus>> GetJobStatusAsync(Model.Model model);
+
+        Task<ResponseMessage<JobStatus>> GetJobStatusAsync(Dataset dataset);
     }
 
     [Serializable]

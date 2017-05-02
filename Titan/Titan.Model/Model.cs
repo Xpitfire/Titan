@@ -9,8 +9,12 @@ namespace Titan.Model
 {
     public class Model
     {
-        public Network Network { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public Dataset Dataset { get; set; }
+        public string DatasetId { get; set; }
+        public string Network { get; set; }
+
+        public bool UseGpu { get; set; }
+        public int GpuCount { get; set; }
     }
 }

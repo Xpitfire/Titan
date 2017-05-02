@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Titan.Model
 {
-    public class DatasetStatus
+    public class JobStatus
     {
         [JsonProperty("status")]
         [JsonConverter(typeof(StringEnumConverter))]

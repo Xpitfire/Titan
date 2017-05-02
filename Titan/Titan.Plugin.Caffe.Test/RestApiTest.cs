@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 using System.Threading.Tasks;
 using Titan.Model;
 using Titan.Service.Communication;
@@ -21,8 +22,9 @@ namespace Titan.Plugin.Caffe.Test
         {
             var dataset = new Dataset
             {
-                Name = "test",
-                Path = "/root/mnist/train",
+                Name = "mnist-test",
+                TrainPath = "/root/mnist/train",
+                TestPath = "/root/mnist/test",
                 Channels = 1,
                 Height = 28,
                 Width = 28,
@@ -34,7 +36,7 @@ namespace Titan.Plugin.Caffe.Test
             return dataset;
         }
 
-        private async Task<DatasetStatus> TestDatasetStatus(Dataset dataset)
+        private async Task<JobStatus> TestDatasetStatus(Dataset dataset)
         {
             var response = await _communication.GetJobStatusAsync(dataset);
             Assert.IsTrue(response.Type == ResponseType.Successful
@@ -42,37 +44,43 @@ namespace Titan.Plugin.Caffe.Test
             return response.Data;
         }
 
-        private void WaitForDatasetStatusComplete(Dataset dataset)
+        private void WaitForStatusComplete(string jobId)
         {
             var eventFired = false;
             _communication.JobCompletedEvent += id =>
             {
-                if (dataset.Id == id)
+                if (jobId == id)
                     eventFired = true;
             };
             // wait for done or timeout stop
             while (!eventFired) ;
         }
 
-        private async Task TestClassification(Dataset dataset)
+        private async Task<Model.Model> TestClassification(Dataset dataset)
         {
             var model = new Model.Model()
             {
-                Name = "test",
-                Dataset = dataset
+                Name = "lenet-test",
+                DatasetId = dataset.Id,
+                Network = File.ReadAllText("lenet.prototxt")
             };
-            await _communication.CreateClassificationModelAsync(model);
+            var response = await _communication.CreateClassificationModelAsync(model);
+            Assert.IsTrue(response.Type == ResponseType.Successful
+                && model.Id != null);
+            return model;
         }
 
-        [TestMethod, Timeout(60000)] // timeout 60 sec.
+        [TestMethod, Timeout(120000)] // timeout 120 sec.
         public async Task IngerationTestCaffeApi()
         {
             await TestLogin();
             var dataset = await TestCreateDataset();
             var status = await TestDatasetStatus(dataset);
             // blocks up to 60 seconds
-            WaitForDatasetStatusComplete(dataset);
-            await TestClassification(dataset);
+            WaitForStatusComplete(dataset.Id);
+            // blocks up to 60 seconds
+            var model = await TestClassification(dataset);
+            WaitForStatusComplete(model.Id);
         }
 
     }
