@@ -18,7 +18,7 @@ namespace Titan.Plugin.Caffe.CodeGen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Repo\GitHub\Titan\Titan\Titan.Plugin.Caffe.CodeGen\CaffeScriptSolverTemplate.tt"
+    #line 1 "C:\Workspace\GitHub\Titan\Titan\Titan.Plugin.Caffe.CodeGen\CaffeScriptSolverTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "15.0.0.0")]
     public partial class CaffeScriptSolverTemplate : CaffeScriptSolverTemplateBase
     {
@@ -31,8 +31,8 @@ namespace Titan.Plugin.Caffe.CodeGen
             this.Write("net: \"/media/xpitfire/data/temp/network.prototxt\"\r\ntest_iter: 1000\r\ntest_interval" +
                     ": 1000\r\nbase_lr: ");
             
-            #line 9 "D:\Repo\GitHub\Titan\Titan\Titan.Plugin.Caffe.CodeGen\CaffeScriptSolverTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Network.Parameter.LearningRate));
+            #line 9 "C:\Workspace\GitHub\Titan\Titan\Titan.Plugin.Caffe.CodeGen\CaffeScriptSolverTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.LearningRate));
             
             #line default
             #line hidden

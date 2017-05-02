@@ -25,6 +25,12 @@ namespace Titan.Core.Graph.Vertex
             props[nameof(Parameter.BiasTerm)] = Parameter.BiasTerm;
             return props;
         }
+
+        internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
+        {
+            base.Deserialize(properties);
+            return this;
+        }
     }
 
     [Serializable]

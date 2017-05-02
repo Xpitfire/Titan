@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using Titan.Core.Graph.Vertex;
 using Titan.Core.Graph.Database;
+using Neo4j.Driver.V1;
 
 namespace Titan.Core.Graph.Builder
 {
     public abstract class GraphBuilderBase : IGraphBuilder<LayerVertex>
     {
         public IDictionary<string, LayerVertex> Vertices { get; }
-        public IList<Tuple<string, string, bool>> References { get; }
+        public IList<Relationship> Relationships { get; }
         public Identifier GraphId { get; private set; }
 
         internal GraphBuilderBase Graph { get; set; }
@@ -23,14 +24,14 @@ namespace Titan.Core.Graph.Builder
             Graph = this;
             GraphId = new Identifier(graphId);
             Vertices = new ConcurrentDictionary<string, LayerVertex>();
-            References = new List<Tuple<string, string, bool>>();
+            Relationships = new List<Relationship>();
         }
         protected GraphBuilderBase(GraphBuilderBase graph)
         {
             Graph = graph;
             GraphId = graph.GraphId;
         }
-
+        
         public void PersistGraph()
         {
             ConnectionPool.Instance.Execute(session =>
@@ -47,30 +48,30 @@ namespace Titan.Core.Graph.Builder
                             query.Append(", ");
                     }
 
-                    session.Run($"CREATE (a:{Graph.GraphId.Id} {{{query}}})",
+                    session.Run($"CREATE (a:{vertex.Value.Kind} {{{query}}})",
                         vertex.Value.Serialize());
                 }
-                foreach (var reference in Graph.References)
+                foreach (var relationship in Graph.Relationships)
                 {
-                    if (reference.Item3) // cycles
+                    if (relationship.Cycle) // cycles
                     {
-                        session.Run($"MATCH (l1:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
+                        session.Run($"MATCH (l1 {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2 {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
                                     "CREATE (l1)-[:forward]->(l2)" +
                                     "CREATE (l2)-[:forward]->(l1)",
                                     new Dictionary<string, object>
                                     {
-                                        { "name1", $"{reference.Item1}" },
-                                        { "name2", $"{reference.Item2}" }
+                                        { "name1", $"{relationship.Node1}" },
+                                        { "name2", $"{relationship.Node2}" }
                                     });
                     }
                     else // directed
                     {
-                        session.Run($"MATCH (l1:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2:{Graph.GraphId.Id} {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
+                        session.Run($"MATCH (l1 {{{nameof(LayerVertex.Name)}: {{name1}}}}), (l2 {{{nameof(LayerVertex.Name)}: {{name2}}}})" +
                                     "CREATE (l1)-[:forward]->(l2)",
                                     new Dictionary<string, object>
                                     {
-                                        { "name1", $"{reference.Item1}" },
-                                        { "name2", $"{reference.Item2}" }
+                                        { "name1", $"{relationship.Node1}" },
+                                        { "name2", $"{relationship.Node2}" }
                                     });
                     }
                 }
@@ -94,8 +95,8 @@ namespace Titan.Core.Graph.Builder
 
         protected void AddEdge(Identifier vertexId1, Identifier vertexId2, bool cycle = false)
         {
-            var graphRef = new Tuple<string, string, bool>(vertexId1.Id, vertexId2.Id, cycle);
-            Graph.References.Add(graphRef);
+            var graphRef = new Relationship(vertexId1.Id, vertexId2.Id, cycle);
+            Graph.Relationships.Add(graphRef);
         }
     }
 }

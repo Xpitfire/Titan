@@ -6,7 +6,7 @@ namespace Titan.Core.Graph.Vertex
     public abstract class VertexBase : IVertex
     {
         public Identifier Identifier { get; }
-        public string Name => Identifier.Id;
+        public string Name { get; internal set; }
 
         private VertexBase() { }
         protected VertexBase(string name) : this(new Identifier(name))
@@ -16,6 +16,7 @@ namespace Titan.Core.Graph.Vertex
         protected VertexBase(Identifier identifier)
         {
             Identifier = identifier;
+            Name = Identifier.Id;
         }
 
         public object Clone() => this.DeepClone();

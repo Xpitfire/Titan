@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class ConcatLayerVertex : LayerVertex
+    public sealed class FullyConnectedLayerVertex : LayerVertex
     {
-        internal ConcatLayerVertex() : this(null) { }
-        internal ConcatLayerVertex(string name) : base(VertexKind.Concat, name) { }
+        public int NumberOfNeurons { get; internal set; }
+
+        internal FullyConnectedLayerVertex() : this(null) { }
+        internal FullyConnectedLayerVertex(string name) : base(VertexKind.FullyConnected, name) { }
 
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {

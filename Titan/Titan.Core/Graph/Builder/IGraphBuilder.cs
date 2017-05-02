@@ -11,7 +11,7 @@ namespace Titan.Core.Graph.Builder
     public interface IGraphBuilder<TType>
     {
         IDictionary<string, TType> Vertices { get; }
-        IList<Tuple<string, string, bool>> References { get; }
+        IList<Relationship> Relationships { get; }
         Identifier GraphId { get; }
         void PersistGraph();
     }

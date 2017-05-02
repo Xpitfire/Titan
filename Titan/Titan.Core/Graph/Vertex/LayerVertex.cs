@@ -21,6 +21,12 @@ namespace Titan.Core.Graph.Vertex
                 { nameof(Kind), Kind.ToString() }
             };
         }
+
+        internal virtual LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
+        {
+            Name = properties[nameof(Name)].ToString();
+            return this;
+        }
     }
 
     [Serializable]

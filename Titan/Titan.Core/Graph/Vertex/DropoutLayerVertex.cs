@@ -20,5 +20,11 @@ namespace Titan.Core.Graph.Vertex
             props[nameof(Rate)] = Rate;
             return props;
         }
+
+        internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
+        {
+            base.Deserialize(properties);
+            return this;
+        }
     }
 }

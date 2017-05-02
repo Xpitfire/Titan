@@ -27,6 +27,10 @@ namespace Titan.Core.Collection
         {
             _data = layers.ToList();
         }
+        internal ImmutableList(IEnumerable<T> layers)
+        {
+            _data = layers.ToList();
+        }
         internal ImmutableList(ImmutableList<T> layers, params IList<T>[] otherLayers)
         {
             if (layers != null)
@@ -202,11 +206,11 @@ namespace Titan.Core.Collection
 
     public static class ImmutableListExtension
     {
-        public static ImmutableList<T> ToImmutableList<T>(this IList<T> list)
+        public static ImmutableList<T> ToImmutableList<T>(this IEnumerable<T> list)
         {
             return new ImmutableList<T>(list);
         }
-
+        
         public static ImmutableList<T> ToImmutableList<T>(this T[] array)
         {
             return new ImmutableList<T>(array);

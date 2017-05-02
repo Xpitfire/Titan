@@ -23,8 +23,8 @@ namespace Titan.Plugin.Caffe.Test
             var dataset = new Dataset
             {
                 Name = "mnist-test",
-                TrainPath = "/root/mnist/train",
-                TestPath = "/root/mnist/test",
+                TrainPath = "/container/demo/train",
+                TestPath = "/container/demo/test",
                 Channels = 1,
                 Height = 28,
                 Width = 28,

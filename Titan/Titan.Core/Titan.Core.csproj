@@ -146,12 +146,15 @@
     <Compile Include="Graph\IVertex.cs" />
     <Compile Include="Graph\Network.cs" />
     <Compile Include="Graph\Prefab.cs" />
+    <Compile Include="Graph\Relationship.cs" />
+    <Compile Include="Graph\Traversal\Traverser.cs" />
     <Compile Include="Graph\Vertex\ActivationLayerVertex.cs" />
     <Compile Include="Graph\Vertex\BatchNormalizationLayerVertex.cs" />
     <Compile Include="Graph\Vertex\ConcatLayerVertex.cs" />
     <Compile Include="Graph\Vertex\ConvolutionalLayerVertex.cs" />
     <Compile Include="Graph\Vertex\DropoutLayerVertex.cs" />
     <Compile Include="Graph\Vertex\EltwiseLayerVertex.cs" />
+    <Compile Include="Graph\Vertex\FullyConnectedLayerVertex.cs" />
     <Compile Include="Graph\Vertex\InputLayerVertex.cs" />
     <Compile Include="Graph\Vertex\LayerVertex.cs" />
     <Compile Include="Graph\Vertex\PoolingLayerVertex.cs" />

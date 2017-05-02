@@ -24,6 +24,12 @@ namespace Titan.Core.Graph.Vertex
             props[nameof(Parameter.Stride)] = Parameter.Stride;
             return props;
         }
+
+        internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
+        {
+            base.Deserialize(properties);
+            return this;
+        }
     }
 
     [Serializable]
