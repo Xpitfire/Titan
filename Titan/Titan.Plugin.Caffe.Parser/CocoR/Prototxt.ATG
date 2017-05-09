@@ -1,0 +1,74 @@
+﻿using System.Collections;
+
+COMPILER Prototxt
+
+CHARACTERS
+	letter     = 'A'..'Z' + 'a'..'z' + '_'.
+	digit      = '0'..'9'.
+	nzdigit    = '1'..'9'.
+	notQuote   = ANY - '"' - "\r\n".
+
+
+	tab        = '\t'.
+	cr         = '\r'.
+	lf         = '\n'.
+	newLine    = cr + lf.
+	notNewLine = ANY - newLine .
+	ws         = " " + tab + '\u000b' + '\u000c'.
+
+TOKENS
+	ident	 = letter { letter | digit }.
+	floatcon = ( '.' digit {digit} [('e'|'E')  ['+'|'-'] digit {digit}]
+						 | digit {digit} '.' {digit} [('e'|'E')  ['+'|'-'] digit {digit}]
+						 | digit {digit} ('e'|'E')  ['+'|'-'] digit {digit}
+						 )
+						 ['f'|'l'|'F'|'L'].
+	intcon   = digit {digit}.
+	string   = '"' {notQuote} '"'.        // no check for valid escape sequences
+
+	true	 = "true".
+	false	 = "false".
+	colon	 = ":".
+	lbrace	 = "{".
+	rbrace	 = "}".
+
+
+
+COMMENTS FROM "#" TO lf
+
+IGNORE tab + cr + lf
+
+PRODUCTIONS
+
+//---------- Caffe Protxt Unit ----------
+
+Prototxt = 
+    Statement
+    { Statement }
+.
+
+Statement =
+    ident ( Property 
+            | Compound )
+.
+
+Compound = 
+	lbrace
+	Statement
+    { Statement }
+	rbrace
+.
+
+//---------- Properties ----------
+
+Property =
+	colon ( string
+            | ident
+            | intcon
+            | floatcon
+            | Compound
+            | true
+            | false )
+.
+
+END Prototxt.

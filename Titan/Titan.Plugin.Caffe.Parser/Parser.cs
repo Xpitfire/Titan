@@ -9,7 +9,7 @@ using Titan.Service.Parser;
 
 namespace Titan.Plugin.Caffe.Parser
 {
-    public class Parser : IParserPlugin
+    public partial class Parser : IParserPlugin
     {
         public const string ParserName = "Caffe";
 
@@ -26,7 +26,19 @@ namespace Titan.Plugin.Caffe.Parser
             //};
             //MessageParsedEvent?.Invoke(message);
             //return message;
+            ParseCaffePrototxt(source);
             return null;
+        }
+
+        public void ParseCaffePrototxt(string source)
+        {
+            var scanner = new Scanner(source);
+            this.Initialize(scanner);
+            this.Run();
+            if (errors.count > 0)
+            {
+                throw new InvalidOperationException("Could not parse prototxt file!");
+            }
         }
     }
 }
