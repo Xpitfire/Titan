@@ -21,6 +21,8 @@ namespace Titan.Core.Graph.Vertex
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {
             base.Deserialize(properties);
+            bool.TryParse(properties[nameof(BiasTerm)].ToString(), out bool biasTerm);
+            BiasTerm = biasTerm;
             return this;
         }
     }

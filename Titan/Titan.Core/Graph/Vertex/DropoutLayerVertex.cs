@@ -24,6 +24,8 @@ namespace Titan.Core.Graph.Vertex
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {
             base.Deserialize(properties);
+            double.TryParse(properties[nameof(Rate)].ToString(), out double rate);
+            Rate = rate;
             return this;
         }
     }

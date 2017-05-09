@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class SoftmaxLayerVertex : LayerVertex
+    public sealed class SoftmaxLayerVertex : LayerVertex, IOperationalLayer
     {
         public int NumberOfClasses { get; internal set; }
 
@@ -25,6 +25,8 @@ namespace Titan.Core.Graph.Vertex
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {
             base.Deserialize(properties);
+            int.TryParse(properties[nameof(NumberOfClasses)].ToString(), out int numberOfClasses);
+            NumberOfClasses = numberOfClasses;
             return this;
         }
     }

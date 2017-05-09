@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class PoolingLayerVertex : LayerVertex, IAttachableLayer
+    public sealed class PoolingLayerVertex : LayerVertex, IAttachableLayer, IOperationalLayer
     {
         public PoolingLayerParameter Parameter { get; internal set; }
 
@@ -28,6 +28,13 @@ namespace Titan.Core.Graph.Vertex
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {
             base.Deserialize(properties);
+            var parameter = new PoolingLayerParameter();
+            Enum.TryParse(properties[nameof(PoolingLayerParameter.PoolingKind)].ToString(), out PoolingLayerKind poolingKind);
+            parameter.PoolingKind = poolingKind;
+            int.TryParse(properties[nameof(PoolingLayerParameter.KernelSize)].ToString(), out int kernelSize);
+            parameter.KernelSize = kernelSize;
+            int.TryParse(properties[nameof(PoolingLayerParameter.Stride)].ToString(), out int stride);
+            parameter.Stride = stride;
             return this;
         }
     }

@@ -24,6 +24,8 @@ namespace Titan.Core.Graph.Vertex
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {
             base.Deserialize(properties);
+            Enum.TryParse(properties[nameof(Kind)].ToString(), out ActivationFunctionType type);
+            ActivationFunction = type;
             return this;
         }
     }

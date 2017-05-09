@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Titan.Core.Graph.Vertex
 {
     [Serializable]
-    public sealed class ConvolutionalLayerVertex : LayerVertex
+    public sealed class ConvolutionalLayerVertex : LayerVertex, IOperationalLayer
     {
         public ConvolutionalLayerParameter Parameter { get; internal set; }
 
@@ -29,6 +29,17 @@ namespace Titan.Core.Graph.Vertex
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {
             base.Deserialize(properties);
+            var parameter = new ConvolutionalLayerParameter();
+            int.TryParse(properties[nameof(Parameter.NumberOfOutput)].ToString(), out int numberOfOutput);
+            parameter.NumberOfOutput = numberOfOutput;
+            int.TryParse(properties[nameof(Parameter.KernelSize)].ToString(), out int kernelSize);
+            parameter.KernelSize = kernelSize;
+            int.TryParse(properties[nameof(Parameter.Padding)].ToString(), out int padding);
+            parameter.Padding = padding;
+            int.TryParse(properties[nameof(Parameter.Stride)].ToString(), out int stride);
+            parameter.Stride = stride;
+            bool.TryParse(properties[nameof(Parameter.BiasTerm)].ToString(), out bool biasTerm);
+            parameter.BiasTerm = biasTerm;
             return this;
         }
     }

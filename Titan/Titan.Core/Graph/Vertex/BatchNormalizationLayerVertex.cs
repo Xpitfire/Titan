@@ -21,6 +21,8 @@ namespace Titan.Core.Graph.Vertex
         internal override LayerVertex Deserialize(IReadOnlyDictionary<string, object> properties)
         {
             base.Deserialize(properties);
+            bool.TryParse(properties[nameof(UseGlobalStats)].ToString(), out bool useGlobalStats);
+            UseGlobalStats = useGlobalStats;
             return this;
         }
     }

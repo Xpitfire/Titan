@@ -155,6 +155,8 @@
     <Compile Include="Graph\Vertex\DropoutLayerVertex.cs" />
     <Compile Include="Graph\Vertex\EltwiseLayerVertex.cs" />
     <Compile Include="Graph\Vertex\FullyConnectedLayerVertex.cs" />
+    <Compile Include="Graph\Vertex\IAttachableLayer.cs" />
+    <Compile Include="Graph\Vertex\IAuxiliaryLayer.cs" />
     <Compile Include="Graph\Vertex\InputLayerVertex.cs" />
     <Compile Include="Graph\Vertex\LayerVertex.cs" />
     <Compile Include="Graph\Vertex\PoolingLayerVertex.cs" />
