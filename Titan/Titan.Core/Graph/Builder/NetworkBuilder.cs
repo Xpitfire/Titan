@@ -50,7 +50,6 @@ namespace Titan.Core.Graph.Builder
 
         private static ImmutableList<Relationship> Convert(IReadOnlyList<IRelationship> relationships, IReadOnlyList<INode> nodes)
         {
-
             var nodeDict = nodes
                 .AsParallel().Distinct().ToDictionary(n => n.Id, n => n);
             var nameProp = nameof(LayerVertex.Name);

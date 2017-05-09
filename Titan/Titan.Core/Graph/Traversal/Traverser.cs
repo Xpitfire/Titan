@@ -9,22 +9,25 @@ using Titan.Core.Graph.Database;
 
 namespace Titan.Core.Graph.Traversal
 {
-    public class Traverser
+    public abstract class Traverser
     {
-
-        public void Traverse()
+        public void QueryFullTraversal()
         {
             ConnectionPool.Instance.Execute(session =>
             {
                 var result = session.Run("MATCH found = (n:Input)-[:forward*..]->(m:Softmax) RETURN found");
                 var enumerator = result.GetEnumerator();
+                var network = default(Network);
                 if (enumerator.MoveNext())
                 {
-                    NetworkBuilder.Restore(
+                    network = NetworkBuilder.Restore(
                         enumerator.Current.Values.Select(v => v.Value as IPath).FirstOrDefault());
+                    TraverseResponse(network);
                 }
             });
         }
+
+        public abstract void TraverseResponse(Network network);
 
     }
 }
