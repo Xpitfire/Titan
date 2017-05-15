@@ -1,4 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Titan.Core.Graph;
 
 
 
@@ -92,61 +97,85 @@ public partial class Parser {
 
 	
 	void Prototxt() {
-		Statement();
+		Properties = new Dictionary<string, dynamic>(); 
+		string ident = null;
+		dynamic value = null;
+		
+		Statement(out ident, out value);
+		InsertValue(ident, value, Properties); 
 		while (la.kind == 1) {
-			Statement();
+			Statement(out ident, out value);
+			InsertValue(ident, value, Properties); 
 		}
 	}
 
-	void Statement() {
+	void Statement(out string ident, out dynamic value) {
+		Dictionary<string, dynamic> args = null; 
+		dynamic res = null;
+		ident = null;
+		value = null;
+		
 		Expect(1);
+		ident = t.val; 
 		if (la.kind == 7) {
-			Property();
+			Property(out res);
+			value = res; 
 		} else if (la.kind == 8) {
-			Compound();
+			Compound(out args);
+			value = args; 
 		} else SynErr(11);
 	}
 
-	void Property() {
+	void Property(out dynamic res) {
+		Dictionary<string, dynamic> args = null; 
+		res = null;
+		
 		Expect(7);
-		switch (la.kind) {
-		case 4: {
-			Get();
-			break;
-		}
-		case 1: {
-			Get();
-			break;
-		}
-		case 3: {
-			Get();
-			break;
-		}
-		case 2: {
-			Get();
-			break;
-		}
-		case 8: {
-			Compound();
-			break;
-		}
-		case 5: {
-			Get();
-			break;
-		}
-		case 6: {
-			Get();
-			break;
-		}
-		default: SynErr(12); break;
-		}
+		if (StartOf(1)) {
+			switch (la.kind) {
+			case 4: {
+				Get();
+				break;
+			}
+			case 1: {
+				Get();
+				break;
+			}
+			case 3: {
+				Get();
+				break;
+			}
+			case 2: {
+				Get();
+				break;
+			}
+			case 5: {
+				Get();
+				break;
+			}
+			case 6: {
+				Get();
+				break;
+			}
+			}
+			res = t.val; 
+		} else if (la.kind == 8) {
+			Compound(out args);
+			res = args; 
+		} else SynErr(12);
 	}
 
-	void Compound() {
+	void Compound(out Dictionary<string, dynamic> args) {
+		args = new Dictionary<string, dynamic>(); 
+		string ident = null;
+		dynamic value = null;
+		
 		Expect(8);
-		Statement();
+		Statement(out ident, out value);
+		InsertValue(ident, value, args); 
 		while (la.kind == 1) {
-			Statement();
+			Statement(out ident, out value);
+			InsertValue(ident, value, args); 
 		}
 		Expect(9);
 	}
@@ -163,7 +192,8 @@ public partial class Parser {
 	}
 	
 	static readonly bool[,] set = {
-		{_T,_x,_x,_x, _x,_x,_x,_x, _x,_x,_x,_x}
+		{_T,_x,_x,_x, _x,_x,_x,_x, _x,_x,_x,_x},
+		{_x,_T,_T,_T, _T,_T,_T,_x, _x,_x,_x,_x}
 
 	};
 } // end Parser

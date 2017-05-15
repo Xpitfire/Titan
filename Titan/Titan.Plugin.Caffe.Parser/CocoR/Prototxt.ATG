@@ -1,4 +1,9 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Titan.Core.Graph;
 
 COMPILER Prototxt
 
@@ -32,8 +37,6 @@ TOKENS
 	lbrace	 = "{".
 	rbrace	 = "}".
 
-
-
 COMMENTS FROM "#" TO lf
 
 IGNORE tab + cr + lf
@@ -42,33 +45,55 @@ PRODUCTIONS
 
 //---------- Caffe Protxt Unit ----------
 
-Prototxt = 
-    Statement
-    { Statement }
+Prototxt
+=                                               (. Properties = new Dictionary<string, dynamic>(); 
+                                                   string ident = null;
+                                                   dynamic value = null;
+                                                 .)
+    Statement<out ident, out value>             (. InsertValue(ident, value, Properties); .)
+    { Statement<out ident, out value>           (. InsertValue(ident, value, Properties); .)
+    }
 .
 
-Statement =
-    ident ( Property 
-            | Compound )
+Statement<out string ident, out dynamic value>
+=                                               (. Dictionary<string, dynamic> args = null; 
+                                                   dynamic res = null;
+                                                   ident = null;
+                                                   value = null;
+                                                 .)
+    ident                                       (. ident = t.val; .)
+    ( Property<out res>                         (. value = res; .)
+      | Compound<out args>                      (. value = args; .)
+      )
 .
 
-Compound = 
+Compound<.out Dictionary<string, dynamic> args.>
+=                                               (. args = new Dictionary<string, dynamic>(); 
+                                                   string ident = null;
+                                                   dynamic value = null;
+                                                 .)
 	lbrace
-	Statement
-    { Statement }
+	Statement<out ident, out value>             (. InsertValue(ident, value, args); .)
+    { Statement<out ident, out value>           (. InsertValue(ident, value, args); .)
+    }
 	rbrace
 .
 
 //---------- Properties ----------
 
-Property =
-	colon ( string
-            | ident
-            | intcon
-            | floatcon
-            | Compound
-            | true
-            | false )
+Property<out dynamic res>
+=                                               (. Dictionary<string, dynamic> args = null; 
+                                                   res = null;
+                                                 .)
+	colon (( string
+             | ident
+             | intcon
+             | floatcon
+             | true
+             | false 
+           )                                    (. res = t.val; .)
+             | Compound<out args>               (. res = args; .)
+          )
 .
 
 END Prototxt.

@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CocoR\Parser.cs" />
+    <Compile Include="CocoR\Scanner.cs" />
     <Compile Include="Parser.cs" />
-    <Compile Include="ParserExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScannerExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Titan.Core\Titan.Core.csproj">

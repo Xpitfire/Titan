@@ -133,6 +133,7 @@
   <ItemGroup>
     <Compile Include="Collection\ImmutableException.cs" />
     <Compile Include="Collection\ImmutableList.cs" />
+    <Compile Include="Collection\MultiValueDictionary.cs" />
     <Compile Include="Graph\Builder\ConcatLayerBuilder.cs" />
     <Compile Include="Graph\Builder\EltwiseLayerBuilder.cs" />
     <Compile Include="Graph\Builder\GraphBuilderBase.cs" />
