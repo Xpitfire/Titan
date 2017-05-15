@@ -22,13 +22,23 @@ namespace Titan.Core.Graph.Builder
             base.PreviousId = layer.Identifier;
             return new LayerBuilder(this);
         }
-
+        
         public Network Build()
         {
             return new Network {
                 Name = Graph.GraphId.Id,
                 Vertices = Vertices.Select(v => v.Value as LayerVertex).ToImmutableList(),
                 References = Relationships.ToImmutableList()
+            };
+        }
+
+        public static Network Restore(IList<LayerVertex> vertices, IList<Relationship> relashionships)
+        {
+            return new Network
+            {
+                Name = new Identifier().Id,
+                Vertices = vertices.ToImmutableList(),
+                References = relashionships.ToImmutableList()
             };
         }
 

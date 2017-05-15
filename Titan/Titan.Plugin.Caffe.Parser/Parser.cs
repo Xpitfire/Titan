@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Titan.Core.Graph;
 using Titan.Service.Communication;
 using Titan.Service.Parser;
 
@@ -14,24 +13,22 @@ namespace Titan.Plugin.Caffe.Parser
         public const string ParserName = "Caffe";
 
         public Dictionary<string, dynamic> Properties { get; private set; }
-        public Network Network { get; private set; }
 
         public event MessageDelegate<ParserMessage> MessageParsedEvent;
         public ParserMessage Parse(string source)
         {
-            //var message = new ParserMessage
-            //{
-            //    // TODO: Perform real syntax tree definition
-            //    Network = SyntaxFactory.Network("CaffeDemo"),
-            //    Data = source,
-            //    ParseDate = DateTime.Now,
-            //    ParserName = ParserName
-            //};
-            //MessageParsedEvent?.Invoke(message);
-            //return message;
             ParseCaffePrototxt(source);
-            TransformToNetwork();
-            return null;
+            var converter = new CaffeConverter(Properties);
+            converter.TransformToNetwork();
+            var message = new ParserMessage
+            {
+                Network = converter.Network,
+                Data = source,
+                ParseDate = DateTime.Now,
+                ParserName = ParserName
+            };
+            MessageParsedEvent?.Invoke(message);
+            return message;
         }
 
         public void ParseCaffePrototxt(string source)
@@ -42,32 +39,6 @@ namespace Titan.Plugin.Caffe.Parser
             if (errors.count > 0)
             {
                 throw new InvalidOperationException("Could not parse prototxt file!");
-            }
-        }
-
-        public void TransformToNetwork()
-        {
-            // TODO
-        }
-        
-        void InsertValue(string key, dynamic value, Dictionary<string, dynamic> dict)
-        {
-            if (!dict.ContainsKey(key))
-            {
-                dict[key] = value;
-            }
-            else if (dict.ContainsKey(key)
-                && dict[key] as List<dynamic> != null)
-            {
-                dict[key].Add(value);
-            }
-            else
-            {
-                var values = new List<dynamic>
-                {
-                    dict[key]
-                };
-                dict[key] = values;
             }
         }
     }

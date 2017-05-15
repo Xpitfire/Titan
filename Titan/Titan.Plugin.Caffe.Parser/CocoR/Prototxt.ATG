@@ -7,6 +7,27 @@ using Titan.Core.Graph;
 
 COMPILER Prototxt
 
+void InsertValue(string key, dynamic value, Dictionary<string, dynamic> dict)
+{
+    if (!dict.ContainsKey(key))
+    {
+        dict[key] = value;
+    }
+    else if (dict.ContainsKey(key)
+        && dict[key] as List<dynamic> != null)
+    {
+        dict[key].Add(value);
+    }
+    else
+    {
+        var values = new List<dynamic>
+        {
+            dict[key]
+        };
+        dict[key] = values;
+    }
+}
+
 CHARACTERS
 	letter     = 'A'..'Z' + 'a'..'z' + '_'.
 	digit      = '0'..'9'.
@@ -85,14 +106,13 @@ Property<out dynamic res>
 =                                               (. Dictionary<string, dynamic> args = null; 
                                                    res = null;
                                                  .)
-	colon (( string
-             | ident
-             | intcon
-             | floatcon
-             | true
-             | false 
-           )                                    (. res = t.val; .)
-             | Compound<out args>               (. res = args; .)
+	colon ( string								(. res = t.val.Trim(new[] { '\"' }); .) // trim buggy quote on parse
+            | ident								(. res = t.val; .)
+            | intcon							(. res = t.val; .)
+            | floatcon							(. res = t.val; .)
+            | true								(. res = true; .)
+            | false								(. res = false; .)
+            | Compound<out args>                (. res = args; .)
           )
 .
 

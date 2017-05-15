@@ -14,35 +14,35 @@ namespace Titan.Plugin.Caffe.Test
         public void TestLeNetSuccessParser()
         {
             var parser = new Parser.Parser();
-            parser.ParseCaffePrototxt(@"CaffeTests\LeNet.prototxt");
+            parser.Parse(@"CaffeTests\LeNet.prototxt");
         }
 
         [TestMethod]
         public void TestResNet50DeploySuccessParser()
         {
             var parser = new Parser.Parser();
-            parser.ParseCaffePrototxt(@"CaffeTests\ResNet-50-deploy.prototxt");
+            parser.Parse(@"CaffeTests\ResNet-50-deploy.prototxt");
         }
 
         [TestMethod]
         public void TestAlexNetSuccessParser()
         {
             var parser = new Parser.Parser();
-            parser.ParseCaffePrototxt(@"CaffeTests\AlexNet.prototxt");
+            parser.Parse(@"CaffeTests\AlexNet.prototxt");
         }
 
         [TestMethod]
         public void TestGoogLeNetSuccessParser()
         {
             var parser = new Parser.Parser();
-            parser.ParseCaffePrototxt(@"CaffeTests\GoogLeNet.prototxt");
+            parser.Parse(@"CaffeTests\GoogLeNet.prototxt");
         }
 
         [TestMethod]
         public void TestGoogLeNetDeploySuccessParser()
         {
             var parser = new Parser.Parser();
-            parser.ParseCaffePrototxt(@"CaffeTests\GoogLeNet-deploy.prototxt");
+            parser.Parse(@"CaffeTests\GoogLeNet-deploy.prototxt");
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace Titan.Plugin.Caffe.Test
         public void TestErrorParser()
         {
             var parser = new Parser.Parser();
-            parser.ParseCaffePrototxt(@"CaffeTests\Error.prototxt");
+            parser.Parse(@"CaffeTests\Error.prototxt");
         }
 
     }
