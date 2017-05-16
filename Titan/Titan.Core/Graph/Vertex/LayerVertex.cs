@@ -44,7 +44,8 @@ namespace Titan.Core.Graph.Vertex
         Eltwise,
         Concat,
         FullyConnected,
-        Softmax
+        Softmax,
+        Learn
     }
 
 }

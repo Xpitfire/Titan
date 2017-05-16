@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Titan.Core.Collection;
 
 namespace Titan.Core.Graph.Vertex
 {
@@ -60,22 +61,35 @@ namespace Titan.Core.Graph.Vertex
             };
         }
 
-        public static ConvolutionalLayerVertex ConvLayer(string name, 
-            ConvolutionalLayerParameter parameter)
+        public static ConvolutionalLayerLearningRateParameter ConvLayerLearnRateParam(
+            int learnRateMult,
+            int decayMult)
         {
-            return new ConvolutionalLayerVertex(name, parameter);
+            return new ConvolutionalLayerLearningRateParameter(
+                learnRateMult, decayMult);
+        }
+
+
+
+        public static ConvolutionalLayerVertex ConvLayer(string name, 
+            ConvolutionalLayerParameter parameter,
+            ImmutableList<ConvolutionalLayerLearningRateParameter> learnRateList = null)
+        {
+            return new ConvolutionalLayerVertex(name, parameter, learnRateList);
         }
 
         public static PoolingLayerParameter PoolLayerParam(
             int kernelSize,
             PoolingLayerKind poolingKind = PoolingLayerKind.Max,
-            int stride = 1)
+            int stride = 1,
+            int pad = 0)
         {
             return new PoolingLayerParameter
             {
                 KernelSize = kernelSize,
                 PoolingKind = poolingKind,
-                Stride = stride
+                Stride = stride,
+                Pad = pad
             };
         }
 
@@ -87,7 +101,7 @@ namespace Titan.Core.Graph.Vertex
 
         public static BatchNormalizationLayerVertex BatchNormLayer(string name, bool useGlobalStats = false)
         {
-            return new BatchNormalizationLayerVertex
+            return new BatchNormalizationLayerVertex(name)
             {
                 UseGlobalStats = useGlobalStats
             };
@@ -95,7 +109,7 @@ namespace Titan.Core.Graph.Vertex
 
         public static ScaleLayerVertex ScaleLayer(string name, bool biasTerm = false)
         {
-            return new ScaleLayerVertex
+            return new ScaleLayerVertex(name)
             {
                 BiasTerm = biasTerm
             };
@@ -104,7 +118,7 @@ namespace Titan.Core.Graph.Vertex
         public static ActivationLayerVertex ActivationLayer(string name,
             ActivationFunctionType activationType  = ActivationFunctionType.ReLU)
         {
-            return new ActivationLayerVertex
+            return new ActivationLayerVertex(name)
             {
                 ActivationFunction = activationType
             };
@@ -112,7 +126,7 @@ namespace Titan.Core.Graph.Vertex
 
         public static DropoutLayerVertex DropoutLayer(string name, float rate)
         {
-            return new DropoutLayerVertex
+            return new DropoutLayerVertex(name)
             {
                 Rate = rate
             };
@@ -121,9 +135,22 @@ namespace Titan.Core.Graph.Vertex
         public static EltwiseLayerVertex EltwiseLayer(string name, 
             EltwiseOperationKind operation = EltwiseOperationKind.Add)
         {
-            return new EltwiseLayerVertex
+            return new EltwiseLayerVertex(name)
             {
                 OperationKind = operation
+            };
+        }
+
+        public static LearnLayerVertex LearnLayer(string name,
+            int localSize,
+            float alpha,
+            float beta)
+        {
+            return new LearnLayerVertex(name)
+            {
+                LocalSize = localSize,
+                Alpha = alpha,
+                Beta = beta
             };
         }
 

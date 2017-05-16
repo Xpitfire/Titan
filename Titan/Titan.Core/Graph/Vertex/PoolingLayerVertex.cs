@@ -45,6 +45,7 @@ namespace Titan.Core.Graph.Vertex
         public PoolingLayerKind PoolingKind { get; internal set; }
         public int KernelSize { get; internal set; }
         public int Stride { get; internal set; }
+        public int Pad { get; internal set; }
 
         internal PoolingLayerParameter() { }
         internal PoolingLayerParameter(PoolingLayerKind kind, int kernelSize, int stride)

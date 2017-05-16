@@ -161,6 +161,7 @@
     <Compile Include="Graph\Vertex\InputLayerVertex.cs" />
     <Compile Include="Graph\Vertex\IOperationalLayer.cs" />
     <Compile Include="Graph\Vertex\LayerVertex.cs" />
+    <Compile Include="Graph\Vertex\LearnLayerVertex.cs" />
     <Compile Include="Graph\Vertex\PoolingLayerVertex.cs" />
     <Compile Include="Graph\Vertex\ScaleLayerVertex.cs" />
     <Compile Include="Graph\Vertex\SoftmaxLayerVertex.cs" />

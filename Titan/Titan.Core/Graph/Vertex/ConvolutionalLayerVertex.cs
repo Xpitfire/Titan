@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Titan.Core.Collection;
 
 namespace Titan.Core.Graph.Vertex
 {
@@ -7,12 +8,16 @@ namespace Titan.Core.Graph.Vertex
     public sealed class ConvolutionalLayerVertex : LayerVertex, IOperationalLayer
     {
         public ConvolutionalLayerParameter Parameter { get; internal set; }
+        public ImmutableList<ConvolutionalLayerLearningRateParameter> LearnRateParameters { get; internal set; }
 
         internal ConvolutionalLayerVertex() : this(null) { }
         internal ConvolutionalLayerVertex(string name) : base(VertexKind.Convolutional, name) { }
-        internal ConvolutionalLayerVertex(string name, ConvolutionalLayerParameter parameter) : this(name)
+        internal ConvolutionalLayerVertex(string name, 
+            ConvolutionalLayerParameter parameter,
+            ImmutableList<ConvolutionalLayerLearningRateParameter> learnRateParams = null) : this(name)
         {
             Parameter = parameter;
+            LearnRateParameters = learnRateParams;
         }
 
         public override IDictionary<string, object> Serialize()
@@ -42,6 +47,60 @@ namespace Titan.Core.Graph.Vertex
             parameter.BiasTerm = biasTerm;
             return this;
         }
+    }
+
+    [Serializable]
+    public sealed class ConvolutionalLayerLearningRateParameter
+    {
+        public int LearningRateMultiplication { get; internal set; }
+        public int DecayMultiplication { get; internal set; }
+
+        public ConvolutionalLayerLearningRateParameter(
+            int learningRateMultiplication,
+            int decayMultiplication)
+        {
+            LearningRateMultiplication = learningRateMultiplication;
+            DecayMultiplication = decayMultiplication;
+        }
+    }
+
+    [Serializable]
+    public sealed class ConvolutionalLayerWeightFillerParameter
+    {
+        public ConvolutionalLayerWeightFillerKind WeightFillerKind { get; internal set; }
+
+        public ConvolutionalLayerWeightFillerParameter(
+            ConvolutionalLayerWeightFillerKind kind = ConvolutionalLayerWeightFillerKind.Xavier)
+        {
+            WeightFillerKind = kind;
+        }
+    }
+
+    [Serializable]
+    public enum ConvolutionalLayerWeightFillerKind
+    {
+        Xavier
+    }
+
+    [Serializable]
+    public sealed class ConvolutionalLayerBiasFillerParameter
+    {
+        public ConvolutionalLayerBiasFillerKind BiasFillerKind { get; internal set; }
+        public float Value { get; internal set; }
+
+        public ConvolutionalLayerBiasFillerParameter(
+            ConvolutionalLayerBiasFillerKind kind,
+            float value)
+        {
+            BiasFillerKind = kind;
+            Value = value;
+        }
+    }
+
+    [Serializable]
+    public enum ConvolutionalLayerBiasFillerKind
+    {
+        Constant
     }
 
     [Serializable]
