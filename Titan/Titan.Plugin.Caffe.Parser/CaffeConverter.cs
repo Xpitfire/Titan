@@ -85,24 +85,8 @@ namespace Titan.Plugin.Caffe.Parser
 
 
 
-                    Dictionary<string, dynamic> learnParamDict = Try<Dictionary<string, dynamic>>(layer, "lrn_param");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    var learnParamDict = Try<Dictionary<string, dynamic>>((object)layer, "lrn_param");
+                    
 
                     return LearnLayer(name,
                         learnLocalSize, 
