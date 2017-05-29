@@ -32,7 +32,7 @@ namespace Titan.HeuristicLab.Problem
             // create new network builder
             NetworkBuilder = new NetworkBuilder("test5");
             // start program execution at the root node
-            EvaluateNetworkProgram(Expression.Root, NetworkBuilder);
+            EvaluateNetworkProgram(Expression.Root);
         }
 
         /// Evaluate a whole tree branch, each branch returns an integer vector.
@@ -44,7 +44,7 @@ namespace Titan.HeuristicLab.Problem
         /// 2. Use the NetworkBuilder to transform into vertices and relashionships
         /// 3. Send result via Rest API to external Evaluation Endpoint
         /// 4. Return final result
-        private void EvaluateNetworkProgram(ISymbolicExpressionTreeNode node, GraphBuilderBase builder)
+        private void EvaluateNetworkProgram(ISymbolicExpressionTreeNode node)
         {
             // The program-root and start symbols are predefined symbols 
             // in each problem using the symbolic expression tree encoding.
@@ -52,11 +52,11 @@ namespace Titan.HeuristicLab.Problem
             // evaluate the whole sub-tree 
             if (node.Symbol is ProgramRootSymbol)
             {
-                EvaluateNetworkProgram(node.GetSubtree(0), builder);
+                EvaluateNetworkProgram(node.GetSubtree(0));
             }
             else if (node.Symbol is StartSymbol)
             {
-                EvaluateNetworkProgram(node.GetSubtree(0), builder);
+                EvaluateNetworkProgram(node.GetSubtree(0));
             }
             else if (node.Symbol is ConvolutionalLayerSymbol)
             {
