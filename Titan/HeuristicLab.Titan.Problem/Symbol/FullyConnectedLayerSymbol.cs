@@ -7,11 +7,11 @@ namespace Titan.HeuristicLab.Problem.Symbol
     public class FullyConnectedLayerSymbol : global::HeuristicLab.Encodings.SymbolicExpressionTreeEncoding.Symbol
     {
         [StorableConstructor]
-        public FullyConnectedLayerSymbol(bool deserializing) : base(deserializing)
+        protected FullyConnectedLayerSymbol(bool deserializing) : base(deserializing)
         {
         }
 
-        public FullyConnectedLayerSymbol(FullyConnectedLayerSymbol original, Cloner cloner) : base(original, cloner)
+        protected FullyConnectedLayerSymbol(FullyConnectedLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 

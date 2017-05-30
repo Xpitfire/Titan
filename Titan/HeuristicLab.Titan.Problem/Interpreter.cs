@@ -29,8 +29,9 @@ namespace Titan.HeuristicLab.Problem
 
         public void Evaluate()
         {
+            var id = Guid.NewGuid();
             // create new network builder
-            NetworkBuilder = new NetworkBuilder("test5");
+            NetworkBuilder = new NetworkBuilder(id.ToString());
             // start program execution at the root node
             EvaluateNetworkProgram(Expression.Root);
         }

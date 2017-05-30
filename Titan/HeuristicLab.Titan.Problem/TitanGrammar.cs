@@ -14,14 +14,12 @@ namespace Titan.HeuristicLab.Problem
     {
 
         [StorableConstructor]
-        public TitanGrammar(bool deserializing) : base(deserializing)
+        protected TitanGrammar(bool deserializing) : base(deserializing)
         {
         }
-
-        public TitanGrammar(TitanGrammar original, Cloner cloner) : base(original, cloner)
+        protected TitanGrammar(TitanGrammar original, Cloner cloner) : base(original, cloner)
         {
         }
-
         public TitanGrammar() : base(nameof(TitanGrammar), "The grammar for DNN GP problem.")
         {
             Initialize();

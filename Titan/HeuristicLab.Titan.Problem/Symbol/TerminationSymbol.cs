@@ -12,7 +12,11 @@ namespace HeuristicLab.Titan.Problem.Symbol
     public class TerminationSymbol : global::HeuristicLab.Encodings.SymbolicExpressionTreeEncoding.Symbol
     {
         [StorableConstructor]
-        public TerminationSymbol(TerminationSymbol original, Cloner cloner) : base(original, cloner)
+        protected TerminationSymbol(bool deserializing) : base(deserializing)
+        {
+        }
+
+        protected TerminationSymbol(TerminationSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 

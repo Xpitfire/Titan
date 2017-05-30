@@ -7,11 +7,11 @@ namespace Titan.HeuristicLab.Problem.Symbol
     public class ConvolutionalLayerSymbol : global::HeuristicLab.Encodings.SymbolicExpressionTreeEncoding.Symbol
     {
         [StorableConstructor]
-        public ConvolutionalLayerSymbol(bool deserializing) : base(deserializing)
+        protected ConvolutionalLayerSymbol(bool deserializing) : base(deserializing)
         {
         }
 
-        public ConvolutionalLayerSymbol(ConvolutionalLayerSymbol original, Cloner cloner) : base(original, cloner)
+        protected ConvolutionalLayerSymbol(ConvolutionalLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 

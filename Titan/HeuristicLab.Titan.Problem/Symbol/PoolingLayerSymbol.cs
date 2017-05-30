@@ -7,11 +7,11 @@ namespace Titan.HeuristicLab.Problem.Symbol
     public class PoolingLayerSymbol : global::HeuristicLab.Encodings.SymbolicExpressionTreeEncoding.Symbol
     {
         [StorableConstructor]
-        public PoolingLayerSymbol(bool deserializing) : base(deserializing)
+        protected PoolingLayerSymbol(bool deserializing) : base(deserializing)
         {
         }
 
-        public PoolingLayerSymbol(PoolingLayerSymbol original, Cloner cloner) : base(original, cloner)
+        protected PoolingLayerSymbol(PoolingLayerSymbol original, Cloner cloner) : base(original, cloner)
         {
         }
 
